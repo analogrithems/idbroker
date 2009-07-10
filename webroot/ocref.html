@@ -1,0 +1,8887 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=">
+</head>
+
+<body text="#000000" link="10% #594FBF" vlink="#594FBF" alink="#333366" bgcolor="#FFFFFF">
+
+<a name="14363"></a>
+<a name="abstract"></a>
+
+<h1>abstract</h1>
+
+<a name="14364"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14365"></a>
+<p>
+Provides an abstract of a document entry.</p>
+
+<a name="14366"></a>
+<p>
+This attribute is defined in Internet White Pages Pilot.</p>
+
+<a name="14367"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14368"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="14369"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14370"></a>
+<p>
+0.9.2342.19200300.102.1.9</p>
+
+<a name="14373"></a>
+<a name="aliasedObjectName"></a>
+
+<h1>aliasedObjectName</h1>
+
+<a name="14374"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14375"></a>
+<p>
+Used by the directory server to identify alias entries in the directory. Contains the distinguished name of the entry for which it is an alias.</p>
+
+<a name="14379"></a>
+<p>
+Note that alias dereferencing is not supported in Sun ONE Directory Server.</p>
+
+<a name="14380"></a>
+<p>
+For example:</p>
+
+<a name="14381"></a>
+<p>
+<span class="codeline">aliasedObjectName: cn=jdoe, dc=example, dc=com
+</span></p>
+
+<a name="14382"></a>
+
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="14383"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14384"></a>
+<p>
+DN, single-valued.</p>
+
+<a name="14385"></a>
+
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14386"></a>
+<p>
+2.5.4.1</p>
+
+<a name="14389"></a>
+<a name="associatedDomain"></a>
+
+<h1>associatedDomain</h1>
+
+<a name="14390"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14391"></a>
+<p>
+Specifies a DNS domain associated with an object in the directory tree. For example, the entry in the directory tree with a distinguished name <span class="monospace">c=US, o=example Corporation</span> might be associated to the domain <span class="monospace">example.com</span>. Note that all domains should be represented in rfc822 order.</p>
+
+<a name="14392"></a>
+<p>
+For example:</p>
+
+<a name="14393"></a>
+<p>
+<span class="codeline">associatedDomain: example.com
+</span></p>
+
+<a name="14394"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="14395"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14396"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="14397"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14398"></a>
+<p>
+0.9.2342.19200300.100.1.37</p>
+
+<a name="14401"></a>
+<a name="associatedName"></a>
+
+<h1>associatedName</h1>
+
+<a name="14402"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14403"></a>
+<p>
+Specifies an entry in the organizational directory tree associated with a DNS domain.</p>
+
+<a name="14404"></a>
+<p>
+For example:</p>
+
+<a name="14405"></a>
+<p>
+<span class="codeline">associatedName: c=us
+</span></p>
+
+<a name="14406"></a>
+
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="14407"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14408"></a>
+<p>
+DN, multi-valued.</p>
+
+<a name="14409"></a>
+
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14410"></a>
+<p>
+0.9.2342.19200300.100.1.38</p>
+
+<a name="14413"></a>
+<a name="audio"></a>
+
+<h1>audio</h1>
+
+<a name="14414"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14415"></a>
+<p>
+Contains a sound file in binary format. The attribute uses a u-law encoded sound file.</p>
+
+<a name="14416"></a>
+<p>
+For example:</p>
+
+<a name="14417"></a>
+<p>
+<span class="codeline">audio:: AAAAAA==
+</span></p>
+
+<a name="14418"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="14419"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14420"></a>
+<p>
+Binary, multi-valued.</p>
+
+<a name="14421"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14422"></a>
+<p>
+0.9.2342.19200300.100.1.55</p>
+
+<a name="14425"></a>
+<a name="authorCn"></a>
+
+<h1>authorCn</h1>
+
+<a name="14426"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14427"></a>
+<p>
+Contains the common name of the author of a document entry.</p>
+
+<a name="14428"></a>
+<p>
+For example:</p>
+
+<a name="14429"></a>
+<p>
+<span class="codeline">authorCn: Kacey
+</span></p>
+
+<a name="14430"></a>
+<p>
+This attribute is defined in Internet White Pages Pilot.</p>
+
+<a name="14431"></a>
+
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14432"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="14433"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14434"></a>
+<p>
+0.9.2342.19200300.102.1.11</p>
+
+<a name="14437"></a>
+<a name="authorSn"></a>
+
+<h1>authorSn</h1>
+
+<a name="14438"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14439"></a>
+<p>
+Contains the surname of the author of a document entry.</p>
+
+<a name="14440"></a>
+<p>
+For example:</p>
+
+<a name="14441"></a>
+<p>
+<span class="codeline">authorSn: Doe
+</span></p>
+
+<a name="14442"></a>
+
+<p>
+This attribute is defined in Internet White Pages Pilot.</p>
+
+<a name="14443"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14444"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="14445"></a>
+
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14446"></a>
+<p>
+0.9.2342.19200300.102.1.12</p>
+
+<a name="14449"></a>
+<a name="authorityRevocationList"></a>
+
+<h1>authorityRevocationList</h1>
+
+<a name="14450"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14451"></a>
+<p>
+Contains a list of CA certificates that have been revoked. This attribute is to be stored and requested in the binary form, as <span class="monospace">authorityRevocationList;binary</span>.</p>
+
+<a name="14452"></a>
+<p>
+For example:</p>
+
+<a name="14453"></a>
+<p>
+<span class="codeline">authorityRevocationList;binary:: AAAAAA==
+</span></p>
+
+<a name="14454"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="14455"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14456"></a>
+<p>
+Binary, multi-valued.</p>
+
+<a name="14457"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14460"></a>
+<p>
+2.5.4.38</p>
+
+<a name="14463"></a>
+<a name="bootFile"></a>
+
+<h1>bootFile</h1>
+
+<a name="17607"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="17608"></a>
+<p>
+The name of the boot image.</p>
+
+<a name="17609"></a>
+<p>
+For example:</p>
+
+<a name="17645"></a>
+<p>
+<span class="codeline">bootFile: mach
+</span></p>
+
+<a name="17646"></a>
+<p>
+This attribute is defined in RFC 2307.</p>
+
+<a name="17647"></a>
+
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="17648"></a>
+<p>
+String, multi-valued.</p>
+
+<a name="17631"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="17633"></a>
+<p>
+1.3.6.1.1.1.1.24</p>
+
+<a name="17664"></a>
+<a name="bootParameter"></a>
+
+<h1>bootParameter</h1>
+
+<a name="17665"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="17666"></a>
+<p>
+Specified boot parameters.</p>
+
+<a name="17667"></a>
+<p>
+For example:</p>
+
+<a name="17668"></a>
+<p>
+<span class="codeline">bootParameter: root=fs:/nfsroot/peg<br>
+bootParameter: swap=fs:/nfsswap/peg<br>
+
+bootParameter: dump=fs:/nfsdump/peg<br>
+
+</span></p>
+
+<a name="17669"></a>
+<p>
+This attribute is defined in RFC 2307.</p>
+
+<a name="17670"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="17671"></a>
+<p>
+bootParameterSyntax</p>
+
+<a name="17672"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="17673"></a>
+<p>
+1.3.6.1.1.1.1.23</p>
+
+<a name="17662"></a>
+<a name="buildingName"></a>
+
+<h1>buildingName</h1>
+
+<a name="14464"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14465"></a>
+<p>
+Defines the building name associated with the entry.</p>
+
+<a name="14466"></a>
+<p>
+For example:</p>
+
+<a name="14467"></a>
+<p>
+<span class="codeline">buildingName: B14
+</span></p>
+
+<a name="14468"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="14469"></a>
+
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14470"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="14471"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14472"></a>
+<p>
+0.9.2342.19200300.100.1.48</p>
+
+<a name="14475"></a>
+<a name="businessCategory"></a>
+
+<h1>businessCategory</h1>
+
+<a name="14476"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14477"></a>
+<p>
+Identifies the type of business in which the entry is engaged. This should be a broad generalization such as is made at the corporate division level.</p>
+
+<a name="14478"></a>
+<p>
+For example:</p>
+
+<a name="14479"></a>
+<p>
+<span class="codeline">businessCategory: Engineering
+</span></p>
+
+<a name="14480"></a>
+
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="14481"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14482"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="14483"></a>
+
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14484"></a>
+<p>
+2.5.4.15</p>
+
+<a name="14487"></a>
+<a name="c (countryName)"></a>
+
+<h1>c (countryName)</h1>
+
+<a name="14488"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14489"></a>
+<p>
+Contains the two-character code representing country names, as defined in ISO-3166.</p>
+
+<a name="14490"></a>
+<p>
+For example:</p>
+
+<a name="14491"></a>
+<p>
+<span class="codeline">countryName: IE
+</span></p>
+
+<a name="14492"></a>
+<p>
+or</p>
+
+<a name="14493"></a>
+<p>
+<span class="codeline">c: IE
+</span></p>
+
+<a name="14494"></a>
+<p>
+
+This attribute is defined in RFC 2256.</p>
+
+<a name="14495"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14496"></a>
+<p>
+DirectoryString, single-valued.</p>
+
+<a name="14497"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14498"></a>
+<p>
+2.5.4.6</p>
+
+<a name="14501"></a>
+<a name="CACertificate"></a>
+
+<h1>CACertificate</h1>
+
+<a name="14502"></a>
+
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14503"></a>
+<p>
+Contains the CA's certificate. This attribute is to be stored and requested in the binary form, as <span class="monospace">CACertificate;binary</span>.</p>
+
+<a name="14504"></a>
+<p>
+For example:</p>
+
+<a name="14505"></a>
+<p>
+<span class="codeline">CACertificate;binary:: AAAAAA==
+</span></p>
+
+<a name="14506"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="14507"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14508"></a>
+<p>
+Binary, multi-valued.</p>
+
+<a name="14509"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14510"></a>
+<p>
+2.5.4.37</p>
+
+<a name="14513"></a>
+<a name="carLicense"></a>
+
+<h1>carLicense</h1>
+
+<a name="14514"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14515"></a>
+<p>
+Identifies the entry's automobile license plate number.</p>
+
+<a name="14516"></a>
+<p>
+For example:</p>
+
+<a name="14517"></a>
+<p>
+<span class="codeline">carLicense: 4MCS389
+</span></p>
+
+<a name="14518"></a>
+<p>
+This attribute is defined in RFC 2798.</p>
+
+<a name="14519"></a>
+
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14520"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="14521"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14522"></a>
+<p>
+2.16.840.1.113730.3.1.1</p>
+
+<a name="14525"></a>
+<a name="certificateRevocationList"></a>
+
+<h1>certificateRevocationList</h1>
+
+<a name="14526"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14527"></a>
+<p>
+Contains a list of revoked user certificates. This attribute is to be stored and requested in the binary form, as <span class="monospace">certificateRevocationList;binary</span>.</p>
+
+<a name="14528"></a>
+<p>
+For example:</p>
+
+<a name="14529"></a>
+<p>
+<span class="codeline">certificateRevocationList;binary:: AAAAAA==
+</span></p>
+
+<a name="14530"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="14531"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14532"></a>
+<p>
+Binary, multi-valued.</p>
+
+<a name="14533"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14534"></a>
+<p>
+2.5.4.39</p>
+
+<a name="14536"></a>
+<a name="changes"></a>
+
+<h1>changes</h1>
+
+<a name="14537"></a>
+<a name="Description"></a>
+
+<p>
+<b>Description</b></p>
+
+<a name="14538"></a>
+<p>
+For add and modify operations, contains the changes made to the entry, in LDIF format.</p>
+
+<a name="14539"></a>
+<p>
+This attribute is defined in Changelog Internet Draft.</p>
+
+<a name="14540"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14541"></a>
+<p>
+Binary, multi-valued.</p>
+
+<a name="14542"></a>
+<a name="OID"></a>
+
+<p>
+
+<b>OID</b></p>
+
+<a name="14543"></a>
+<p>
+2.16.840.1.113730.3.1.8</p>
+
+<a name="14545"></a>
+<a name="changeLog"></a>
+
+<h1>changeLog</h1>
+
+<a name="14546"></a>
+<a name="Description"></a>
+
+<p>
+<b>Description</b></p>
+
+<a name="14547"></a>
+<p>
+The distinguished name of the entry that contains the set of entries comprising the server change log.</p>
+
+<a name="14549"></a>
+<p>
+This attribute is defined in Changelog Internet Draft.</p>
+
+<a name="14550"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14551"></a>
+<p>
+DN, multi-valued.</p>
+
+<a name="14552"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14553"></a>
+
+<p>
+2.16.840.1.113730.3.1.35</p>
+
+<a name="14556"></a>
+<a name="changeNumber"></a>
+
+<h1>changeNumber</h1>
+
+<a name="14557"></a>
+<a name="Description"></a>
+
+<p>
+<b>Description</b></p>
+
+<a name="19380"></a>
+<p>
+This single-valued attribute is always present. It contains an integer that uniquely identifies each change made to a directory entry. This number is related to the order in which the change occurred. The higher the number, the later the change.</p>
+
+<a name="19381"></a>
+<p>
+This attribute is defined in the Changelog Internet Draft.</p>
+
+<a name="14560"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14561"></a>
+<p>
+Integer, single-valued.</p>
+
+<a name="14562"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14563"></a>
+<p>
+2.16.840.1.113730.3.1.5</p>
+
+<a name="14566"></a>
+<a name="changeTime"></a>
+
+<h1>changeTime</h1>
+
+<a name="14567"></a>
+<a name="Description"></a>
+
+<p>
+<b>Description</b></p>
+
+<a name="14568"></a>
+<p>
+Defines a time, in a YYMMDDHHMMSS format, when the entry was added.</p>
+
+<a name="14572"></a>
+<p>
+This attribute is defined in the Changelog Internet Draft.</p>
+
+<a name="14573"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14574"></a>
+<p>
+DirectoryString, single-valued.</p>
+
+<a name="14575"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14576"></a>
+<p>
+2.16.840.1.113730.3.1.77</p>
+
+<a name="14579"></a>
+<a name="changeType"></a>
+
+<h1>changeType</h1>
+
+<a name="14580"></a>
+<a name="Description"></a>
+
+<p>
+<b>Description</b></p>
+
+<a name="14581"></a>
+<p>
+Specifies the type of LDAP operation. This attribute can have one of the following values: add, delete, modify, or modrdn.</p>
+
+<a name="14582"></a>
+<p>
+For example:</p>
+
+<a name="14583"></a>
+<p>
+<span class="monospace">changeType: modify</span></p>
+
+<a name="14584"></a>
+<p>
+This attribute is defined in the Changelog Internet Draft.</p>
+
+<a name="14585"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14586"></a>
+<p>
+DirectoryString, single-valued.</p>
+
+<a name="14587"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14588"></a>
+<p>
+2.16.840.1.113730.3.1.7</p>
+
+<a name="14591"></a>
+<a name="cn (commonName)"></a>
+
+<h1>cn (commonName)</h1>
+
+<a name="14592"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14593"></a>
+<p>
+Identifies the name of an object in the directory. When the object corresponds to a person, the cn is typically the person's full name.</p>
+
+<a name="14594"></a>
+<p>
+When identifying the entry's common name or full name:</p>
+
+<a name="14595"></a>
+<p>
+<span class="codeline">commonName: Bill Anderson
+</span></p>
+
+<a name="14596"></a>
+<p>
+or</p>
+
+<a name="14597"></a>
+
+<p>
+<span class="codeline">cn: Bill Anderson
+</span></p>
+
+<a name="14598"></a>
+<p>
+When in reference to LDAPReplica or LDAPServer object classes: </p>
+
+<a name="14599"></a>
+<p>
+<span class="codeline">commonName: replicater.example.com:17430/dc%3Dexample%2Cdc%3Dcom
+</span></p>
+
+<a name="14600"></a>
+<p>
+or</p>
+
+<a name="14601"></a>
+<p>
+<span class="codeline">cn: replicater.example.com:17430/dc%3Dexample%2Cdc%3Dcom
+</span></p>
+
+<a name="14602"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="14603"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14604"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="14605"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14606"></a>
+<p>
+2.5.4.3</p>
+
+<a name="14609"></a>
+<a name="co (friendlyCountryName)"></a>
+
+<h1>co (friendlyCountryName)</h1>
+
+<a name="14610"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14611"></a>
+<p>
+Contains the name of a country. Often, the country attribute is used to describe a two-character code for a country, and the friendlyCountryName attribute is used to describe the actual country name.</p>
+
+<a name="14612"></a>
+<p>
+For example:</p>
+
+<a name="14613"></a>
+<p>
+<span class="codeline">friendlyCountryName: Ireland
+</span></p>
+
+<a name="14614"></a>
+<p>
+or</p>
+
+<a name="14615"></a>
+
+<p>
+<span class="codeline">co: Ireland
+</span></p>
+
+<a name="14616"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="14617"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14618"></a>
+
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="14619"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14620"></a>
+<p>
+0.9.2342.19200300.100.1.43</p>
+
+<a name="14623"></a>
+
+<a name="cosAttribute"></a>
+
+<h1>cosAttribute</h1>
+
+<a name="14624"></a>
+<a name="Description"></a>
+
+<p>
+<b>Description</b></p>
+
+<a name="14625"></a>
+<p>
+Provides the name of the attribute for which you want to generate a value. You can specify more than one <span class="monospace">cosAttribute</span> value. This attribute is used by all types of CoS definition entries.</p>
+
+<a name="14626"></a>
+<p>
+The <span class="monospace">cosAttribute</span> attribute allows two qualifiers following the name of the CoS attribute. The <i>override</i> qualifier has one of the following values:</p>
+<ul>
+
+<a name="14627"></a>
+<p>
+<li><span class="monospace">default</span> (or no qualifier) - Indicates that the server does not override a real attribute value stored in the entry when it has the same type as the virtual attribute.</li>
+
+</p>
+
+<a name="14628"></a>
+<p>
+<li><span class="monospace">override</span> - Indicates that the server always returns the value generated by the CoS, even when there is a value stored with the entry.</li>
+</p>
+
+<a name="14629"></a>
+<p>
+<li><span class="monospace">operational</span> - Indicates that the attribute will only be returned if it is explicitly requested in the search. Operational attributes do not need to pass a schema check in order to be returned. It also has the same behavior as the override qualifier.</li>
+</p>
+
+</ul>
+
+<a name="14630"></a>
+<p>
+The merge qualifier is either absent or given with the following value:</p>
+<ul>
+
+<a name="14631"></a>
+<p>
+<li><span class="monospace">merge-schemes</span> - Allows the virtual CoS attribute to be multivalued, either from multiple templates or multiple CoS definitions. For more information, see the section "<a href="../816-6698-10/rolesCoS.html#Managing CoS From the Command Line">Managing CoS From the Command Line</a>" in Chapter 5 of the <i>Sun ONE Directory Server Administration Guide</i>.</li>
+
+</p>
+</ul>
+
+<a name="14640"></a>
+<p>
+This attribute is defined in Sun ONE Directory Server.</p>
+
+<a name="14641"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14642"></a>
+<p>
+
+Directory String, multi-valued.</p>
+
+<a name="14643"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14644"></a>
+<p>
+2.16.840.1.113730.3.1.550 </p>
+
+<a name="14647"></a>
+<a name="cosIndirectSpecifier"></a>
+
+<h1>cosIndirectSpecifier</h1>
+
+<a name="14648"></a>
+<a name="Description"></a>
+
+<p>
+<b>Description</b></p>
+
+<a name="14649"></a>
+<p>
+Specifies the attribute values used by an indirect CoS to identify the template entry.</p>
+
+<a name="14653"></a>
+
+<p>
+This attribute is defined in Sun ONE Directory Server.</p>
+
+<a name="14654"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14655"></a>
+<p>
+DirectoryString, single-valued.</p>
+
+<a name="14656"></a>
+
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14657"></a>
+<p>
+2.16.840.1.113730.3.1.577</p>
+
+<a name="14660"></a>
+<a name="cosPriority"></a>
+
+<h1>cosPriority</h1>
+
+<a name="14661"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14662"></a>
+<p>
+Specifies which template provides the attribute value, when CoS templates compete to provide an attribute value. This attribute represents the global priority of a particular template. A priority of zero is the highest priority.</p>
+
+<a name="14666"></a>
+<p>
+This attribute is defined in Sun ONE Directory Server.</p>
+
+<a name="14667"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14668"></a>
+<p>
+Integer, single-valued.</p>
+
+<a name="14669"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14670"></a>
+<p>
+2.16.840.1.113730.3.1.569 </p>
+
+<a name="14673"></a>
+<a name="cosSpecifier"></a>
+
+<h1>cosSpecifier</h1>
+
+<a name="14674"></a>
+<a name="Description"></a>
+
+<p>
+<b>Description</b></p>
+
+<a name="14675"></a>
+<p>
+Specifies the attribute value used by a classic CoS, which, along with the template entry's DN, identifies the template entry.</p>
+
+<a name="14679"></a>
+<p>
+This attribute is defined in Sun ONE Directory Server.</p>
+
+<a name="14680"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14681"></a>
+<p>
+DirectoryString, single-valued.</p>
+
+<a name="14682"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14683"></a>
+<p>
+2.16.840.1.113730.3.1.551 </p>
+
+<a name="14686"></a>
+<a name="cosTargetTree"></a>
+
+<h1>cosTargetTree</h1>
+
+<a name="14687"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14688"></a>
+<p>
+Determines the subtree of the DIT to which the CoS schema applies. The values for this attribute for the schema and for multiple CoS schema may overlap their target trees in an arbitrary fashion. </p>
+
+<a name="14692"></a>
+<p>
+This attribute is defined in Sun ONE Directory Server.</p>
+
+<a name="14693"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14694"></a>
+<p>
+DirectoryString, single-valued.</p>
+
+<a name="14695"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14696"></a>
+<p>
+2.16.840.1.113730.3.1.552</p>
+
+<a name="14699"></a>
+<a name="cosTemplateDn"></a>
+
+<h1>cosTemplateDn</h1>
+
+<a name="14700"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14701"></a>
+<p>
+Points to the entry that contains the CoS template.</p>
+
+<a name="14705"></a>
+<p>
+This attribute is defined in Sun ONE Directory Server.</p>
+
+<a name="14706"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14707"></a>
+<p>
+Distinguished Name, single-valued.</p>
+
+<a name="14708"></a>
+<a name="OID"></a>
+
+<p>
+
+<b>OID</b></p>
+
+<a name="14709"></a>
+<p>
+2.16.840.1.113730.3.1.553</p>
+
+<a name="14712"></a>
+<a name="crossCertificatePair"></a>
+
+<h1>crossCertificatePair</h1>
+
+<a name="14713"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14714"></a>
+<p>
+This attribute contains a pair of cross signed certificates. It is to be stored and requested in the binary form, as <span class="monospace">crossCertificatePair;binary</span>.</p>
+
+<a name="14715"></a>
+<p>
+For example:</p>
+
+<a name="14716"></a>
+
+<p>
+<span class="codeline">crossCertificatePair;binary:: AAAAAA==
+</span></p>
+
+<a name="14717"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="14718"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14719"></a>
+
+<p>
+Binary, multi-valued.</p>
+
+<a name="14720"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14721"></a>
+<p>
+2.5.4.40</p>
+
+<a name="14724"></a>
+
+<a name="dc (domainComponent)"></a>
+
+<h1>dc (domainComponent)</h1>
+
+<a name="14725"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14726"></a>
+<p>
+Specifies one component of a domain name.</p>
+
+<a name="14727"></a>
+<p>
+For example:</p>
+
+<a name="14728"></a>
+<p>
+<span class="codeline">domainComponent: example
+</span></p>
+
+<a name="14729"></a>
+<p>
+or</p>
+
+<a name="14730"></a>
+<p>
+
+<span class="codeline">dc: example
+</span></p>
+
+<a name="14731"></a>
+<p>
+This attribute is defined in RFC 2247.</p>
+
+<a name="14732"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14733"></a>
+<p>
+
+DirectoryString, single-valued.</p>
+
+<a name="14734"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14735"></a>
+<p>
+0.9.2342.19200300.100.1.25</p>
+
+<a name="14737"></a>
+<a name="deleteOldRdn"></a>
+
+<h1>deleteOldRdn</h1>
+
+<a name="14738"></a>
+<a name="Description"></a>
+
+<p>
+<b>Description</b></p>
+
+<a name="14739"></a>
+<p>
+In the case of<span class="monospace"> modrdn</span> operations, specifies whether the old RDN was deleted.</p>
+
+<a name="14740"></a>
+<p>
+This attribute is defined in Changelog Internet Draft.</p>
+
+<a name="14741"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14742"></a>
+<p>
+Boolean, multi-valued.</p>
+
+<a name="14743"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14744"></a>
+<p>
+2.16.840.1.113730.3.1.10</p>
+
+<a name="14746"></a>
+<a name="deltaRevocationList"></a>
+
+<h1>deltaRevocationList</h1>
+
+<a name="14747"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14748"></a>
+<p>
+This attribute contains the <i>delta revocation list</i>, a list of newly revoked certificates. It is stored and requested in the binary form, as <span class="monospace">deltaRevocationList;binary</span>. </p>
+
+<a name="14749"></a>
+<p>
+For example: </p>
+
+<a name="14750"></a>
+<p>
+<span class="codeline">deltaRevocationList;binary:: AAAAAA==
+</span></p>
+
+<a name="14751"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="14752"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14753"></a>
+<p>
+Binary, multi-valued.</p>
+
+<a name="14754"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14755"></a>
+<p>
+2.5.4.53</p>
+
+<a name="14758"></a>
+<a name="departmentNumber"></a>
+
+<h1>departmentNumber</h1>
+
+<a name="14759"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14760"></a>
+<p>
+Identifies the entry's department number.</p>
+
+<a name="14761"></a>
+<p>
+For example:</p>
+
+<a name="14762"></a>
+<p>
+<span class="codeline">departmentNumber: 2604
+</span></p>
+
+<a name="14763"></a>
+
+<p>
+This attribute is defined in RFC 2798.</p>
+
+<a name="14764"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14765"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="14766"></a>
+
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14767"></a>
+<p>
+2.16.840.1.113730.3.1.2</p>
+
+<a name="14771"></a>
+<a name="description"></a>
+
+<h1>description</h1>
+
+<a name="14772"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14773"></a>
+<p>
+Provides a human-readable description of the object. For people and organizations this often includes their role or work assignment.</p>
+
+<a name="14774"></a>
+<p>
+For example:</p>
+
+<a name="14775"></a>
+<p>
+<span class="codeline">description: Quality control inspector for the ME2873 product line
+</span></p>
+
+<a name="14776"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="14777"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14778"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="14779"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14780"></a>
+<p>
+2.5.4.13 </p>
+
+<a name="14783"></a>
+<a name="destinationIndicator"></a>
+
+<h1>destinationIndicator</h1>
+
+<a name="14784"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14785"></a>
+<p>
+The country and city associated with the entry needed to provide Public Telegram Service. Generally used in conjunction with <span class="monospace">registeredAddress</span>.</p>
+
+<a name="14786"></a>
+<p>
+For example:</p>
+
+<a name="14787"></a>
+<p>
+<span class="codeline">destinationIndicator: Stow, Ohio, USA
+</span></p>
+
+<a name="14788"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="14789"></a>
+
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14790"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="14791"></a>
+<p>
+OID</p>
+
+<a name="14792"></a>
+
+<p>
+2.5.4.27</p>
+
+<a name="14795"></a>
+<a name="displayName"></a>
+
+<h1>displayName</h1>
+
+<a name="14796"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14797"></a>
+<p>
+Preferred name of a person to be used when displaying entries. Especially useful in displaying a preferred name for an entry within a one-line summary list. Since other attribute types, such as <span class="monospace">cn</span>, are multi-valued, they cannot be used to display a preferred name.</p>
+
+<a name="14798"></a>
+<p>
+For example:</p>
+
+<a name="14799"></a>
+<p>
+<span class="codeline">displayName: Michigan Smith
+</span></p>
+
+<a name="14800"></a>
+<p>
+This attribute is defined in RFC 2798.</p>
+
+<a name="14801"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14802"></a>
+<p>
+DirectoryString, single-valued.</p>
+
+<a name="14803"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14804"></a>
+<p>
+2.16.840.1.113730.3.1.241</p>
+
+<a name="14807"></a>
+<a name="ditRedirect"></a>
+
+<h1>ditRedirect</h1>
+
+<a name="14808"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14809"></a>
+<p>
+Used to indicate that the object described by one entry now has a newer entry in the directory tree. This attribute may be used when an individual's place of work changes, and the individual acquires a new organizational DN.</p>
+
+<a name="14810"></a>
+<p>
+For example:</p>
+
+<a name="14811"></a>
+<p>
+<span class="codeline">ditRedirect: cn=jdoe, dc=example, dc=com
+</span></p>
+
+<a name="14812"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="14813"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14814"></a>
+<p>
+DN</p>
+
+<a name="14815"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14816"></a>
+<p>
+0.9.2342.19200300.100.1.54</p>
+
+<a name="14818"></a>
+<a name="dmdName"></a>
+
+<h1>dmdName</h1>
+
+<a name="14819"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14820"></a>
+<p>
+The value of this attribute specifies a directory management domain (DMD), the administrative authority that operates the directory server.</p>
+
+<a name="14821"></a>
+<p>
+For example:</p>
+
+<a name="14822"></a>
+<p>
+<span class="codeline">dmdName: example.com
+</span></p>
+
+<a name="14823"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="14824"></a>
+
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14825"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="14826"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14827"></a>
+<p>
+2.5.4.54</p>
+
+<a name="14829"></a>
+<a name="dn (distinguishedName)"></a>
+
+<h1>dn (distinguishedName)</h1>
+
+<a name="14830"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14831"></a>
+<p>
+Defines the distinguished name (<span class="monospace">dn</span>) for the entry. Note that the <span class="monospace">dn</span> is not always a mandatory attribute in an entry.</p>
+
+<a name="14832"></a>
+<p>
+For example:</p>
+
+<a name="14833"></a>
+
+<p>
+<span class="codeline">dn: cn=Jane Doe, ou=Quality Control, dc=example, dc=com
+</span></p>
+
+<a name="14834"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="14835"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14836"></a>
+
+<p>
+DN</p>
+
+<a name="14837"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14838"></a>
+<p>
+2.5.4.49</p>
+
+<a name="14841"></a>
+
+<a name="dNSRecord"></a>
+
+<h1>dNSRecord</h1>
+
+<a name="14842"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14843"></a>
+<p>
+Specifies DNS resource records, including type A (Address), type MX (Mail Exchange), type NS (Name Server), and type SOA (Start Of Authority) resource records.</p>
+
+<a name="14844"></a>
+<p>
+For example:</p>
+
+<a name="14845"></a>
+<p>
+<span class="codeline">dNSRecord: IN NS ns.uu.net
+</span></p>
+
+<a name="14846"></a>
+<p>
+This attribute is defined in Internet directory pilot.</p>
+
+<a name="14847"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14848"></a>
+<p>
+IA5String, multi-valued.</p>
+
+<a name="14849"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14850"></a>
+<p>
+0.9.2342.19200300.100.1.26</p>
+
+<a name="14853"></a>
+<a name="documentAuthor"></a>
+
+<h1>documentAuthor</h1>
+
+<a name="14854"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14855"></a>
+<p>
+Contains the distinguished name of the author of a document entry.</p>
+
+<a name="14856"></a>
+<p>
+For example:</p>
+
+<a name="14857"></a>
+<p>
+<span class="codeline">documentAuthor: cn=John Doe, dc=example, dc=com
+</span></p>
+
+<a name="14858"></a>
+
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="14859"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14860"></a>
+<p>
+DN, multi-valued.</p>
+
+<a name="14861"></a>
+
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14862"></a>
+<p>
+0.9.2342.19200300.100.1.14</p>
+
+<a name="14865"></a>
+<a name="documentIdentifier"></a>
+
+<h1>documentIdentifier</h1>
+
+<a name="14866"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14867"></a>
+<p>
+Specifies a unique identifier for a document.</p>
+
+<a name="14868"></a>
+<p>
+For example:</p>
+
+<a name="14869"></a>
+<p>
+<span class="codeline">documentIdentifier: L3204REV1
+</span></p>
+
+<a name="14870"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="14871"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14872"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="14873"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14874"></a>
+<p>
+0.9.2342.19200300.100.1.11</p>
+
+<a name="14878"></a>
+<a name="documentLocation"></a>
+
+<h1>documentLocation</h1>
+
+<a name="14879"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14880"></a>
+<p>
+Defines the location of the original copy of a document entry.</p>
+
+<a name="14881"></a>
+<p>
+For example:</p>
+
+<a name="14882"></a>
+<p>
+<span class="codeline">documentLocation: Department Library
+</span></p>
+
+<a name="14883"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="14884"></a>
+
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14885"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="14886"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14887"></a>
+<p>
+0.9.2342.19200300.100.1.15</p>
+
+<a name="14890"></a>
+<a name="documentPublisher"></a>
+
+<h1>documentPublisher</h1>
+
+<a name="14891"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14892"></a>
+<p>
+The person and/or organization that published a document.</p>
+
+<a name="14893"></a>
+<p>
+For example:</p>
+
+<a name="14894"></a>
+<p>
+<span class="codeline">documentPublisher: Southeastern Publishing
+</span></p>
+
+<a name="14895"></a>
+
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="14896"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14897"></a>
+<p>
+DirectoryString, single-valued.</p>
+
+<a name="14898"></a>
+
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14899"></a>
+<p>
+0.9.2342.19200300.100.1.56</p>
+
+<a name="14902"></a>
+<a name="documentStore"></a>
+
+<h1>documentStore</h1>
+
+<a name="14903"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14904"></a>
+<p>
+Defines the place in which a document is stored. This attribute is defined in the Internet White Pages Pilot.</p>
+
+<a name="14905"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14906"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="14907"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14908"></a>
+<p>
+0.9.2342.19200300.102.1.10</p>
+
+<a name="14911"></a>
+<a name="documentTitle"></a>
+
+<h1>documentTitle</h1>
+
+<a name="14912"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14913"></a>
+<p>
+Contains the title of a document entry.</p>
+
+<a name="14914"></a>
+<p>
+For example:</p>
+
+<a name="14915"></a>
+<p>
+<span class="codeline">documentTitle: Directory Administrator's Guide
+</span></p>
+
+<a name="14916"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="14917"></a>
+
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14918"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="14919"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14920"></a>
+<p>
+0.9.2342.19200300.100.1.12</p>
+
+<a name="14923"></a>
+<a name="documentVersion"></a>
+
+<h1>documentVersion</h1>
+
+<a name="14924"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14925"></a>
+<p>
+Defines the version of a document entry. </p>
+
+<a name="14926"></a>
+<p>
+For example:</p>
+
+<a name="14927"></a>
+<p>
+<span class="codeline">documentVersion: 1.1
+</span></p>
+
+<a name="14928"></a>
+
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="14929"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14930"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="14931"></a>
+
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14932"></a>
+<p>
+0.9.2342.19200300.100.1.13</p>
+
+<a name="14936"></a>
+<a name="drink (favoriteDrink)"></a>
+
+<h1>drink (favoriteDrink)</h1>
+
+<a name="14937"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="14938"></a>
+<p>
+Describes the favorite drink of a person entry.</p>
+
+<a name="14939"></a>
+<p>
+For example:</p>
+
+<a name="14940"></a>
+<p>
+<span class="codeline">drink: gin
+</span></p>
+
+<a name="14941"></a>
+<p>
+or</p>
+
+<a name="14942"></a>
+<p>
+<span class="codeline">favoriteDrink: gin
+</span></p>
+
+<a name="14943"></a>
+<p>
+
+This attribute is defined in RFC 1274.</p>
+
+<a name="14944"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="14945"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="14946"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="14947"></a>
+<p>
+0.9.2342.19200300.100.1.5</p>
+
+<a name="15095"></a>
+<a name="dSAQuality"></a>
+
+<h1>dSAQuality</h1>
+
+<a name="15096"></a>
+
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15097"></a>
+<p>
+Specifies the purported quality of a DSA. This attribute allows a DSA manager to indicate the expected level of availability of the DSA.</p>
+
+<a name="15098"></a>
+<p>
+For example:</p>
+
+<a name="15099"></a>
+
+<p>
+<span class="codeline">dSAQuality: high
+</span></p>
+
+<a name="15100"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="15101"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15102"></a>
+
+<p>
+DirectoryString, single-valued.</p>
+
+<a name="15103"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15104"></a>
+<p>
+0.9.2342.19200300.100.1.49</p>
+
+<a name="15242"></a>
+
+<a name="employeeNumber"></a>
+
+<h1>employeeNumber</h1>
+
+<a name="15243"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15244"></a>
+<p>
+Identifies the entry's employee number.</p>
+
+<a name="15245"></a>
+<p>
+For example:</p>
+
+<a name="15246"></a>
+<p>
+<span class="codeline">employeeNumber: 3440
+</span></p>
+
+<a name="15247"></a>
+<p>
+This attribute is defined in RFC 2798.</p>
+
+<a name="15248"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15249"></a>
+<p>
+DirectoryString, single-valued.</p>
+
+<a name="15250"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15251"></a>
+<p>
+2.16.840.1.113730.3.1.3</p>
+
+<a name="15254"></a>
+<a name="employeeType"></a>
+
+<h1>employeeType</h1>
+
+<a name="15255"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15256"></a>
+<p>
+Identifies the entry's type of employment. </p>
+
+<a name="15257"></a>
+<p>
+For example:</p>
+
+<a name="15258"></a>
+<p>
+<span class="codeline">employeeType: Full time
+</span></p>
+
+<a name="15259"></a>
+
+<p>
+This attribute is defined in RFC 2798.</p>
+
+<a name="15260"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15261"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="15262"></a>
+
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15263"></a>
+<p>
+2.16.840.1.113730.3.1.4</p>
+
+<a name="15266"></a>
+<a name="enhancedSearchGuide"></a>
+
+<h1>enhancedSearchGuide</h1>
+
+<a name="15267"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15268"></a>
+<p>
+Used by X.500 clients when constructing search filters.</p>
+
+<a name="15269"></a>
+<p>
+For example:</p>
+
+<a name="15270"></a>
+<p>
+<span class="codeline">enhancedSearchGuide: (uid=mhughes)
+</span></p>
+
+<a name="15271"></a>
+<p>
+This attribute is defined in RFC 2798.</p>
+
+<a name="15272"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15273"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="15274"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15275"></a>
+<p>
+2.5.4.47</p>
+
+<a name="15278"></a>
+<a name="fax (facsimileTelephoneNumber)"></a>
+
+<h1>fax (facsimileTelephoneNumber)</h1>
+
+<a name="15279"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15280"></a>
+<p>
+Identifies the fax number at which the entry can be reached. Abbreviation: fax.</p>
+
+<a name="15281"></a>
+<p>
+For example:</p>
+
+<a name="15282"></a>
+<p>
+<span class="codeline">facsimileTelephoneNumber: 415-555-1212
+</span></p>
+
+<a name="15283"></a>
+<p>
+or:</p>
+
+<a name="15284"></a>
+
+<p>
+<span class="codeline">fax: 415-555-1212
+</span></p>
+
+<a name="15285"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="15286"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15287"></a>
+
+<p>
+TelephoneNumber, multi-valued.</p>
+
+<a name="15288"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15289"></a>
+<p>
+2.5.4.23</p>
+
+<a name="17691"></a>
+
+<a name="gecos"></a>
+
+<h1>gecos</h1>
+
+<a name="17692"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="17693"></a>
+<p>
+The default GECOS.</p>
+
+<a name="17696"></a>
+<p>
+This attribute is defined in RFC 2307.</p>
+
+<a name="17697"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="17698"></a>
+<p>
+String, single-valued.</p>
+
+<a name="17699"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="17700"></a>
+<p>
+1.3.6.1.1.1.1.2</p>
+
+<a name="17689"></a>
+<a name="generationQualifier"></a>
+
+<h1>generationQualifier</h1>
+
+<a name="15292"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15293"></a>
+<p>
+Contains the generation Qualifier part of the name, typically appearing in the suffix.</p>
+
+<a name="15294"></a>
+<p>
+For example:</p>
+
+<a name="15295"></a>
+<p>
+<span class="codeline">generationQualifier: Jr
+</span></p>
+
+<a name="15296"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="15297"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15298"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="15299"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15300"></a>
+<p>
+2.5.4.44</p>
+
+<a name="17721"></a>
+<a name="gidNumber"></a>
+
+<h1>gidNumber</h1>
+
+<a name="17722"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="17723"></a>
+<p>
+Group ID number.</p>
+
+<a name="17724"></a>
+<p>
+For example:</p>
+
+<a name="17725"></a>
+<p>
+<span class="codeline">gidNumber: 162035
+</span></p>
+
+<a name="17726"></a>
+<p>
+This attribute is defined in RFC 2307.</p>
+
+<a name="17727"></a>
+
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="17728"></a>
+<p>
+Integer, single-valued.</p>
+
+<a name="17729"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="17730"></a>
+<p>
+1.3.6.1.1.1.1.1</p>
+
+<a name="17712"></a>
+<a name="givenName"></a>
+
+<h1>givenName</h1>
+
+<a name="15304"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15305"></a>
+<p>
+Identifies the entry's given name, usually a person's first name. </p>
+
+<a name="15306"></a>
+<p>
+For example:</p>
+
+<a name="15307"></a>
+<p>
+<span class="codeline">givenName: Hecuba
+</span></p>
+
+<a name="15308"></a>
+
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="15309"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15310"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="15311"></a>
+
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15312"></a>
+<p>
+2.5.4.42</p>
+
+<a name="17755"></a>
+<a name="homeDirectory"></a>
+
+<h1>homeDirectory</h1>
+
+<a name="17756"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="17757"></a>
+<p>
+The home directory of the account.</p>
+
+<a name="17758"></a>
+<p>
+For example:</p>
+
+<a name="17759"></a>
+<p>
+<span class="codeline">homeDirectory: /home/bsmith
+</span></p>
+
+<a name="17760"></a>
+<p>
+This attribute is defined in RFC 2307.</p>
+
+<a name="17761"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="17762"></a>
+<p>
+String, single-valued.</p>
+
+<a name="17763"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="17764"></a>
+<p>
+1.3.6.1.1.1.1.3</p>
+
+<a name="15318"></a>
+<a name="homePhone"></a>
+
+<h1>homePhone</h1>
+
+<a name="15319"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15320"></a>
+<p>
+Identifies the entry's home phone number.</p>
+
+<a name="15321"></a>
+<p>
+For example:</p>
+
+<a name="15324"></a>
+<p>
+<span class="codeline">homePhone: 415-555-1212
+</span></p>
+
+<a name="15325"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="15326"></a>
+
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15327"></a>
+<p>
+TelephoneNumber, multi-valued.</p>
+
+<a name="15328"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15329"></a>
+<p>
+0.9.2342.19200300.100.1.20</p>
+
+<a name="15332"></a>
+<a name="homePostalAddress"></a>
+
+<h1>homePostalAddress</h1>
+
+<a name="15333"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15334"></a>
+<p>
+Identifies the entry's home mailing address. This field is intended to include multiple lines, but each line within the entry should be separated by a dollar sign ($). To represent an actual dollar sign ($) or backslash (\) within this text, use the escaped hex values \24 and \5c respectively.</p>
+
+<a name="15335"></a>
+<p>
+To identify an entry's home mailing address:</p>
+
+<a name="15336"></a>
+<p>
+<span class="codeline">homePostalAddress: 1234 Ridgeway Drive$Santa Clara, CA$99555
+</span></p>
+
+<a name="15337"></a>
+
+<p>
+Additionally, to represent the string:</p>
+
+<a name="15338"></a>
+<p>
+<span class="codeline">The dollar ($) value can be found <br>
+in the c:\cost file.
+</span></p>
+
+<a name="15339"></a>
+<p>
+provide the string:</p>
+
+<a name="15340"></a>
+
+<p>
+<span class="codeline">The dollar (\24) value can be found$in the c:\5ccost file.
+</span></p>
+
+<a name="15341"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="15342"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15343"></a>
+
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="15344"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15345"></a>
+<p>
+0.9.2342.19200300.100.1.39</p>
+
+<a name="15348"></a>
+
+<a name="host"></a>
+
+<h1>host</h1>
+
+<a name="15349"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15350"></a>
+<p>
+Defines the hostname of a computer.</p>
+
+<a name="15351"></a>
+<p>
+For example:</p>
+
+<a name="15352"></a>
+<p>
+<span class="codeline">host: myServer
+</span></p>
+
+<a name="15353"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="15354"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15355"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="15356"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15357"></a>
+<p>
+0.9.2342.19200300.100.1.9</p>
+
+<a name="15361"></a>
+<a name="houseIdentifier"></a>
+
+<h1>houseIdentifier</h1>
+
+<a name="15362"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15363"></a>
+<p>
+Identifies a building in a location.</p>
+
+<a name="15364"></a>
+<p>
+For example:</p>
+
+<a name="15365"></a>
+<p>
+<span class="codeline">houseIdentifier: B105
+</span></p>
+
+<a name="15366"></a>
+
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="15367"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15368"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="15369"></a>
+
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15370"></a>
+<p>
+2.5.4.51</p>
+
+<a name="15373"></a>
+<a name="info"></a>
+
+<h1>info</h1>
+
+<a name="15374"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15375"></a>
+<p>
+Specifies any general information pertinent to an object. It is recommended that specific usage of this attribute type is avoided, and that specific requirements are met by other (possibly additional) attribute types.</p>
+
+<a name="15376"></a>
+<p>
+For example:</p>
+
+<a name="15377"></a>
+<p>
+<span class="codeline">info: not valid
+</span></p>
+
+<a name="15378"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="15379"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15380"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="15381"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15382"></a>
+<p>
+0.9.2342.19200300.100.1.4</p>
+
+<a name="15385"></a>
+<a name="initials"></a>
+
+<h1>initials</h1>
+
+<a name="15386"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15387"></a>
+<p>
+Identifies the entry's initials. Does not identify the entry's surname.</p>
+
+<a name="15388"></a>
+<p>
+For example:</p>
+
+<a name="15389"></a>
+<p>
+<span class="codeline">initials: BFA
+</span></p>
+
+<a name="15390"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="15391"></a>
+
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15392"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="15393"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15394"></a>
+<p>
+2.5.4.43</p>
+
+<a name="15397"></a>
+<a name="internationaliSDNNumber"></a>
+
+<h1>internationaliSDNNumber</h1>
+
+<a name="15398"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15399"></a>
+<p>
+Contains the ISDN number of the entry. This is in the internationally agreed format for ISDN addresses given in CCITT Rec. E. 164.</p>
+
+<a name="15400"></a>
+<p>
+For example:</p>
+
+<a name="15401"></a>
+<p>
+<span class="codeline">internationaliSDNNumber: +SO 812467
+</span></p>
+
+<a name="15402"></a>
+
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="15403"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15404"></a>
+<p>
+IA5String, multi-valued.</p>
+
+<a name="15405"></a>
+
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15406"></a>
+<p>
+2.5.4.25</p>
+
+<a name="17778"></a>
+<a name="ipHostNumber"></a>
+
+<h1>ipHostNumber</h1>
+
+<a name="17779"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="17780"></a>
+<p>
+IP address, expressed as a dotted decimal, omitting leading zeros.</p>
+
+<a name="17781"></a>
+<p>
+For example:</p>
+
+<a name="17782"></a>
+<p>
+<span class="codeline">ipHostNumber: 10.0.0.1
+</span></p>
+
+<a name="17783"></a>
+<p>
+This attribute is defined in RFC 2307.</p>
+
+<a name="17784"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="17785"></a>
+<p>
+IA5String{128}</p>
+
+<a name="17786"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="17787"></a>
+<p>
+1.3.6.1.1.1.1.19</p>
+
+<a name="17800"></a>
+<a name="ipNetmaskNumber"></a>
+
+<h1>ipNetmaskNumber</h1>
+
+<a name="17801"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="17802"></a>
+<p>
+IP netmask, expressed as a dotted decimal, omitting leading zeros.</p>
+
+<a name="17803"></a>
+<p>
+For example:</p>
+
+<a name="17804"></a>
+<p>
+<span class="codeline">ipNetmaskNumber: 255.255.255.0
+</span></p>
+
+<a name="17805"></a>
+<p>
+This attribute is defined in RFC 2307.</p>
+
+<a name="17806"></a>
+
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="17807"></a>
+<p>
+IA5String{128}, single-valued.</p>
+
+<a name="17808"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="17809"></a>
+<p>
+1.3.6.1.1.1.1.21</p>
+
+<a name="17817"></a>
+<a name="ipNetworkNumber"></a>
+
+<h1>ipNetworkNumber</h1>
+
+<a name="17818"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="18457"></a>
+<p>
+IP network, expressed as a dotted decimal, omitting leading zeros.</p>
+
+<a name="17820"></a>
+<p>
+For example:</p>
+
+<a name="17821"></a>
+<p>
+<span class="codeline">ipNetworkNumber: 192.168
+</span></p>
+
+<a name="17822"></a>
+
+<p>
+This attribute is defined in RFC 2307.</p>
+
+<a name="17823"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="18467"></a>
+<p>
+IA5String{128}, single-valued.</p>
+
+<a name="17825"></a>
+
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="17826"></a>
+<p>
+1.3.6.1.1.1.1.20</p>
+
+<a name="17830"></a>
+<a name="ipProtocolNumber"></a>
+
+<h1>ipProtocolNumber</h1>
+
+<a name="17831"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="17832"></a>
+<p>
+The IP protocol number. This attribute is defined in RFC 2307.</p>
+
+<a name="17836"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="17837"></a>
+<p>
+Integer, single-valued.</p>
+
+<a name="17838"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="17839"></a>
+<p>
+1.3.6.1.1.1.1.17</p>
+
+<a name="17850"></a>
+<a name="ipServicePort"></a>
+
+<h1>ipServicePort</h1>
+
+<a name="17851"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="17852"></a>
+<p>
+The IP service port number. This attribute is defined in RFC 2307.</p>
+
+<a name="17856"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="17857"></a>
+<p>
+Integer, single-valued.</p>
+
+<a name="17858"></a>
+<a name="OID"></a>
+
+<p>
+
+<b>OID</b></p>
+
+<a name="17859"></a>
+<p>
+1.3.6.1.1.1.1.15</p>
+
+<a name="17863"></a>
+<a name="ipServiceProtocol"></a>
+
+<h1>ipServiceProtocol</h1>
+
+<a name="17864"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="17865"></a>
+<p>
+The IP service protocol.</p>
+
+<a name="17866"></a>
+<p>
+For example:</p>
+
+<a name="17867"></a>
+<p>
+<span class="codeline">ipServiceProtocol: tcp<br>
+
+ipServiceProtocol: udp<br>
+
+</span></p>
+
+<a name="18485"></a>
+<p>
+This attribute is defined in RFC 2307.</p>
+
+<a name="17869"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="17870"></a>
+<p>
+String, multi-valued.</p>
+
+<a name="17871"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="17872"></a>
+<p>
+1.3.6.1.1.1.1.16</p>
+
+<a name="15409"></a>
+<a name="janetMailbox"></a>
+
+<h1>janetMailbox</h1>
+
+<a name="15410"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15411"></a>
+<p>
+Specifies an email address. This attribute is intended for the convenience of UK users unfamiliar with rfc822 mail addresses. Entries using this attribute must also include an <span class="monospace">rfc822Mailbox</span> attribute.</p>
+
+<a name="15412"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="15413"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15414"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="15415"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15416"></a>
+<p>
+0.9.2342.19200300.100.1.46</p>
+
+<a name="18605"></a>
+<a name="javaClassName"></a>
+
+<h1>javaClassName</h1>
+
+<a name="18688"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="18689"></a>
+<p>
+Stores the fully qualified name of the Java object's distinguished class or interface.</p>
+
+<a name="18690"></a>
+<p>
+For example:</p>
+
+<a name="18712"></a>
+<p>
+<span class="codeline">javaClassName: java.lang.String
+</span></p>
+
+<a name="18713"></a>
+<p>
+This attribute is defined in RFC 2713.</p>
+
+<a name="18714"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="18694"></a>
+<p>
+Directory String, single-valued.</p>
+
+<a name="18695"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="18696"></a>
+<p>
+1.3.6.1.4.1.42.2.27.4.1.6</p>
+
+<a name="18614"></a>
+<a name="javaClassNames"></a>
+
+<h1>javaClassNames</h1>
+
+<a name="18724"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="18725"></a>
+<p>
+Stores the Java object's fully qualified class or interface names. It is a multivalued attribute. When more than one value is present, each is the name of a class or interface, or ancestor class or interface, of this object.</p>
+
+<a name="18728"></a>
+<p>
+This attribute is defined in RFC 2713.</p>
+
+<a name="18729"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="18730"></a>
+<p>
+Directory String, multi-valued.</p>
+
+<a name="18861"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="18862"></a>
+<p>
+1.3.6.1.4.1.42.2.27.4.1.13</p>
+
+<a name="18863"></a>
+<a name="javaCodebase"></a>
+
+<h1>javaCodebase</h1>
+
+<a name="18736"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="18737"></a>
+<p>
+Stores the Java class definition's locations. It specifies the locations from which to load the class definition for the class specified by the <span class="monospace">javaClassName</span> attribute. If this attribute contains more than one value, each value is an independent codebase.</p>
+
+<a name="18740"></a>
+
+<p>
+This attribute is defined in RFC 2713.</p>
+
+<a name="18741"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="18742"></a>
+<p>
+IA5String, multi-valued.</p>
+
+<a name="18743"></a>
+
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="18744"></a>
+<p>
+1.3.6.1.4.1.42.2.27.4.1.7</p>
+
+<a name="18620"></a>
+<a name="javaDoc"></a>
+
+<h1>javaDoc</h1>
+
+<a name="18748"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="18749"></a>
+<p>
+This attribute stores a pointer to the Java documentation for the class. Its value is a URL.</p>
+
+<a name="18750"></a>
+<p>
+For example:</p>
+
+<a name="18751"></a>
+<p>
+<span class="codeline">javaDoc: 
+http://java.sun.com/products/jdk/1.2/docs/api/java/lang/String.html
+</span></p>
+
+<a name="18752"></a>
+<p>
+This attribute is defined in RFC 2713.</p>
+
+<a name="18753"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="18754"></a>
+<p>
+IA5String, multi-valued.</p>
+
+<a name="18755"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="18756"></a>
+<p>
+1.3.6.1.4.1.42.2.27.4.1.12</p>
+
+<a name="18617"></a>
+<a name="javaFactory"></a>
+
+<h1>javaFactory</h1>
+
+<a name="18760"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="18761"></a>
+<p>
+Stores the fully qualified class name of the object factory that can be used to create an instance of the object identified by the <span class="monospace">javaClassName</span> attribute.</p>
+
+<a name="18762"></a>
+<p>
+For example:</p>
+
+<a name="18763"></a>
+<p>
+<span class="codeline">javaFactory: com.example.jndi.ExampleObjectFactory
+</span></p>
+
+<a name="18764"></a>
+<p>
+This attribute is defined in RFC 2713.</p>
+
+<a name="18765"></a>
+
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="18766"></a>
+<p>
+String, multi-valued.</p>
+
+<a name="18767"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="18768"></a>
+<p>
+1.3.6.1.4.1.42.2.27.4.1.10</p>
+
+<a name="18618"></a>
+<a name="javaReferenceAddress"></a>
+
+<h1>javaReferenceAddress</h1>
+
+<a name="18781"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="18782"></a>
+<p>
+Represents the sequence of addresses of a JNDI reference. Each of its values represents one address, a Java object of type <span class="monospace">javax.naming.RefAddr</span>. Its value is a concatenation of the address type and address contents, preceded by a sequence number.</p>
+
+<a name="19523"></a>
+<p>
+For example:</p>
+
+<a name="19537"></a>
+<p>
+
+<table border="0" cellpadding="0" cellspacing="4">
+
+  <tr>
+<td valign=top>
+<a name="19526"></a>
+<p><code>ipServiceProtocol:</code></p>
+</td>
+<td valign=top>
+<a name="19528"></a>
+<p><code>#0#TypeA#ValA</code></p>
+</td>
+  </tr>
+  <tr>
+<td valign=top>
+
+<a name="19530"></a>
+<p>
+</p>
+</td>
+<td valign=top>
+<a name="19532"></a>
+<p><code>#1#TypeB#ValB</code></p>
+</td>
+  </tr>
+  <tr>
+<td valign=top>
+<a name="19534"></a>
+<p>
+</p>
+
+</td>
+<td valign=top>
+<a name="19536"></a>
+<p><code>#2#TypeC##rO0ABXNyABpq</code></p>
+</td>
+  </tr>
+
+</table>
+
+</p>
+
+<a name="19538"></a>
+<p>
+This attribute is defined in RFC 2713.</p>
+
+<a name="19539"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="18787"></a>
+<p>
+Directory String, multi-valued.</p>
+
+<a name="18788"></a>
+<a name="OID"></a>
+
+<p>
+
+<b>OID</b></p>
+
+<a name="18789"></a>
+<p>
+1.3.6.1.4.1.42.2.27.4.1.11</p>
+
+<a name="18619"></a>
+<a name="javaSerializedData"></a>
+
+<h1>javaSerializedData</h1>
+
+<a name="18793"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="18794"></a>
+<p>
+Stores the serialized form of a Java object.</p>
+
+<a name="18797"></a>
+<p>
+This attribute is defined in RFC 2713.</p>
+
+<a name="18798"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="18799"></a>
+<p>
+Octet String, single-valued.</p>
+
+<a name="18800"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="18801"></a>
+<p>
+1.3.6.1.4.1.42.2.27.4.1.8</p>
+
+<a name="15419"></a>
+<a name="jpegPhoto"></a>
+
+<h1>jpegPhoto</h1>
+
+<a name="15420"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15421"></a>
+<p>
+Contains a JPEG photo of the entry.</p>
+
+<a name="15422"></a>
+<p>
+For example:</p>
+
+<a name="15423"></a>
+<p>
+<span class="codeline">jpegPhoto:: AAAAAA==
+</span></p>
+
+<a name="15424"></a>
+
+<p>
+This attribute is defined in RFC 2798.</p>
+
+<a name="15425"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15426"></a>
+<p>
+Binary, multi-valued.</p>
+
+<a name="15427"></a>
+
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15428"></a>
+<p>
+0.9.2342.19200300.100.1.60</p>
+
+<a name="15431"></a>
+<a name="keyWords"></a>
+
+<h1>keyWords</h1>
+
+<a name="15432"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15433"></a>
+<p>
+Contains keywords for the entry.</p>
+
+<a name="15434"></a>
+<p>
+For example:</p>
+
+<a name="15435"></a>
+<p>
+<span class="codeline">keyWords: directory LDAP X.500
+</span></p>
+
+<a name="15436"></a>
+<p>
+This attribute is defined in Internet White Pages Pilot.</p>
+
+<a name="15437"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15438"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="15439"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15440"></a>
+<p>
+0.9.2342.19200300.102.1.7</p>
+
+<a name="15443"></a>
+<a name="knowledgeInformation"></a>
+
+<h1>knowledgeInformation</h1>
+
+<a name="15444"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15445"></a>
+<p>
+This attribute is no longer used.</p>
+
+<a name="15446"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="15447"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15448"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="15449"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15450"></a>
+<p>
+2.5.4.2</p>
+
+<a name="15453"></a>
+<a name="l (localityName)"></a>
+
+<h1>l (localityName)</h1>
+
+<a name="15454"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15455"></a>
+<p>
+Identifies the county, city, or other geographical area in which the entry is located or with which it is in some other way associated.</p>
+
+<a name="15456"></a>
+<p>
+For example:</p>
+
+<a name="15457"></a>
+<p>
+<span class="codeline">localityName: Santa Clara
+</span></p>
+
+<a name="15458"></a>
+<p>
+or</p>
+
+<a name="15459"></a>
+<p>
+<span class="codeline">l: Santa Clara
+</span></p>
+
+<a name="15460"></a>
+
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="15461"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15462"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="15463"></a>
+
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15464"></a>
+<p>
+2.5.4.7</p>
+
+<a name="15467"></a>
+<a name="labeledURI"></a>
+
+<h1>labeledURI</h1>
+
+<a name="15468"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15469"></a>
+<p>
+Specifies a Uniform Resource Identifier (URI) that is relevant in some way to the entry. Values placed in the attribute should consist of a URI (currently only URLs are supported) optionally followed by one or more space characters and a label.</p>
+
+<a name="15470"></a>
+<p>
+For example:</p>
+
+<a name="15471"></a>
+<p>
+<span class="codeline">labeledURI: http://home.sun.com 
+</span></p>
+
+<a name="15472"></a>
+<p>
+<span class="codeline">labeledURI: http://home.sun.com &nbsp;&nbsp;&nbsp;<font face="fontsansserif" SIZE="+2" COLOR="red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>Sun website
+</span></p>
+
+<a name="15473"></a>
+<p>
+This attribute is defined in RFC 2079.</p>
+
+<a name="15474"></a>
+
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15475"></a>
+<p>
+IA5String, multi-valued.</p>
+
+<a name="15476"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15477"></a>
+<p>
+1.3.6.1.4.1.250.1.57</p>
+
+<a name="15480"></a>
+<a name="lastModifiedBy"></a>
+
+<h1>lastModifiedBy</h1>
+
+<a name="15481"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15482"></a>
+<p>
+Specifies the distinguished name of the last user to modify the associated entry.</p>
+
+<a name="15483"></a>
+<p>
+For example:</p>
+
+<a name="15484"></a>
+<p>
+<span class="codeline">lastModifiedBy: cn=Jane Doe,ou=Quality Control,dc=example,dc=com
+</span></p>
+
+<a name="15485"></a>
+
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="15486"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15487"></a>
+<p>
+DN, single-valued.</p>
+
+<a name="15488"></a>
+
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15489"></a>
+<p>
+0.9.2342.19200300.100.1.24</p>
+
+<a name="15492"></a>
+<a name="lastModifiedTime"></a>
+
+<h1>lastModifiedTime</h1>
+
+<a name="15493"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15494"></a>
+<p>
+Defines the last time, in UTC format, that a change was made to the entry.</p>
+
+<a name="15495"></a>
+<p>
+For example:</p>
+
+<a name="15496"></a>
+<p>
+<span class="codeline">lastModifiedTime: Thursday, 22-Sep-93 14:15:00 GMT
+</span></p>
+
+<a name="15497"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="15498"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15499"></a>
+<p>
+DirectoryString, single-valued.</p>
+
+<a name="15500"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15501"></a>
+<p>
+0.9.2342.19200300.100.1.23</p>
+
+<a name="17916"></a>
+<a name="loginShell"></a>
+
+<h1>loginShell</h1>
+
+<a name="17917"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="17918"></a>
+<p>
+The path to the login shell.</p>
+
+<a name="17919"></a>
+<p>
+For example:</p>
+
+<a name="17920"></a>
+<p>
+<span class="codeline">loginShell: /bin/csh
+</span></p>
+
+<a name="17921"></a>
+<p>
+This attribute is defined in RFC 2307.</p>
+
+<a name="17922"></a>
+
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="17923"></a>
+<p>
+IA5String, single-valued.</p>
+
+<a name="17924"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="17925"></a>
+<p>
+1.3.6.1.1.1.1.4</p>
+
+<a name="17939"></a>
+<a name="macAddress"></a>
+
+<h1>macAddress</h1>
+
+<a name="17940"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="17941"></a>
+<p>
+The MAC address in maximal, colon separated hex notation, eg. 00:00:92:90:ee:e2.</p>
+
+<a name="17942"></a>
+<p>
+For example:</p>
+
+<a name="17944"></a>
+<p>
+<span class="codeline">macAddress: 00:00:92:90:ee:e2 
+</span></p>
+
+<a name="18378"></a>
+
+<p>
+This attribute is defined in RFC 2307.</p>
+
+<a name="17945"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="17946"></a>
+<p>
+String, multi-valued.</p>
+
+<a name="17947"></a>
+
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="17948"></a>
+<p>
+1.3.6.1.1.1.1.22</p>
+
+<a name="17914"></a>
+<a name="mail"></a>
+
+<h1>mail</h1>
+
+<a name="15505"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15506"></a>
+<p>
+Identifies a user's primary email address (the email address retrieved and displayed by "white-pages" lookup applications).</p>
+
+<a name="15507"></a>
+<p>
+For example:</p>
+
+<a name="15508"></a>
+<p>
+<span class="codeline">mail: banderson@example.com
+</span></p>
+
+<a name="15509"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="15510"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15511"></a>
+<p>
+DirectoryString, single-valued.</p>
+
+<a name="15512"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15513"></a>
+<p>
+0.9.2342.19200300.100.1.3</p>
+
+<a name="15516"></a>
+<a name="mailPreferenceOption"></a>
+
+<h1>mailPreferenceOption</h1>
+
+<a name="15517"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15518"></a>
+<p>
+Not used in Messaging Server 4.0.</p>
+
+<a name="15519"></a>
+<p>
+Indicates a preference for the inclusion of user names on mailing lists (electronic or physical). Accepted values include:</p>
+<ul>
+
+<a name="15520"></a>
+<p>
+<li>0: user doesn't want to be included in mailing lists. </li>
+</p>
+
+<a name="15521"></a>
+<p>
+<li>1: user consents to be added to any mailing list.</li>
+
+</p>
+
+<a name="15522"></a>
+<p>
+<li>2: user only wants to be added to mailing lists that the list provider views as relevant to the user's professional interests. </li>
+</p>
+</ul>
+
+<a name="15523"></a>
+<p>
+The absence of this attribute for a person should be interpreted as if the attribute were present with the value <span class="monospace">no-list-inclusion</span>. This attribute should be interpreted by anyone using the directory to derive mailing lists, and its value respected.</p>
+
+<a name="15524"></a>
+
+<p>
+For example:</p>
+
+<a name="15525"></a>
+<p>
+<span class="codeline">mailPreferenceOption:0
+</span></p>
+
+<a name="15526"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="15527"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15528"></a>
+<p>
+Integer, single-valued.</p>
+
+<a name="15529"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15530"></a>
+
+<p>
+0.9.2342.19200300.100.1.47</p>
+
+<a name="15533"></a>
+<a name="manager"></a>
+
+<h1>manager</h1>
+
+<a name="15534"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15535"></a>
+<p>
+Identifies the distinguished name of the entry's manager.</p>
+
+<a name="15536"></a>
+<p>
+For example:</p>
+
+<a name="15537"></a>
+<p>
+<span class="codeline">manager:cn=Jane Doe, ou=Quality Control, dc=example, dc=com
+</span></p>
+
+<a name="15538"></a>
+<p>
+
+This attribute is defined in RFC 1274.</p>
+
+<a name="15539"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15540"></a>
+<p>
+DN, multi-valued.</p>
+
+<a name="15541"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15542"></a>
+<p>
+0.9.2342.19200300.100.1.10</p>
+
+<a name="15545"></a>
+<a name="member"></a>
+
+<h1>member</h1>
+
+<a name="15546"></a>
+
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15547"></a>
+<p>
+Identifies the distinguished names for each member of the group.</p>
+
+<a name="15548"></a>
+<p>
+For example:</p>
+
+<a name="15549"></a>
+
+<p>
+<span class="codeline">member: cn=John Doe, dc=example, dc=com
+</span></p>
+
+<a name="15550"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="15551"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15552"></a>
+
+<p>
+DN, multi-valued.</p>
+
+<a name="15553"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15554"></a>
+<p>
+2.5.4.31</p>
+
+<a name="15557"></a>
+
+<a name="memberCertificateDescription"></a>
+
+<h1>memberCertificateDescription</h1>
+
+<a name="15558"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15559"></a>
+<p>
+A multi-valued attribute, for which each value is a description, a pattern, or a filter matching the subject DN of a certificate (usually certificates used for SSL client authentication).</p>
+
+<a name="15560"></a>
+<p>
+memberCertificateDescription matches any certificate that contains a subject DN with the same AVAs as the description. The description may contain multiple "ou=" AVAs. A matching DN must contain those same "ou=" AVAs, in the same order, although it may contain other AVAs (including other "ou=" AVAs) interspersed. For any other attribute type (not ou), there should be at most one AVA of that type in the description. If there are several, all but the last are ignored.</p>
+
+<a name="15561"></a>
+<p>
+A matching DN must contain that same AVA, but no other AVA of the same type nearer the root (later, syntactically).</p>
+
+<a name="15562"></a>
+<p>
+AVAs are considered the same if they contain the same attribute description (case-insensitive comparison) and the same attribute value (case-insensitive comparison, leading and trailing whitespace ignored, and consecutive whitespace characters treated as a single SP).</p>
+
+<a name="15563"></a>
+<p>
+
+In order to be considered a member of a group with the following memberCertificateDescription, a certificate would need to include ou=x, ou=A, and o=example, but not o=company.</p>
+
+<a name="15564"></a>
+<p>
+<span class="codeline">memberCertificateDescription: {ou=x, ou=A, o=company, o=example}
+</span></p>
+
+<a name="15565"></a>
+<p>
+In order to match the group's requirements, a certificate's subject DNs must contain the same ou attribute types in the same order as defined in the memberCertificateDescription attribute.</p>
+
+<a name="15569"></a>
+<p>
+This attribute is defined in Sun ONE Directory Server.</p>
+
+<a name="15570"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15571"></a>
+<p>
+IA5String, multi-valued.</p>
+
+<a name="15572"></a>
+<a name="OID"></a>
+
+<p>
+
+<b>OID</b></p>
+
+<a name="15573"></a>
+<p>
+2.16.840.1.113730.3.1.199</p>
+
+<a name="17962"></a>
+<a name="memberNisNetgroup"></a>
+
+<h1>memberNisNetgroup</h1>
+
+<a name="17963"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="17964"></a>
+<p>
+The name of a netgroup. This attribute is defined in RFC 2307.</p>
+
+<a name="17968"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="17969"></a>
+
+<p>
+IA5String, multi-valued.</p>
+
+<a name="17970"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="17971"></a>
+<p>
+1.3.6.1.1.1.1.13</p>
+
+<a name="18001"></a>
+
+<a name="memberUid"></a>
+
+<h1>memberUid</h1>
+
+<a name="18002"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="18003"></a>
+<p>
+The user id of the member. This attribute is defined in RFC 2307.</p>
+
+<a name="18007"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="18008"></a>
+<p>
+IA5String, multi-valued.</p>
+
+<a name="18009"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="18010"></a>
+<p>
+1.3.6.1.1.1.1.12</p>
+
+<a name="15576"></a>
+<a name="memberURL"></a>
+
+<h1>memberURL</h1>
+
+<a name="15577"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15578"></a>
+<p>
+Identifies a URL associated with each member of a group. Any type of labeled URL can be used.</p>
+
+<a name="15579"></a>
+<p>
+For example:</p>
+
+<a name="15580"></a>
+<p>
+<span class="codeline">memberURL: ldap:///cn=jdoe,dc=example,dc=com
+</span></p>
+
+<a name="15584"></a>
+
+<p>
+This attribute is defined in Sun ONE Directory Server.</p>
+
+<a name="15585"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15586"></a>
+<p>
+IA5String, multi-valued.</p>
+
+<a name="15587"></a>
+
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15588"></a>
+<p>
+2.16.840.1.113730.3.1.198</p>
+
+<a name="15591"></a>
+<a name="mobile"></a>
+
+<h1>mobile</h1>
+
+<a name="15592"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15593"></a>
+<p>
+Identifies the entry's mobile or cellular phone number. Abbreviation: mobile.</p>
+
+<a name="15594"></a>
+<p>
+For example:</p>
+
+<a name="15595"></a>
+<p>
+<span class="codeline">mobileTelephoneNumber: 415-555-4321
+</span></p>
+
+<a name="15597"></a>
+<p>
+<span class="codeline">mobile: 415-555-4321
+</span></p>
+
+<a name="15598"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="15599"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15600"></a>
+<p>
+TelephoneNumber, multi-valued.</p>
+
+<a name="15601"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15602"></a>
+<p>
+0.9.2342.19200300.100.1.41</p>
+
+<a name="15604"></a>
+<a name="multiLineDescription"></a>
+
+<h1>multiLineDescription</h1>
+
+<a name="15605"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15606"></a>
+<p>
+Provides descriptive text for a mail user. When represented in LDIF format, each line should be separated by a dollar sign ($). The Directory Server expects 0 or 1 occurrences of this attribute per mail account.</p>
+
+<a name="15607"></a>
+<p>
+For example:</p>
+
+<a name="15608"></a>
+<p>
+<span class="codeline">multiLineDescription: Account Administrator and$directory manager.
+</span></p>
+
+<a name="15609"></a>
+
+<p>
+To represent an actual dollar sign ($) or backslash (\) within this text, use the escaped hex values \24 and \5c respectively. For example, to represent the string:</p>
+
+<a name="15610"></a>
+<p>
+<span class="codeline">The dollar ($) value can be found in the c:\cost file.
+</span></p>
+
+<a name="15611"></a>
+<p>
+provide the string:</p>
+
+<a name="15612"></a>
+<p>
+<span class="codeline">The dollar (\24) value can be found$in the c:\5ccost file.
+
+</span></p>
+
+<a name="15613"></a>
+<p>
+This attribute is defined in Internet White Pages Pilot.</p>
+
+<a name="15614"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15615"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="15616"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15617"></a>
+<p>
+1.3.6.1.4.1.250.1.2</p>
+
+<a name="15619"></a>
+<a name="name"></a>
+
+<h1>name</h1>
+
+<a name="15620"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15621"></a>
+<p>
+Identifies the attribute supertype from which string attribute types used for naming may be formed. It is unlikely that values of this type will occur in an entry. LDAP server implementations that do not support attribute subtyping do not need to recognize this attribute in requests. Client implementations should not assume that LDAP servers are capable of performing attribute subtyping.</p>
+
+<a name="15622"></a>
+<p>
+This attribute is defined in RFC 2256. </p>
+
+<a name="15623"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15624"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="15625"></a>
+<a name="OID"></a>
+
+<p>
+
+<b>OID</b></p>
+
+<a name="15626"></a>
+<p>
+2.5.4.41</p>
+
+<a name="15628"></a>
+<a name="newRdn"></a>
+
+<h1>newRdn</h1>
+
+<a name="15629"></a>
+<a name="Description"></a>
+
+<p>
+<b>Description</b></p>
+
+<a name="15630"></a>
+<p>
+In the case of<span class="monospace"> modrdn</span> operations, specifies the new RDN of the entry.</p>
+
+<a name="15631"></a>
+<p>
+This attribute is defined in Changelog Internet Draft.</p>
+
+<a name="15632"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15633"></a>
+<p>
+DN, single-valued.</p>
+
+<a name="15634"></a>
+<a name="OID"></a>
+
+<p>
+
+<b>OID</b></p>
+
+<a name="15635"></a>
+<p>
+2.16.840.1.113730.3.1.9</p>
+
+<a name="15638"></a>
+<a name="newSuperior"></a>
+
+<h1>newSuperior</h1>
+
+<a name="15639"></a>
+<a name="Description"></a>
+
+<p>
+<b>Description</b></p>
+
+<a name="15640"></a>
+<p>
+In the case of <span class="monospace">modrdn</span> operations, specifies the <span class="monospace">newSuperior</span> attribute of the entry.</p>
+
+<a name="15641"></a>
+<p>
+
+This attribute is defined in Changelog Internet Draft.</p>
+
+<a name="15642"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="15643"></a>
+<p>
+DN, single-valued.</p>
+
+<a name="15644"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="15645"></a>
+<p>
+2.16.840.1.113730.3.1.11</p>
+
+<a name="18024"></a>
+<a name="nisMapEntry"></a>
+
+<h1>nisMapEntry</h1>
+
+<a name="18025"></a>
+
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="18026"></a>
+<p>
+The NIS map entry ID.</p>
+
+<a name="18029"></a>
+<p>
+This attribute is defined in RFC 2307.</p>
+
+<a name="18030"></a>
+
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="18032"></a>
+<p>
+IA5String{1024}, single-valued</p>
+
+<a name="18515"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="18033"></a>
+<p>
+1.3.6.1.1.1.1.27</p>
+
+<a name="18045"></a>
+<a name="nisMapName"></a>
+
+<h1>nisMapName</h1>
+
+<a name="18046"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="18047"></a>
+<p>
+The name of the NIS map. This attribute is defined in RFC 2307.</p>
+
+<a name="18051"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="18052"></a>
+<p>
+String, multi-valued.</p>
+
+<a name="18053"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="18054"></a>
+<p>
+1.3.6.1.1.1.1.26</p>
+
+<a name="18058"></a>
+<a name="nisNetgroupTriple"></a>
+
+<h1>nisNetgroupTriple</h1>
+
+<a name="18059"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="18060"></a>
+<p>
+Defines a NIS netgroup with the syntax "hostname","username","domainname".</p>
+
+<a name="18061"></a>
+<p>
+For example:</p>
+
+<a name="18063"></a>
+<p>
+<span class="codeline">nisNetgroupTriple: (myserver,jsmith,example.com)
+</span></p>
+
+<a name="18556"></a>
+<p>
+This attribute is defined in RFC 2307.</p>
+
+<a name="18064"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="18065"></a>
+<p>
+nisNetgroupTripleSyntax</p>
+
+<a name="18066"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="18067"></a>
+<p>
+1.3.6.1.1.1.1.14</p>
+
+<a name="15995"></a>
+<a name="nsLicensedFor"></a>
+
+<h1>nsLicensedFor</h1>
+
+<a name="15996"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="15997"></a>
+<p>
+Identifies the server the user is licensed to use. The Administration Server expects each <span class="monospace">nsLicenseUser</span> entry to contain zero or more instances of this attribute. Valid keywords for this attribute are currently:</p>
+
+<ul>
+
+<a name="15998"></a>
+<p>
+<li>mail: the user is a licensed client of the Messaging Server.</li>
+</p>
+
+<a name="15999"></a>
+<p>
+<li>new: the user is a licensed client of the Collabra Server.</li>
+</p>
+
+<a name="16000"></a>
+<p>
+<li>slapd: the user is a licensed client of the Directory Server.</li>
+
+</p>
+
+<a name="16001"></a>
+<p>
+<li>cal: the user is a licensed client of the Calendar Server.</li>
+</p>
+</ul>
+
+<a name="16002"></a>
+<p>
+For example:</p>
+
+<a name="16003"></a>
+<p>
+<span class="codeline">nsLicensedFor: slapd
+
+</span></p>
+
+<a name="16007"></a>
+<p>
+This attribute is defined in Sun ONE Administration Services.</p>
+
+<a name="16008"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16009"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="16010"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16011"></a>
+<p>
+2.16.840.1.113730.3.1.36</p>
+
+<a name="16037"></a>
+<a name="nsRoleScopeDn"></a>
+
+<h1>nsRoleScopeDn</h1>
+
+<a name="16038"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16039"></a>
+<p>
+Determines the scope of a role entry. If this attribute is not present, the scope of the role is defined by the LDAPsubentry. Otherwise, the scope is the union of the scope defined by the LDAPsubentry and the scope defined in this attribute.</p>
+
+<a name="16043"></a>
+<p>
+This attribute is defined in Sun ONE Directory Server.</p>
+
+<a name="16044"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16045"></a>
+<p>
+DirectoryString, single-valued.</p>
+
+<a name="16046"></a>
+<a name="OID"></a>
+
+<p>
+
+<b>OID</b></p>
+
+<a name="16047"></a>
+<p>
+1.3.6.1.4.1.1466.115.121.1.12</p>
+
+<a name="16062"></a>
+<a name="o (organizationName)"></a>
+
+<h1>o (organizationName)</h1>
+
+<a name="16063"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16064"></a>
+<p>
+Identifies the name of the organization.</p>
+
+<a name="16065"></a>
+<p>
+For example:</p>
+
+<a name="16066"></a>
+<p>
+<span class="codeline">organizationName: example, Inc.
+
+</span></p>
+
+<a name="16067"></a>
+<p>
+or</p>
+
+<a name="16068"></a>
+<p>
+<span class="codeline">o: example, Inc
+</span></p>
+
+<a name="16069"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="16070"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16071"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="16072"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16073"></a>
+<p>
+2.5.4.10</p>
+
+<a name="16076"></a>
+<a name="objectClass"></a>
+
+<h1>objectClass</h1>
+
+<a name="16077"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16078"></a>
+<p>
+Specifies the object classes of the object. Must include the object.</p>
+
+<a name="16079"></a>
+<p>
+For example:</p>
+
+<a name="16080"></a>
+<p>
+<span class="codeline">objectClass: person
+</span></p>
+
+<a name="16081"></a>
+
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="16082"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16083"></a>
+<p>
+IA5String, multi-valued.</p>
+
+<a name="16084"></a>
+
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16085"></a>
+<p>
+2.5.4.0</p>
+
+<a name="16088"></a>
+<a name="obsoletedByDocument"></a>
+
+<h1>obsoletedByDocument</h1>
+
+<a name="16089"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16090"></a>
+<p>
+Contains the distinguished name of a document that obsoletes the document entry.</p>
+
+<a name="16091"></a>
+<p>
+For example:</p>
+
+<a name="16092"></a>
+<p>
+<span class="codeline">obsoletedbyDocument: cn=Document Version 2, ou=Document Library,<br>
+&nbsp;dc=example, dc=com
+</span></p>
+
+<a name="16093"></a>
+<p>
+This attribute is defined in Internet White Pages Pilot.</p>
+
+<a name="16094"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16095"></a>
+<p>
+DN, multi-valued.</p>
+
+<a name="16096"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16097"></a>
+<p>
+0.9.2342.19200300.102.1.4</p>
+
+<a name="16100"></a>
+<a name="obsoletesDocument"></a>
+
+<h1>obsoletesDocument</h1>
+
+<a name="16101"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16102"></a>
+<p>
+Contains the distinguished name of a document that is obsoleted by the document entry.</p>
+
+<a name="16103"></a>
+<p>
+For example:</p>
+
+<a name="16104"></a>
+<p>
+<span class="codeline">obsoletesDocument: cn=Document Version 1, ou=Document Library,<br>
+&nbsp;dc=example, dc=com
+</span></p>
+
+<a name="16105"></a>
+<p>
+This attribute is defined in Internet White Pages Pilot.</p>
+
+<a name="16106"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16107"></a>
+<p>
+DN, multi-valued.</p>
+
+<a name="16108"></a>
+<a name="OID"></a>
+
+<p>
+
+<b>OID</b></p>
+
+<a name="16109"></a>
+<p>
+0.9.2342.19200300.102.1.3</p>
+
+<a name="18083"></a>
+<a name="oncRpcNumber"></a>
+
+<h1>oncRpcNumber</h1>
+
+<a name="18084"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="18085"></a>
+<p>
+The Open Network Computing (ONC) Remote Procedure Call (RPC) number.</p>
+
+<a name="18596"></a>
+<p>
+This attribute is defined in RFC 2307.</p>
+
+<a name="18089"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="18090"></a>
+<p>
+Integer, single-valued.</p>
+
+<a name="18091"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="18092"></a>
+
+<p>
+1.3.6.1.1.1.1.18</p>
+
+<a name="16112"></a>
+<a name="organizationalStatus"></a>
+
+<h1>organizationalStatus</h1>
+
+<a name="16113"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16114"></a>
+<p>
+Specifies a category by which a person is often referred to in an organization.</p>
+
+<a name="16115"></a>
+<p>
+For example:</p>
+
+<a name="16116"></a>
+<p>
+<span class="codeline">organizationalStatus: researcher
+</span></p>
+
+<a name="16117"></a>
+<p>
+
+This attribute is defined in RFC 1274.</p>
+
+<a name="16118"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16119"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="16120"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16121"></a>
+<p>
+0.9.2342.19200300.100.1.45</p>
+
+<a name="16124"></a>
+<a name="otherMailbox"></a>
+
+<h1>otherMailbox</h1>
+
+<a name="16125"></a>
+
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16126"></a>
+<p>
+Specifies values for electronic mailbox types other than X.400 and rfc822.</p>
+
+<a name="16127"></a>
+<p>
+For example:</p>
+
+<a name="16128"></a>
+
+<p>
+<span class="codeline">otherMailbox: Telemail: x378: Joe
+</span></p>
+
+<a name="16129"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="16130"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16131"></a>
+
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="16132"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16133"></a>
+<p>
+0.9.2342.19200300.100.1.22</p>
+
+<a name="16136"></a>
+
+<a name="ou (organizationUnitName)"></a>
+
+<h1>ou (organizationUnitName)</h1>
+
+<a name="16137"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16138"></a>
+<p>
+Identifies the name of an organizational unit.</p>
+
+<a name="16139"></a>
+<p>
+For example:</p>
+
+<a name="16140"></a>
+<p>
+<span class="codeline">organizationUnitName: Marketing
+</span></p>
+
+<a name="16141"></a>
+<p>
+or</p>
+
+<a name="16142"></a>
+<p>
+
+<span class="codeline">ou: Marketing
+</span></p>
+
+<a name="16143"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="16144"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16145"></a>
+<p>
+
+DirectoryString, multi-valued.</p>
+
+<a name="16146"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16147"></a>
+<p>
+2.5.4.11</p>
+
+<a name="16150"></a>
+<a name="owner"></a>
+
+<h1>owner</h1>
+
+<a name="16151"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16152"></a>
+<p>
+Identifies the distinguished name of the person responsible for the entry.</p>
+
+<a name="16153"></a>
+
+<p>
+For example:</p>
+
+<a name="16154"></a>
+<p>
+<span class="codeline">owner: cn=Babs Jensen, dc=example, dc=com
+</span></p>
+
+<a name="16155"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="16156"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16157"></a>
+<p>
+DN, multi-valued.</p>
+
+<a name="16158"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16159"></a>
+
+<p>
+2.5.4.32</p>
+
+<a name="16162"></a>
+<a name="pager (pagerTelephoneNumber)"></a>
+
+<h1>pager (pagerTelephoneNumber)</h1>
+
+<a name="16163"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16164"></a>
+<p>
+Identifies the entry's pager phone number.</p>
+
+<a name="16165"></a>
+<p>
+For example:</p>
+
+<a name="16166"></a>
+<p>
+<span class="codeline">pagerTelephoneNumber: 415-555-6789
+</span></p>
+
+<a name="16167"></a>
+<p>
+
+or</p>
+
+<a name="16168"></a>
+<p>
+<span class="codeline">pager: 415-555-6789
+</span></p>
+
+<a name="16169"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="16170"></a>
+<a name="Syntax"></a>
+
+<p>
+
+<b>Syntax</b></p>
+
+<a name="16171"></a>
+<p>
+TelephoneNumber, multi-valued.</p>
+
+<a name="16172"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16173"></a>
+<p>
+
+0.9.2342.19200300.100.1.42</p>
+
+<a name="16175"></a>
+<a name="passwordChange"></a>
+
+<h1>passwordChange</h1>
+
+<a name="16176"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16177"></a>
+
+<p>
+Indicates whether users may change their passwords.</p>
+
+<a name="16181"></a>
+<p>
+This attribute is defined in Sun ONE Directory Server.</p>
+
+<a name="16182"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16183"></a>
+
+<p>
+DirectoryString, single-valued.</p>
+
+<a name="16184"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16185"></a>
+<p>
+2.16.840.1.113730.3.1.102</p>
+
+<a name="16187"></a>
+
+<a name="passwordCheckSyntax"></a>
+
+<h1>passwordCheckSyntax</h1>
+
+<a name="16188"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16189"></a>
+<p>
+Indicates whether the password syntax will be checked before the password is saved.</p>
+
+<a name="16193"></a>
+<p>
+This attribute is defined in Sun ONE Directory Server.</p>
+
+<a name="16194"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16195"></a>
+<p>
+DirectoryString, single-valued.</p>
+
+<a name="16196"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16197"></a>
+<p>
+2.16.840.1.113730.3.1.103</p>
+
+<a name="16199"></a>
+<a name="passwordExp"></a>
+
+<h1>passwordExp</h1>
+
+<a name="16200"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16201"></a>
+<p>
+Indicates whether user passwords will expire after a specified number of seconds.</p>
+
+<a name="16205"></a>
+<p>
+This attribute is defined in Sun ONE Directory Server.</p>
+
+<a name="16206"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16207"></a>
+<p>
+DirectoryString, single-valued.</p>
+
+<a name="16208"></a>
+<a name="OID"></a>
+
+<p>
+
+<b>OID</b></p>
+
+<a name="16209"></a>
+<p>
+2.16.840.1.113730.3.1.98</p>
+
+<a name="16211"></a>
+<a name="passwordInHistory"></a>
+
+<h1>passwordInHistory</h1>
+
+<a name="16212"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16216"></a>
+<p>
+Indicates the number of passwords the Directory Server stores in history.</p>
+
+<a name="16220"></a>
+<p>
+This attribute is defined in Sun ONE Directory Server.</p>
+
+<a name="16221"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16222"></a>
+<p>
+Integer, single-valued.</p>
+
+<a name="16223"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16224"></a>
+
+<p>
+2.16.840.1.113730.3.1.101</p>
+
+<a name="16226"></a>
+<a name="passwordLockout"></a>
+
+<h1>passwordLockout</h1>
+
+<a name="16227"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16228"></a>
+<p>
+Enables the account lockout mechanism.</p>
+
+<a name="16232"></a>
+<p>
+This attribute is defined in Sun ONE Directory Server.</p>
+
+<a name="16233"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16234"></a>
+<p>
+DirectoryString, single-valued.</p>
+
+<a name="16235"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16236"></a>
+<p>
+2.16.840.1.113730.3.1.105</p>
+
+<a name="16238"></a>
+<a name="passwordLockoutDuration"></a>
+
+<h1>passwordLockoutDuration</h1>
+
+<a name="16239"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16240"></a>
+<p>
+Specifies the length of time (in seconds) during which users will be locked out of the directory.</p>
+
+<a name="16244"></a>
+<p>
+This attribute is defined in Sun ONE Directory Server.</p>
+
+<a name="16245"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16246"></a>
+<p>
+Integer, single-valued.</p>
+
+<a name="16247"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16248"></a>
+<p>
+2.16.840.1.113730.3.1.109</p>
+
+<a name="16250"></a>
+<a name="passwordMaxAge"></a>
+
+<h1>passwordMaxAge</h1>
+
+<a name="16251"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16252"></a>
+<p>
+Indicates the number of seconds after which user passwords will expire.</p>
+
+<a name="16256"></a>
+<p>
+This attribute is defined in Sun ONE Directory Server.</p>
+
+<a name="16257"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16258"></a>
+<p>
+Integer, single-valued.</p>
+
+<a name="16259"></a>
+<a name="OID"></a>
+
+<p>
+
+<b>OID</b></p>
+
+<a name="16260"></a>
+<p>
+2.16.840.1.113730.3.1.97</p>
+
+<a name="16262"></a>
+<a name="passwordMaxFailure"></a>
+
+<h1>passwordMaxFailure</h1>
+
+<a name="16263"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16264"></a>
+<p>
+Specifies the number of consecutive failed bind attempts after which a user will be locked out of the directory.</p>
+
+<a name="16268"></a>
+<p>
+This attribute is defined in Sun ONE Directory Server.</p>
+
+<a name="16269"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16270"></a>
+<p>
+Integer, single-valued.</p>
+
+<a name="16271"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16272"></a>
+
+<p>
+2.16.840.1.113730.3.1.106</p>
+
+<a name="16274"></a>
+<a name="passwordMinAge"></a>
+
+<h1>passwordMinAge</h1>
+
+<a name="16275"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16276"></a>
+<p>
+Specifies the number of seconds that must elapse between password modifications.</p>
+
+<a name="16280"></a>
+<p>
+This attribute is defined in Sun ONE Directory Server.</p>
+
+<a name="16281"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16282"></a>
+<p>
+Integer, single-valued.</p>
+
+<a name="16283"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16284"></a>
+<p>
+2.16.840.1.113730.3.1.222</p>
+
+<a name="16286"></a>
+<a name="passwordMinLength"></a>
+
+<h1>passwordMinLength</h1>
+
+<a name="16287"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16288"></a>
+<p>
+Specifies the minimum number of characters that must be used in a password.</p>
+
+<a name="16292"></a>
+<p>
+This attribute is defined in Sun ONE Directory Server.</p>
+
+<a name="16293"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16294"></a>
+<p>
+Integer, single-valued.</p>
+
+<a name="16295"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16296"></a>
+<p>
+2.16.840.1.113730.3.1.99</p>
+
+<a name="16298"></a>
+<a name="passwordMustChange"></a>
+
+<h1>passwordMustChange</h1>
+
+<a name="16299"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16300"></a>
+<p>
+Indicates whether users must change their passwords when they first bind to the Directory Server, or when the password has been reset by the administrator.</p>
+
+<a name="16307"></a>
+<p>
+This attribute is defined in Sun ONE Directory Server.</p>
+
+<a name="16308"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16309"></a>
+<p>
+DirectoryString, single-valued.</p>
+
+<a name="16310"></a>
+<a name="OID"></a>
+
+<p>
+
+<b>OID</b></p>
+
+<a name="16311"></a>
+<p>
+2.16.840.1.113730.3.1.220</p>
+
+<a name="16313"></a>
+<a name="passwordResetFailureCount"></a>
+
+<h1>passwordResetFailureCount</h1>
+
+<a name="16314"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16315"></a>
+<p>
+Specifies the length of time (in seconds) after which the password failure is reset to <span class="monospace">0</span>.</p>
+
+<a name="16319"></a>
+<p>
+This attribute is defined in Sun ONE Directory Server.</p>
+
+<a name="16320"></a>
+
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16321"></a>
+<p>
+Integer, single-valued.</p>
+
+<a name="16322"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16323"></a>
+<p>
+2.16.840.1.113730.3.1.223</p>
+
+<a name="16325"></a>
+<a name="passwordStorageScheme"></a>
+
+<h1>passwordStorageScheme</h1>
+
+<a name="16326"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16330"></a>
+<p>
+Specifies the algorithm used to encrypt Directory Server passwords.</p>
+
+<a name="16334"></a>
+<p>
+This attribute is defined in Sun ONE Directory Server.</p>
+
+<a name="16335"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16336"></a>
+<p>
+DirectoryString, single-valued.</p>
+
+<a name="16337"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16338"></a>
+<p>
+2.16.840.1.113730.3.1.221</p>
+
+<a name="16340"></a>
+<a name="passwordUnlock"></a>
+
+<h1>passwordUnlock</h1>
+
+<a name="16341"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16342"></a>
+<p>
+Specifies whether user accounts will be unlocked after a period of time.</p>
+
+<a name="16346"></a>
+<p>
+This attribute is defined in Sun ONE Directory Server.</p>
+
+<a name="16347"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16348"></a>
+<p>
+DirectoryString, single-valued.</p>
+
+<a name="16349"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16350"></a>
+<p>
+2.16.840.1.113730.3.1.108</p>
+
+<a name="16352"></a>
+<a name="passwordWarning"></a>
+
+<h1>passwordWarning</h1>
+
+<a name="16353"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16354"></a>
+<p>
+Specifies the number of seconds before a user's password expires that the user will receive a password expiration warning on attempting to authenticate to the directory.</p>
+
+<a name="16358"></a>
+<p>
+This attribute is defined in Sun ONE Directory Server.</p>
+
+<a name="16359"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16360"></a>
+<p>
+Integer, single-valued.</p>
+
+<a name="16361"></a>
+<a name="OID"></a>
+
+<p>
+
+<b>OID</b></p>
+
+<a name="16362"></a>
+<p>
+2.16.840.1.113730.3.1.104</p>
+
+<a name="16365"></a>
+<a name="personalSignature"></a>
+
+<h1>personalSignature</h1>
+
+<a name="16366"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16367"></a>
+<p>
+A signature file, in binary format, for the entry.</p>
+
+<a name="16368"></a>
+<p>
+For example:</p>
+
+<a name="16369"></a>
+<p>
+<span class="codeline">personalSignature:: AAAAAA==
+
+</span></p>
+
+<a name="16370"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="16371"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16372"></a>
+<p>
+Binary, multi-valued.</p>
+
+<a name="16373"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16374"></a>
+<p>
+0.9.2342.19200300.100.1.53</p>
+
+<a name="16377"></a>
+<a name="personalTitle"></a>
+
+<h1>personalTitle</h1>
+
+<a name="16378"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16379"></a>
+<p>
+Specifies a personal title for a person. Examples of personal titles are "Ms," "Dr," "Prof," and "Rev."</p>
+
+<a name="16380"></a>
+<p>
+For example:</p>
+
+<a name="16381"></a>
+<p>
+<span class="codeline">personalTitle: Mr
+</span></p>
+
+<a name="16382"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="16383"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16384"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="16385"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16386"></a>
+<p>
+0.9.2342.19200300.100.1.40</p>
+
+<a name="16389"></a>
+<a name="photo"></a>
+
+<h1>photo</h1>
+
+<a name="16390"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16391"></a>
+<p>
+Contains a photo, in binary form, of the entry.</p>
+
+<a name="16392"></a>
+<p>
+For example:</p>
+
+<a name="16393"></a>
+<p>
+<span class="codeline">photo:: AAAAAA==
+</span></p>
+
+<a name="16394"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="16395"></a>
+
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16396"></a>
+<p>
+Binary, multi-valued.</p>
+
+<a name="16397"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16398"></a>
+<p>
+0.9.2342.19200300.100.1.7</p>
+
+<a name="16401"></a>
+<a name="physicalDeliveryOfficeName"></a>
+
+<h1>physicalDeliveryOfficeName</h1>
+
+<a name="16402"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16403"></a>
+<p>
+Identifies the name of the city or village in which a physical delivery office is located.</p>
+
+<a name="16404"></a>
+<p>
+For example:</p>
+
+<a name="16405"></a>
+<p>
+<span class="codeline">physicalDeliveryOfficeName: Santa Clara
+</span></p>
+
+<a name="16406"></a>
+
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="16407"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16408"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="16409"></a>
+
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16410"></a>
+<p>
+2.5.4.19</p>
+
+<a name="16415"></a>
+<a name="postalAddress"></a>
+
+<h1>postalAddress</h1>
+
+<a name="16416"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16417"></a>
+<p>
+Identifies the entry's mailing address. This field is intended to include multiple lines. When represented in LDIF format, each line should be separated by a dollar sign ($). </p>
+
+<a name="19549"></a>
+<p>
+For example:</p>
+
+<a name="16419"></a>
+<p>
+<span class="codeline">postalAddress: P.O. Box 3541$Santa Clara, CA$99555
+</span></p>
+
+<a name="16420"></a>
+<p>
+To represent an actual dollar sign ($) or backslash (\) within the text, use the escaped hex values \24 and \5c respectively.</p>
+
+<a name="16421"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="16422"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16423"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="16424"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16425"></a>
+<p>
+2.5.4.16</p>
+
+<a name="16428"></a>
+<a name="postalCode"></a>
+
+<h1>postalCode</h1>
+
+<a name="16429"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16430"></a>
+<p>
+Identifies the entry's zip code in the United States.</p>
+
+<a name="16431"></a>
+<p>
+For example:</p>
+
+<a name="16432"></a>
+<p>
+<span class="codeline">postalCode: 44224
+</span></p>
+
+<a name="16433"></a>
+
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="16434"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16435"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="16436"></a>
+
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16437"></a>
+<p>
+2.5.4.17</p>
+
+<a name="16440"></a>
+<a name="postOfficeBox"></a>
+
+<h1>postOfficeBox</h1>
+
+<a name="16441"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16442"></a>
+<p>
+Specifies a postal mailing address.</p>
+
+<a name="16443"></a>
+<p>
+For example:</p>
+
+<a name="16444"></a>
+<p>
+<span class="codeline">postOfficeBox: P.O. Box 1234
+</span></p>
+
+<a name="16445"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="16446"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16447"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="16448"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16449"></a>
+<p>
+2.5.4.18</p>
+
+<a name="16452"></a>
+<a name="preferredDeliveryMethod"></a>
+
+<h1>preferredDeliveryMethod</h1>
+
+<a name="16453"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16454"></a>
+<p>
+Identifies the entry's preferred contact or delivery method.</p>
+
+<a name="16455"></a>
+<p>
+For example:</p>
+
+<a name="16456"></a>
+<p>
+<span class="codeline">preferredDeliveryMethod: telephone
+</span></p>
+
+<a name="16457"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="16458"></a>
+
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16459"></a>
+<p>
+DirectoryString, single-valued.</p>
+
+<a name="16460"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16461"></a>
+<p>
+2.5.4.28</p>
+
+<a name="16464"></a>
+<a name="preferredLanguage"></a>
+
+<h1>preferredLanguage</h1>
+
+<a name="16465"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16466"></a>
+<p>
+Defines a person's preferred written or spoken language. The value for this attribute should conform to the syntax for HTTP Accept-Language header values.</p>
+
+<a name="16467"></a>
+<p>
+For example: </p>
+
+<a name="16468"></a>
+<p>
+<span class="codeline">preferredLanguage: en-us
+</span></p>
+
+<a name="16469"></a>
+
+<p>
+This attribute is defined in RFC 2798.</p>
+
+<a name="16470"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16471"></a>
+<p>
+DirectoryString, single-valued.</p>
+
+<a name="16472"></a>
+
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16473"></a>
+<p>
+2.16.840.1.113730.3.1.39</p>
+
+<a name="16476"></a>
+<a name="presentationAddress"></a>
+
+<h1>presentationAddress</h1>
+
+<a name="16477"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16478"></a>
+<p>
+Contains an OSI presentation address for the entry. The presentation address consists of an OSI Network Address and up to three selectors, one each for use by the transport, session, and presentation entities.</p>
+
+<a name="16479"></a>
+<p>
+For example:</p>
+
+<a name="16480"></a>
+<p>
+<span class="codeline">presentationAddress: TELEX+00726322+RFC-1006+02+130.59.2.1
+</span></p>
+
+<a name="16481"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="16482"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16483"></a>
+<p>
+IA5String, single-valued.</p>
+
+<a name="16484"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16485"></a>
+<p>
+2.5.4.29</p>
+
+<a name="16487"></a>
+<a name="protocolInformation"></a>
+
+<h1>protocolInformation</h1>
+
+<a name="16488"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16489"></a>
+<p>
+Used in conjunction with the presentationAddress attribute to provide additional information to the OSI network service.</p>
+
+<a name="16490"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="16491"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16492"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="16493"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16494"></a>
+<p>
+2.5.4.48</p>
+
+<a name="16496"></a>
+<a name="ref"></a>
+
+<h1>ref</h1>
+
+<a name="16497"></a>
+<a name="Description"></a>
+
+<p>
+<b>Description</b></p>
+
+<a name="16498"></a>
+<p>
+Used in LDAPv3 to support smart referrals. Contains an LDAP URL in the format:</p>
+
+<a name="16499"></a>
+<p>
+<span class="codeline">ldap://&lt;servername&gt;:&lt;portnumber&gt;/&lt;dn&gt;
+
+</span></p>
+
+<a name="16500"></a>
+<p>
+The port number is optional.</p>
+
+<a name="16501"></a>
+<p>
+For example:</p>
+
+<a name="16502"></a>
+<p>
+<span class="codeline"><span class="monospace">ref: ldap://server.example.com:389</span>/ou=People, o=example.com
+</span></p>
+
+<a name="16503"></a>
+<p>
+Note that DN special characters must be escaped. For example:</p>
+
+<a name="19155"></a>
+<p>
+<span class="codeline"><span class="monospace">ref: ldap://server.example.com:389</span>/ou=People, o=example%Inc
+</span></p>
+
+<a name="19143"></a>
+<p>
+This attribute is defined in RFC 3296.</p>
+
+<a name="16504"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16505"></a>
+<p>
+IA5String, multi-valued.</p>
+
+<a name="16506"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16507"></a>
+<p>
+2.16.840.1.113730.3.1.34</p>
+
+<a name="16510"></a>
+<a name="registeredAddress"></a>
+
+<h1>registeredAddress</h1>
+
+<a name="16511"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16512"></a>
+<p>
+This attribute contains a postal address for receiving telegrams or expedited documents. The recipient's signature is usually required on delivery.</p>
+
+<a name="16513"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="16514"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16515"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="16516"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16517"></a>
+<p>
+2.5.4.26</p>
+
+<a name="16521"></a>
+<a name="roleOccupant"></a>
+
+<h1>roleOccupant</h1>
+
+<a name="16522"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16523"></a>
+<p>
+Contains the distinguished name of the person acting in the role defined in the <span class="monospace">organizationalRole</span> entry. </p>
+
+<a name="16524"></a>
+<p>
+For example:</p>
+
+<a name="16525"></a>
+<p>
+<span class="codeline">roleOccupant: uid=jdoe, dc=example, dc=com
+</span></p>
+
+<a name="16526"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="16527"></a>
+
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16528"></a>
+<p>
+DN, multi-valued.</p>
+
+<a name="16529"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16530"></a>
+<p>
+2.5.4.33</p>
+
+<a name="16533"></a>
+<a name="roomNumber"></a>
+
+<h1>roomNumber</h1>
+
+<a name="16534"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16535"></a>
+<p>
+Specifies the room number of an object. Note that the commonName attribute should be used for naming room objects.</p>
+
+<a name="16536"></a>
+<p>
+For example:</p>
+
+<a name="16537"></a>
+<p>
+<span class="codeline">roomNumber: 230
+</span></p>
+
+<a name="16538"></a>
+
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="16539"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16540"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="16541"></a>
+
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16542"></a>
+<p>
+0.9.2342.19200300.100.1.6</p>
+
+<a name="16543"></a>
+<p>
+</p>
+
+<a name="16545"></a>
+<p>
+
+</p>
+
+<a name="16548"></a>
+<a name="searchGuide"></a>
+
+<h1>searchGuide</h1>
+
+<a name="16549"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16550"></a>
+<p>
+
+Specifies information for a suggested search criteria when using the entry as the base object in the directory tree for a search operation. When constructing search filters, use <span class="monospace">enhancedSearchGuide</span> instead.</p>
+
+<a name="16551"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="16552"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16553"></a>
+<p>
+IA5String, multi-valued.</p>
+
+<a name="16554"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16555"></a>
+<p>
+2.5.4.14</p>
+
+<a name="16558"></a>
+<a name="secretary"></a>
+
+<h1>secretary</h1>
+
+<a name="16559"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16560"></a>
+<p>
+Identifies the entry's secretary or administrative assistant. </p>
+
+<a name="16561"></a>
+<p>
+For example:</p>
+
+<a name="16562"></a>
+<p>
+<span class="codeline">secretary: cn=John Doe, dc=example, dc=com
+</span></p>
+
+<a name="16563"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="16564"></a>
+
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16565"></a>
+<p>
+DN, multi-valued.</p>
+
+<a name="16566"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16567"></a>
+<p>
+0.9.2342.19200300.100.1.21</p>
+
+<a name="16570"></a>
+<a name="seeAlso"></a>
+
+<h1>seeAlso</h1>
+
+<a name="16571"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16572"></a>
+<p>
+Identifies another directory server entry that may contain information related to this entry.</p>
+
+<a name="16573"></a>
+<p>
+For example:</p>
+
+<a name="16574"></a>
+<p>
+<span class="codeline">seeAlso: cn=Quality Control Inspectors,ou=manufacturing,<br>
+&nbsp;dc=example, dc=com
+</span></p>
+
+<a name="16575"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="16576"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16577"></a>
+<p>
+DN, multi-valued.</p>
+
+<a name="16578"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16579"></a>
+<p>
+2.5.4.34</p>
+
+<a name="16582"></a>
+<a name="serialNumber"></a>
+
+<h1>serialNumber</h1>
+
+<a name="16583"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16584"></a>
+<p>
+Specifies the serial number of a device.</p>
+
+<a name="16585"></a>
+<p>
+For example:</p>
+
+<a name="16586"></a>
+<p>
+<span class="codeline">serialNumber: 555-1234-AZ
+</span></p>
+
+<a name="16587"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="16588"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16589"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="16590"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16593"></a>
+<p>
+2.5.4.5</p>
+
+<a name="18120"></a>
+<a name="shadowExpire"></a>
+
+<h1>shadowExpire</h1>
+
+<a name="19195"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="19196"></a>
+<p>
+UNIX systems only. Related to the <span class="monospace">/etc/shadow</span> file, this attribute contains an absolute date specifying when the login may no longer be used.</p>
+
+<a name="18125"></a>
+<p>
+This attribute is defined in RFC 2307.</p>
+
+<a name="18126"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="18127"></a>
+<p>
+Integer, single-valued.</p>
+
+<a name="18128"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="18129"></a>
+<p>
+1.3.6.1.1.1.1.10</p>
+
+<a name="18141"></a>
+<a name="shadowFlag"></a>
+
+<h1>shadowFlag</h1>
+
+<a name="18142"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="19208"></a>
+<p>
+UNIX systems only. Related to the <span class="monospace">/etc/shadow</span> file, this attribute is currently not used and is reserved for future use.</p>
+
+<a name="18146"></a>
+
+<p>
+This attribute is defined in RFC 2307.</p>
+
+<a name="18147"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="18148"></a>
+<p>
+Integer, single-valued.</p>
+
+<a name="18149"></a>
+
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="18150"></a>
+<p>
+1.3.6.1.1.1.1.11</p>
+
+<a name="18162"></a>
+<a name="shadowInactive"></a>
+
+<h1>shadowInactive</h1>
+
+<a name="18163"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="19220"></a>
+<p>
+UNIX systems only. Related to the <span class="monospace">/etc/shadow</span> file, this attribute specifies the number of days of inacitivity allowed for the specified user.</p>
+
+<a name="18167"></a>
+<p>
+
+This attribute is defined in RFC 2307.</p>
+
+<a name="18168"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="18169"></a>
+<p>
+Integer, single-valued.</p>
+
+<a name="18170"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="18171"></a>
+<p>
+1.3.6.1.1.1.1.9</p>
+
+<a name="18179"></a>
+<a name="shadowLastChange"></a>
+
+<h1>shadowLastChange</h1>
+
+<a name="18180"></a>
+
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="19246"></a>
+<p>
+UNIX systems only. Related to the <span class="monospace">/etc/shadow</span> file, this attribute specifies number of days between January 1,  1970,  and the date that the password was last modified.</p>
+
+<a name="18184"></a>
+<p>
+This attribute is defined in RFC 2307.</p>
+
+<a name="18185"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="18186"></a>
+<p>
+Integer, single-valued.</p>
+
+<a name="18187"></a>
+<a name="OID"></a>
+
+<p>
+
+<b>OID</b></p>
+
+<a name="18188"></a>
+<p>
+1.3.6.1.1.1.1.5</p>
+
+<a name="18203"></a>
+<a name="shadowMax"></a>
+
+<h1>shadowMax</h1>
+
+<a name="18204"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="19232"></a>
+<p>
+UNIX systems only. Related to the <span class="monospace">/etc/shadow</span> file, this attribute specifies the maximum number of days the password is valid.</p>
+
+<a name="18208"></a>
+<p>
+This attribute is defined in RFC 2307.</p>
+
+<a name="18209"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="18210"></a>
+<p>
+Integer, single-valued.</p>
+
+<a name="18211"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="18212"></a>
+<p>
+1.3.6.1.1.1.1.7</p>
+
+<a name="18216"></a>
+<a name="shadowMin"></a>
+
+<h1>shadowMin</h1>
+
+<a name="18217"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="19236"></a>
+<p>
+UNIX systems only. Related to the <span class="monospace">/etc/shadow</span> file, this attribute specifies the minimum number of days required between password changes.</p>
+
+<a name="18221"></a>
+<p>
+This attribute is defined in RFC 2307.</p>
+
+<a name="18222"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="18223"></a>
+<p>
+Integer, single-valued.</p>
+
+<a name="18224"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="18225"></a>
+
+<p>
+1.3.6.1.1.1.1.6</p>
+
+<a name="18229"></a>
+<a name="shadowWarning"></a>
+
+<h1>shadowWarning</h1>
+
+<a name="18230"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="19288"></a>
+<p>
+UNIX systems only. Related to the <span class="monospace">/etc/shadow</span> file, this attribute specifies the number of days before the password expires that the user is warned.</p>
+
+<a name="18234"></a>
+<p>
+This attribute is defined in RFC 2307.</p>
+
+<a name="18235"></a>
+<a name="Syntax"></a>
+
+<p>
+
+<b>Syntax</b></p>
+
+<a name="18236"></a>
+<p>
+Integer, single-valued.</p>
+
+<a name="18237"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="18238"></a>
+<p>
+
+1.3.6.1.1.1.1.8</p>
+
+<a name="16595"></a>
+<a name="singleLevelQuality"></a>
+
+<h1>singleLevelQuality</h1>
+
+<a name="16596"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16597"></a>
+
+<p>
+Specifies the purported data quality at the level immediately below in the DIT.</p>
+
+<a name="16598"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="16599"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16600"></a>
+
+<p>
+DirectoryString, single-valued.</p>
+
+<a name="16601"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16602"></a>
+<p>
+0.9.2342.19200300.100.1.50</p>
+
+<a name="16605"></a>
+
+<a name="sn (surname)"></a>
+
+<h1>sn (surname)</h1>
+
+<a name="16606"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16607"></a>
+<p>
+Identifies the entry's surname, also referred to as last name or family name.</p>
+
+<a name="16608"></a>
+<p>
+For example:</p>
+
+<a name="16609"></a>
+<p>
+<span class="codeline">surname: Anderson
+</span></p>
+
+<a name="16610"></a>
+<p>
+or</p>
+
+<a name="16611"></a>
+<p>
+
+<span class="codeline">sn: Anderson
+</span></p>
+
+<a name="16612"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="16613"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16614"></a>
+<p>
+
+DirectoryString, multi-valued.</p>
+
+<a name="16615"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16616"></a>
+<p>
+2.5.4.4</p>
+
+<a name="16619"></a>
+<a name="st (stateOrProvinceName)"></a>
+
+<h1>st (stateOrProvinceName)</h1>
+
+<a name="16620"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16621"></a>
+<p>
+Identifies the state or province in which the entry resides. Abbreviation: st.</p>
+
+<a name="16622"></a>
+
+<p>
+For example:</p>
+
+<a name="16623"></a>
+<p>
+<span class="codeline">stateOrProvinceName: California
+</span></p>
+
+<a name="16624"></a>
+<p>
+or</p>
+
+<a name="16625"></a>
+<p>
+<span class="codeline">st: California
+
+</span></p>
+
+<a name="16626"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="16627"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16628"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="16629"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16630"></a>
+<p>
+2.5.4.8</p>
+
+<a name="16633"></a>
+<a name="street (streetAddress)"></a>
+
+<h1>street (streetAddress)</h1>
+
+<a name="16634"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16635"></a>
+<p>
+Identifies the entry's house number and street name.</p>
+
+<a name="16636"></a>
+<p>
+For example:</p>
+
+<a name="16637"></a>
+<p>
+<span class="codeline">streetAddress: 1234 Ridgeway Drive
+</span></p>
+
+<a name="16638"></a>
+<p>
+or</p>
+
+<a name="16639"></a>
+<p>
+<span class="codeline">street: 1234 Ridgeway Drive
+</span></p>
+
+<a name="16640"></a>
+
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="16641"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16642"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="16643"></a>
+
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16644"></a>
+<p>
+2.5.4.9</p>
+
+<a name="16647"></a>
+<a name="subject"></a>
+
+<h1>subject</h1>
+
+<a name="16648"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16649"></a>
+<p>
+Contains information about the subject matter of the document entry.</p>
+
+<a name="16650"></a>
+<p>
+For example:</p>
+
+<a name="16651"></a>
+<p>
+<span class="codeline">subject: employee option grants
+</span></p>
+
+<a name="16652"></a>
+<p>
+This attribute is defined in Internet White Pages Pilot.</p>
+
+<a name="16653"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16654"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="16655"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16656"></a>
+<p>
+0.9.2342.19200300.102.1.8</p>
+
+<a name="16658"></a>
+<a name="subtreeMaximumQuality"></a>
+
+<h1>subtreeMaximumQuality</h1>
+
+<a name="16659"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16660"></a>
+<p>
+Specifies the purported maximum data quality for a DIT subtree.</p>
+
+<a name="16661"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="16662"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16663"></a>
+<p>
+DirectoryString, single-valued.</p>
+
+<a name="16664"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16665"></a>
+<p>
+0.9.2342.19200300.100.1.52</p>
+
+<a name="16667"></a>
+<a name="subtreeMinimumQuality"></a>
+
+<h1>subtreeMinimumQuality</h1>
+
+<a name="16668"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16669"></a>
+<p>
+Specifies the purported minimum data quality for a DIT subtree.</p>
+
+<a name="16670"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="16671"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16672"></a>
+<p>
+DirectoryString, single-valued.</p>
+
+<a name="16673"></a>
+<a name="OID"></a>
+
+<p>
+
+<b>OID</b></p>
+
+<a name="16674"></a>
+<p>
+0.9.2342.19200300.100.1.51</p>
+
+<a name="16676"></a>
+<a name="supportedAlgorithms"></a>
+
+<h1>supportedAlgorithms</h1>
+
+<a name="16677"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16678"></a>
+<p>
+This attribute is to be stored and requested in the binary form, as <span class="monospace">supportedAlgorithms;binary</span>.</p>
+
+<a name="16679"></a>
+<p>
+For example:</p>
+
+<a name="16680"></a>
+
+<p>
+<span class="codeline">supportedAlgorithms;binary: AAAAAA==
+</span></p>
+
+<a name="16681"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="16682"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16683"></a>
+
+<p>
+Binary, multi-valued.</p>
+
+<a name="16684"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16685"></a>
+<p>
+2.5.4.52</p>
+
+<a name="16688"></a>
+
+<a name="supportedApplicationContext"></a>
+
+<h1>supportedApplicationContext</h1>
+
+<a name="16689"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16690"></a>
+<p>
+This attribute contains the identifiers of OSI application contexts.</p>
+
+<a name="16691"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="16692"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16693"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="16694"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16695"></a>
+<p>
+2.5.4.30</p>
+
+<a name="16697"></a>
+<a name="targetDn"></a>
+
+<h1>targetDn</h1>
+
+<a name="16698"></a>
+<a name="Description"></a>
+
+<p>
+<b>Description</b></p>
+
+<a name="16699"></a>
+<p>
+Contains the DN of the entry that was affected by the LDAP operation. In the case of a <span class="monospace">modrdn</span> operation, the <span class="monospace">targetDn</span> attribute contains the DN of the entry before it was modified or moved.</p>
+
+<a name="16700"></a>
+<p>
+This attribute is defined in Changelog Internet Draft.</p>
+
+<a name="16701"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16702"></a>
+<p>
+DN, multi-valued.</p>
+
+<a name="16703"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16704"></a>
+<p>
+2.16.840.1.113730.3.1.6 </p>
+
+<a name="16707"></a>
+<a name="telephoneNumber"></a>
+
+<h1>telephoneNumber</h1>
+
+<a name="16708"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16709"></a>
+<p>
+Identifies the entry's phone number.</p>
+
+<a name="16710"></a>
+<p>
+For example:</p>
+
+<a name="16711"></a>
+<p>
+<span class="codeline">telephoneNumber: 415-555-2233
+</span></p>
+
+<a name="16712"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="16713"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16714"></a>
+<p>
+TelephoneNumber, multi-valued.</p>
+
+<a name="16715"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16716"></a>
+<p>
+2.5.4.20</p>
+
+<a name="16720"></a>
+<a name="telexNumber"></a>
+
+<h1>telexNumber</h1>
+
+<a name="16721"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16722"></a>
+<p>
+Defines the telex number of the entry. The format of the telex number is as follows:</p>
+
+<a name="16723"></a>
+<p>
+<span class="codeline">actual-number "$" country "$" answerback
+</span></p>
+
+<a name="16724"></a>
+<p>
+where:</p>
+<ul>
+
+<a name="16725"></a>
+<p>
+<li>actual-number: the syntactic representation of the number portion of the TELEX number being encoded.</li>
+</p>
+
+<a name="16726"></a>
+<p>
+<li>country: the TELEX country code.</li>
+</p>
+
+<a name="16727"></a>
+<p>
+<li>answerback: the answerback code of a TELEX terminal.</li>
+</p>
+</ul>
+
+<a name="16728"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="16729"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16730"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="16731"></a>
+<a name="OID"></a>
+
+<p>
+
+<b>OID</b></p>
+
+<a name="16732"></a>
+<p>
+2.5.4.21</p>
+
+<a name="16735"></a>
+<a name="textEncodedORAddress"></a>
+
+<h1>textEncodedORAddress</h1>
+
+<a name="16736"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16737"></a>
+<p>
+Defines the text-encoded Originator/Recipient (X.400) address of the entry as defined in RFC987.</p>
+
+<a name="16738"></a>
+<p>
+For example:</p>
+
+<a name="16739"></a>
+<p>
+<span class="codeline">textEncodedORAddress: /S=doe/OU=eng/O=example/ADMD=telemail/C=us/
+
+</span></p>
+
+<a name="16740"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="16741"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16742"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="16743"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16744"></a>
+<p>
+0.9.2342.19200300.100.1.2</p>
+
+<a name="16747"></a>
+<a name="title"></a>
+
+<h1>title</h1>
+
+<a name="16748"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16749"></a>
+<p>
+Identifies the title of a person in the organization.</p>
+
+<a name="16750"></a>
+<p>
+For example:</p>
+
+<a name="16751"></a>
+<p>
+<span class="codeline">title: Senior QC Inspector
+</span></p>
+
+<a name="16752"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="16753"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16754"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="16755"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16757"></a>
+<p>
+2.5.4.12</p>
+
+<a name="16775"></a>
+<a name="uid (userID)"></a>
+
+<h1>uid (userID)</h1>
+
+<a name="16776"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16777"></a>
+<p>
+Identifies the entry's userid (usually the logon ID). Abbreviation: uid.</p>
+
+<a name="16778"></a>
+<p>
+For example:</p>
+
+<a name="16779"></a>
+<p>
+<span class="codeline">userid: banderson
+</span></p>
+
+<a name="16780"></a>
+<p>
+or</p>
+
+<a name="16781"></a>
+
+<p>
+<span class="codeline">uid: banderson
+</span></p>
+
+<a name="16782"></a>
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="16783"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16784"></a>
+
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="16785"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16786"></a>
+<p>
+0.9.2342.19200300.100.1.1</p>
+
+<a name="18279"></a>
+
+<a name="uidNumber"></a>
+
+<h1>uidNumber</h1>
+
+<a name="18280"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="19314"></a>
+<p>
+UNIX only. Related to the <span class="monospace">/etc/shadow</span> file, this attribute specifies the user's login ID.</p>
+
+<a name="19346"></a>
+<p>
+This attribute is defined in RFC 2307.</p>
+
+<a name="18285"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="18286"></a>
+<p>
+Integer, single-valued.</p>
+
+<a name="18287"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="18288"></a>
+<p>
+1.3.6.1.1.1.1.0</p>
+
+<a name="16789"></a>
+<a name="uniqueIdentifier"></a>
+
+<h1>uniqueIdentifier</h1>
+
+<a name="16790"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16791"></a>
+<p>
+Identifies a specific item used to distinguish between two entries when a distinguished name has been reused. This attribute is intended to detect an instance of a reference to a distinguished name that has been deleted. This attribute is assigned by the server.</p>
+
+<a name="16792"></a>
+<p>
+For example:</p>
+
+<a name="16793"></a>
+<p>
+<span class="codeline">uniqueIdentifier: 17B
+</span></p>
+
+<a name="16794"></a>
+<p>
+This attribute is defined in RFC 1274. </p>
+
+<a name="16795"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16796"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="16797"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16798"></a>
+<p>
+0.9.2342.19200300.100.1.44</p>
+
+<a name="16801"></a>
+<a name="uniqueMember"></a>
+
+<h1>uniqueMember</h1>
+
+<a name="16802"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16803"></a>
+<p>
+Identifies a group of names associated with an entry where each name was given a uniqueIdentifier to ensure its uniqueness. A value for the uniqueMember attribute is a DN followed by the uniqueIdentifier.</p>
+
+<a name="16804"></a>
+<p>
+For example:</p>
+
+<a name="16805"></a>
+<p>
+<span class="codeline">uniqueMember: cn=John Doe, dc=example, dc=com 17
+</span></p>
+
+<a name="16806"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="16807"></a>
+
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16808"></a>
+<p>
+DN, multi-valued.</p>
+
+<a name="16809"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16810"></a>
+<p>
+2.5.4.50</p>
+
+<a name="16813"></a>
+<a name="updatedByDocument"></a>
+
+<h1>updatedByDocument</h1>
+
+<a name="16814"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16815"></a>
+<p>
+Contains the distinguished name of a document that is an updated version of the document entry.</p>
+
+<a name="16816"></a>
+<p>
+For example:</p>
+
+<a name="16817"></a>
+<p>
+updatedByDocument: cn=Document Version 2, ou=Document Library,<br>&nbsp;dc=example, dc=com</p>
+
+<a name="16818"></a>
+<p>
+This attribute is defined in Internet White Pages Pilot.</p>
+
+<a name="16819"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16820"></a>
+<p>
+DN, multi-valued.</p>
+
+<a name="16821"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16822"></a>
+<p>
+0.9.2342.19200300.102.1.6</p>
+
+<a name="16825"></a>
+<a name="updatesDocument"></a>
+
+<h1>updatesDocument</h1>
+
+<a name="16826"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16827"></a>
+<p>
+Contains the distinguished name of a document for which this document is an updated version.</p>
+
+<a name="16828"></a>
+<p>
+For example:</p>
+
+<a name="16829"></a>
+<p>
+updatesDocument: cn=Document Version 1, ou=Document Library,<br>&nbsp;dc=example, dc=com</p>
+
+<a name="16830"></a>
+<p>
+This attribute is defined in Internet White Pages Pilot.</p>
+
+<a name="16831"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16832"></a>
+<p>
+DN, multi-valued.</p>
+
+<a name="16833"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16834"></a>
+<p>
+0.9.2342.19200300.102.1.5</p>
+
+<a name="16838"></a>
+<a name="userCertificate"></a>
+
+<h1>userCertificate</h1>
+
+<a name="16839"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16840"></a>
+<p>
+This attribute contains a certificate. It is to be stored and requested in the binary form, as <span class="monospace">userCertificate;binary</span>.</p>
+
+<a name="16841"></a>
+<p>
+For example:</p>
+
+<a name="16842"></a>
+<p>
+<span class="codeline">userCertificate;binary:: AAAAAA==
+</span></p>
+
+<a name="16843"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="16844"></a>
+
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16845"></a>
+<p>
+Binary, multi-valued.</p>
+
+<a name="16846"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16847"></a>
+<p>
+2.5.4.36</p>
+
+<a name="16851"></a>
+<a name="userClass"></a>
+
+<h1>userClass</h1>
+
+<a name="16852"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16853"></a>
+<p>
+Specifies a category of computer user. The semantics of this attribute are arbitrary. The organizationalStatus attribute makes no distinction between computer users and others users and may be more applicable.</p>
+
+<a name="16854"></a>
+<p>
+For example:</p>
+
+<a name="16855"></a>
+<p>
+<span class="codeline">userClass: intern
+</span></p>
+
+<a name="16856"></a>
+
+<p>
+This attribute is defined in RFC 1274.</p>
+
+<a name="16857"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16858"></a>
+<p>
+DirectoryString, multi-valued.</p>
+
+<a name="16859"></a>
+
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16860"></a>
+<p>
+0.9.2342.19200300.100.1.8</p>
+
+<a name="16863"></a>
+<a name="userPassword"></a>
+
+<h1>userPassword</h1>
+
+<a name="16864"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16865"></a>
+<p>
+Identifies the entry's password and encryption method in the following format:</p>
+
+<a name="16866"></a>
+<p>
+<span class="codeline">{encryption method}encrypted password
+</span></p>
+
+<a name="16867"></a>
+<p>
+Transfer of clear text passwords is strongly discouraged where the underlying transport service cannot guarantee confidentiality. Transfer of clear text may result in disclosure of the password to unauthorized parties.</p>
+
+<a name="16868"></a>
+<p>
+For example:</p>
+
+<a name="16869"></a>
+<p>
+<span class="codeline">userPassword: {ssha}9LsFG7RT+dFnPErwSfxDlaQTn6dbIFGklMNFRr==
+</span></p>
+
+<a name="16870"></a>
+<p>
+
+This attribute is defined in RFC 2256.</p>
+
+<a name="16871"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16872"></a>
+<p>
+Binary, multi-valued.</p>
+
+<a name="16873"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16874"></a>
+<p>
+2.5.4.35</p>
+
+<a name="16876"></a>
+<a name="userPKCS12"></a>
+
+<h1>userPKCS12</h1>
+
+<a name="16877"></a>
+
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16878"></a>
+<p>
+This attribute provides a format for the exchange of personal identity information. The attribute is to be stored and requested in binary form, as <span class="monospace">userPKCS12;binary</span>. The attribute values are PFX PDUs stored as binary data.</p>
+
+<a name="16879"></a>
+<p>
+This attribute is defined in RFC 2798.</p>
+
+<a name="16880"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16881"></a>
+<p>
+Binary, multi-valued.</p>
+
+<a name="16882"></a>
+<a name="OID"></a>
+
+<p>
+
+<b>OID</b></p>
+
+<a name="16883"></a>
+<p>
+2.16.840.1.113730.3.1.216</p>
+
+<a name="16886"></a>
+<a name="userSMIMECertificate"></a>
+
+<h1>userSMIMECertificate</h1>
+
+<a name="16887"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16888"></a>
+<p>
+Used by Netscape Communicator for S/MIME. This attribute is to be stored and requested in the binary form, as <span class="monospace">userSMIMECertificate;binary</span>.</p>
+
+<a name="16889"></a>
+<p>
+For example:</p>
+
+<a name="16890"></a>
+
+<p>
+<span class="codeline">userSMIMECertificate;binary:: AAAAAA==
+</span></p>
+
+<a name="16891"></a>
+<p>
+This attribute is defined in RFC 2798.</p>
+
+<a name="16892"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16893"></a>
+
+<p>
+Binary, multi-valued.</p>
+
+<a name="16894"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16895"></a>
+<p>
+2.16.840.1.113730.3.1.40</p>
+
+<a name="16918"></a>
+
+<a name="x121Address"></a>
+
+<h1>x121Address</h1>
+
+<a name="16919"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16920"></a>
+<p>
+Defines the X.121 address of a person.</p>
+
+<a name="16921"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="16922"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16923"></a>
+<p>
+IA5String, multi-valued.</p>
+
+<a name="16924"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16925"></a>
+<p>
+2.5.4.24</p>
+
+<a name="16928"></a>
+<a name="x500UniqueIdentifier"></a>
+
+<h1>x500UniqueIdentifier</h1>
+
+<a name="16929"></a>
+<a name="Definition"></a>
+
+<p>
+<b>Definition</b></p>
+
+<a name="16930"></a>
+<p>
+Reserved for future use. A binary method of identification useful for differentiating objects when a distinguished name has been reused.</p>
+
+<a name="16931"></a>
+<p>
+For example:</p>
+
+<a name="16932"></a>
+<p>
+<span class="codeline">x500UniqueIdentifier: 17B
+</span></p>
+
+<a name="16933"></a>
+<p>
+This attribute is defined in RFC 2256.</p>
+
+<a name="16934"></a>
+<a name="Syntax"></a>
+
+<p>
+<b>Syntax</b></p>
+
+<a name="16935"></a>
+<p>
+Binary, multi-valued.</p>
+
+<a name="16936"></a>
+<a name="OID"></a>
+
+<p>
+<b>OID</b></p>
+
+<a name="16937"></a>
+<p>
+2.5.4.45</p>
+
+<a name="14324"></a>
+<p>
+</p>
+</BODY>
+</HTML>

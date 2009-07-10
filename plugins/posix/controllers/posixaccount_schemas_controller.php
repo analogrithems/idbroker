@@ -1,0 +1,34 @@
+<?php
+class PosixaccountSchemasController extends PosixAppController {
+	var $name = 'PosixaccountSchemas';
+	var $uses = array('Posix.PosixaccountSchema');
+	var $components = array('RequestHandler', 'Ldap');
+	var $helpers = array('Form','Html','Javascript', 'Ajax');
+	
+	
+	function edit( $id ){
+		if(!empty($this->data)){
+			$this->PosixaccountSchema->id = $dn;
+			$this->log("What I'm Going to save".print_r($this->data['PosixaccountSchema'],true)."\nFor the following ID:".$this->PosixaccountSchema->id,'debug');
+			$result = $this->PosixaccountSchema->save($this->data);
+			if($result != false){
+				$this->Session->setFlash('Your Posix Account has been updated.');
+			}else{
+				$this->Session->setFlash('Failed to update');
+			}
+		}else{
+			$options['scope'] = 'base';
+			$options['targetDn'] = $id;
+			$options['conditions'] = 'objectclass=posixaccount';	
+			$this->data = $this->PosixaccountSchema->find('first', $options);
+		}
+		$groups = $this->Ldap->getGroups(array('cn','gidnumber'),null,'posixgroup');
+		foreach($groups as $group){
+			$groupList[$group['gidnumber']] = $group['cn'];
+		}
+		natcasesort($groupList);
+		$this->set('groups',$groupList);
+		$this->layout = 'ajax';
+	}
+}
+?>

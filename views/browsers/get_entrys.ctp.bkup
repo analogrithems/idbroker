@@ -1,0 +1,30 @@
+<?php
+
+$data = array();
+$entrys = $this->data;
+
+$i = 0;
+foreach ($entrys as $entry){
+	$entry = $entry['Browser'];
+	if(isset($entry['displayname'])){
+		$data[$i]['label'] = $entry['displayname'];
+	}elseif(isset($entry['cn'])){
+                $data[$i]['label'] = $entry['cn'];
+        }elseif(isset($entry['uid'])){
+                $data[$i]['label'] = $entry['uid'];
+        }
+	
+	if(isset($entry['count'])){
+		unset($entry['count']);
+	}
+
+	foreach($entry as $attr => $value){
+		$data[$i][$attr] = $value;
+	}
+       
+        $i++;
+}
+
+echo $javascript->object($data);
+
+?>

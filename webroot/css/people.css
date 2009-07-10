@@ -1,0 +1,223 @@
+html, body {
+	margin:0;
+	padding:0;
+}
+
+body {
+	font-family:Verdana;
+	font-size:10px;
+	background:#ebebeb;
+}
+
+h1 {
+	font-size:1.4em;
+	font-weight:bold;
+	letter-spacing:0;
+	text-align:left;
+	padding:0.5em 0 0 0;
+	margin:0 0 0 0;
+	font-family:Georgia;
+	clear:both;
+}
+
+#container {
+	margin-left:10px;
+}
+
+
+span.bubble {
+	color:#8b0000;
+	border-bottom:1px solid;
+	cursor:pointer;
+}
+
+
+#peopleContainer{
+	width: 500px;
+	margin-top: auto ;
+	margin-bottom: auto ;
+	margin-left: auto ;
+	margin-right: auto ;
+}
+
+dl {
+	margin:0 0 0 10px;
+	padding:0;
+}
+
+dt {
+	font-weight:bold;
+	font-family:Georgia;
+	font-size:1.1em;
+}
+
+dd {
+	margin:0 0 1em 0;
+	padding:0;
+	font-size:11px;
+}
+/* Forms */
+form {
+        clear: both;
+        margin-right: 20px;
+        padding: 0;
+        width: 80%;
+	display: inline;
+}
+fieldset {
+        border: 1px solid #ccc;
+        margin-top: 30px;
+        padding: 16px 20px;
+}
+fieldset legend {
+        background:#fff;
+        color: #e32;
+        font-size: 160%;
+        font-weight: bold;
+}
+fieldset fieldset {
+        margin-top: 0px;
+        margin-bottom: 20px;
+        padding: 16px 10px;
+}
+fieldset fieldset legend {
+        font-size: 120%;
+        font-weight: normal;
+}
+fieldset fieldset div {
+        clear: left;
+        margin: 0 20px;
+}
+form div {
+        margin-bottom: 1em;
+        padding: .5em;
+        vertical-align: text-top;
+}
+form div.input {
+        color: #444;
+}
+form div.required {
+        color: #333;
+        font-weight: bold;
+}
+form div.submit {
+        border: 0;
+        clear: both;
+        margin-top: 10px;
+        margin-left: 140px;
+}
+label {
+        display: block;
+        font-size: 110%;
+        padding-right: 20px;
+}
+input, textarea {
+        clear: none;
+        font-size: 140%;
+        font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
+        padding: 2px;
+        width: 60%;
+	display: inline;
+}
+select {
+        clear: both;
+        font-size: 120%;
+        vertical-align: text-bottom;
+}
+select[multiple=multiple] {
+        width: 100%;
+}
+option {
+        font-size: 120%;
+        padding: 0 3px;
+}
+input[type=checkbox] {
+        clear: left;
+        float: left;
+        margin: 0px 6px 7px 2px;
+        width: auto;
+}
+input[type=radio] {
+        float:left;
+        width:auto;
+        margin: 0 3px 7px 0;
+}
+div.radio label {
+        margin: 0 0 6px 20px;
+}
+input[type=submit] {
+        display: inline;
+        font-size: 110%;
+        padding: 2px 5px;
+        width: auto;
+        vertical-align: bottom;
+}
+
+/* Notices and Errors */
+div.message {
+        clear: both;
+        color: #900;
+        font-size: 140%;
+        font-weight: bold;
+        margin: 1em 0;
+}
+div.error-message {
+        clear: both;
+        color: #900;
+        font-weight: bold;
+}
+p.error {
+        background-color: #e32;
+        color: #fff;
+        font-family: Courier, monospace;
+        font-size: 120%;
+        line-height: 140%;
+        padding: 0.8em;
+        margin: 1em 0;
+}
+p.error em {
+        color: #000;
+        font-weight: normal;
+        line-height: 140%;
+}
+.notice {
+        background: #ffcc00;
+        color: #000;
+        display: block;
+        font-family: Courier, monospace;
+        font-size: 120%;
+        line-height: 140%;
+        padding: 0.8em;
+        margin: 1em 0;
+}
+.success {
+        background: green;
+        color: #fff;
+}
+
+/*  Actions  */
+div.actions ul {
+        margin: 0px 0;
+        padding: 0;
+}
+div.actions li {
+        display: inline;
+        list-style-type: none;
+        line-height: 2em;
+        margin: 0 2em 0 0;
+        white-space: nowrap;
+}
+div.actions ul li a {
+        background:#fff;
+        color: #003d4c;
+        text-decoration: none;
+}
+div.actions ul li a:hover {
+        color: #333;
+        text-decoration: underline;
+}
+
+/* Lists */
+span.list{
+	display: block;
+}
