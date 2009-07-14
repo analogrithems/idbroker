@@ -49,7 +49,7 @@ class BrowsersController extends AppController {
 			}
 		}
 		$this->data = $this->Browser->find('first',array('targetDn'=>$id, 'scope'=>'base'));
-		$this->schemaPlugin = Configure::read('schemaPlugin');
+		$this->schemaPlugin = Configure::read('plugin');
 		$this->set('schemaPlugin', $this->schemaPlugin);
 		$this->layout = 'ajax';
 	}

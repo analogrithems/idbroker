@@ -1,5 +1,5 @@
 <?php
-	Configure::write('schemaPlugin.shadowaccount.label', 'Shadow Settings');
-	Configure::write('schemaPlugin.shadowaccount.name', 'shadowaccount');
-	Configure::write('schemaPlugin.shadowaccount.plugin', 'shadow');
+	Configure::write('plugin.shadowaccount.label', 'Shadow Settings');
+	Configure::write('plugin.shadowaccount.name', 'shadowaccount');
+	Configure::write('plugin.shadowaccount.plugin', 'shadow');
 ?>

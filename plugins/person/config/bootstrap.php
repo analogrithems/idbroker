@@ -1,16 +1,16 @@
 <?php
 	//person objectclass
-	Configure::write('schemaPlugin.person.label', 'Name');
-	Configure::write('schemaPlugin.person.name', 'person');
-	Configure::write('schemaPlugin.person.plugin', 'person');
+	Configure::write('plugin.person.label', 'Name');
+	Configure::write('plugin.person.name', 'person');
+	Configure::write('plugin.person.plugin', 'person');
 
 	//inetorgperson objectclass
-	Configure::write('schemaPlugin.inetorgperson.label', 'Contact Info');
-	Configure::write('schemaPlugin.inetorgperson.name', 'inetorgperson');
-	Configure::write('schemaPlugin.inetorgperson.plugin', 'person');
+	Configure::write('plugin.inetorgperson.label', 'Contact Info');
+	Configure::write('plugin.inetorgperson.name', 'inetorgperson');
+	Configure::write('plugin.inetorgperson.plugin', 'person');
 
 	//organizationalperson objectclass
-	Configure::write('schemaPlugin.organizationalperson.label', 'Organization Info');
-	Configure::write('schemaPlugin.organizationalperson.name', 'organizationalperson');
-	Configure::write('schemaPlugin.organizationalperson.plugin', 'person');
+	Configure::write('plugin.organizationalperson.label', 'Organization Info');
+	Configure::write('plugin.organizationalperson.name', 'organizationalperson');
+	Configure::write('plugin.organizationalperson.plugin', 'person');
 ?>

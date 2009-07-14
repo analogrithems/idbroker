@@ -1,5 +1,5 @@
 <?php
-	Configure::write('schemaPlugin.qmailuser.label', 'Qmail Settings');
-	Configure::write('schemaPlugin.qmailuser.name', 'qmailuser');
-	Configure::write('schemaPlugin.qmailuser.plugin', 'qmail');
+	Configure::write('plugin.qmailuser.label', 'Qmail Settings');
+	Configure::write('plugin.qmailuser.name', 'qmailuser');
+	Configure::write('plugin.qmailuser.plugin', 'qmail');
 ?>

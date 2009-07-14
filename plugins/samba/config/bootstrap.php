@@ -1,5 +1,5 @@
 <?php
-	Configure::write('schemaPlugin.sambasamaccount.label', 'Windows User');
-	Configure::write('schemaPlugin.sambasamaccount.name', 'sambasamaccount');
-	Configure::write('schemaPlugin.sambasamaccount.plugin', 'samba');
+	Configure::write('plugin.sambasamaccount.label', 'Windows User');
+	Configure::write('plugin.sambasamaccount.name', 'sambasamaccount');
+	Configure::write('plugin.sambasamaccount.plugin', 'samba');
 ?>

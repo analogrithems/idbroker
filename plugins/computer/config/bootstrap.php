@@ -1,5 +1,5 @@
 <?php
-	Configure::write('schemaPlugin.iphost.label', 'Computer');
-	Configure::write('schemaPlugin.iphost.name', 'iphost');
-	Configure::write('schemaPlugin.iphost.plugin', 'computer');
+	Configure::write('plugin.iphost.label', 'Computer');
+	Configure::write('plugin.iphost.name', 'iphost');
+	Configure::write('plugin.iphost.plugin', 'computer');
 ?>

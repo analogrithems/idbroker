@@ -1,5 +1,5 @@
 <?php
-	Configure::write('schemaPlugin.groupofuniquenames.label', 'LDAP Group');
-	Configure::write('schemaPlugin.groupofuniquenames.name', 'groupofuniquenames');
-	Configure::write('schemaPlugin.groupofuniquenames.plugin', 'uniquegroup');
+	Configure::write('plugin.groupofuniquenames.label', 'LDAP Group');
+	Configure::write('plugin.groupofuniquenames.name', 'groupofuniquenames');
+	Configure::write('plugin.groupofuniquenames.plugin', 'uniquegroup');
 ?>

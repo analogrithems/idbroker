@@ -2,7 +2,7 @@
 class PosixaccountSchemasController extends PosixAppController {
 	var $name = 'PosixaccountSchemas';
 	var $uses = array('Posix.PosixaccountSchema');
-	var $components = array('RequestHandler', 'Ldap');
+	var $components = array('RequestHandler', 'Ldap', 'SettingsHandler');
 	var $helpers = array('Form','Html','Javascript', 'Ajax');
 	
 	
@@ -29,6 +29,42 @@ class PosixaccountSchemasController extends PosixAppController {
 		natcasesort($groupList);
 		$this->set('groups',$groupList);
 		$this->layout = 'ajax';
+	}
+	
+	function findUniqueUidNumber(){
+		$options['conditions'] = 'uidnumber=*';
+		$options['scope'] = 'sub';
+		$options['fields'] = array('uidnumber');
+		$entrys = $this->PosixaccountSchema->find('all',$options);
+
+		$list = array();
+		foreach($entrys as $entry){
+			array_push($list,$entry['PosixaccountSchema']['uidnumber']);
+		}
+		sort($list);
+		$this->log("UIDS:".print_r($list,true),'debug');
+		$found = false;
+		$settings = $this->SettingsHandler->getSettings();
+		if(isset($settings['PosixSetting']['uidnumbermin']) && !empty($settings['PosixSetting']['uidnumbermin'])){
+			$i = $settings['PosixSetting']['uidnumbermin'];
+		}else{
+			$i = $list[0];
+		}
+		while($found === false){
+			if(in_array($i,$list)){
+				$i++;
+			}else{
+				$found = true;
+			}
+		}
+		if(isset($settings['PosixSetting']['uidnumbermax']) && !empty($settings['PosixSetting']['uidnumbermax'])){
+			if($i>$settings['PosixSetting']['uidnumbermax']){
+				$i = 'Out Of uidnumbers, consider increasing it in the Posix Settings.';
+			}
+		}
+		$this->log("Found $i");
+		$this->set('uidnumber',$i);
+		return $i;
 	}
 }
 ?>
