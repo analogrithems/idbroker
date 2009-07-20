@@ -6,7 +6,6 @@
 $user = $this->data['Browser'];
 $dn = $this->data['Browser']['dn'];
 
-$this->log("Schema Plugins".print_r($schemaPlugin,true),'debug');
 //This just generates the tab headers
 	echo "<ul>";
 	if(is_array($user['objectclass'])){

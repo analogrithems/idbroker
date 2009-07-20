@@ -172,7 +172,6 @@ class LdapComponent extends Object {
 		$options['scope'] = $scope;
 
 		$groups = $this->ldap->find('all',$options);
-		$this->log('getgroups:'.print_r($groups,true)."\nwith:".print_r($options,true),'debug');
 		
 		$list = array();
 
@@ -254,7 +253,6 @@ class LdapComponent extends Object {
 		$options['targetDn'] = $dn;
 		$options['scope'] = 'one';
 		$results = $this->ldap->find('count',$options);
-		$this->log("Found this:".print_r($results,true).' with this: '.print_r($options,true),'debug');
 		return $results;
 	}
 

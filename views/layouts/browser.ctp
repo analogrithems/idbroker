@@ -76,13 +76,12 @@
 					icon    : "rename.png",
 					visible : function (NODE, TREE_OBJ) { 
 							if(NODE.length != 1) return false; 
-							var dn = jQuery(NODE).attr("id");
-							var editUrl = '<?php echo $html->url('/browsers/hasAttribute/'); ?>'+dn+'/userpassword';
-							var result = geturl(editUrl);
-							if( result == false ){
+							var hasPassword = jQuery(NODE).attr("hasPassword");
+							if( hasPassword == 'true'){
+								return true;
+							}else{
 								return false;
 							}
-							return true;
 						}, 
 					action  : function (NODE, TREE_OBJ) { 
 						passwordReset(jQuery(NODE).attr("id"));

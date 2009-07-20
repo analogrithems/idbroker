@@ -2,7 +2,7 @@
 class PeoplesController extends AppController {
 
 	var $name = 'Peoples';    
-	var $components = array('RequestHandler', 'Ldap');
+	var $components = array('RequestHandler', 'Ldap', 'SettingsHandler');
 	var $helpers = array('Form','Html','Javascript', 'Ajax');
 
  
@@ -19,17 +19,25 @@ class PeoplesController extends AppController {
 					$this->data['People']['homedirectory'] = '/home/'.$this->data['People']['uid'];
 				}
 
+				$cn = $this->data['People']['cn'];
 				if ($this->People->save($this->data)) {
-					$this->Session->setFlash('People Was Successfully Created.');
+					$this->Session->setFlash($cn.' was added Successfully.');
 					$id = $this->People->id;
 					$this->redirect(array('action' => 'view', 'id'=> $id));
 				}else{
-					$this->Session->setFlash("People couldn't be created.");
+					$this->Session->setFlash("$cn couldn't be created.");
 				}
 			}else{
 				$this->Session->setFlash("Passwords don't match.");
 			}
 		}
+		$settings = $this->SettingsHandler->getSettings();
+		if(isset($settings['auto']['uidnumber']) && !empty($settings['auto']['uidnumber'])){
+			$path = $settings['auto']['uidnumber'];
+			$nuid = $this->requestAction($path, array('return'=>true));
+			$this->data['People']['uidnumber'] = $nuid;
+		}
+		
 		$groups = $this->Ldap->getGroups(array('cn','gidnumber'),null,'posixgroup');
 		foreach($groups as $group){
 			$groupList[$group['gidnumber']] = $group['cn'];

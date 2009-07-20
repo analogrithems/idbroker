@@ -38,7 +38,7 @@ class People extends AppModel {
                                 'message' => 'Mimimum 8 characters long.'
                 ),
                 'uid' => array(
-                                'rule' => array('custom', '/^[a-zA-Z]*$/'),
+                                'rule' => array('custom', '/^[a-zA-Z0-9]*$/'),
                                 'required' => true,
                                 'on' => 'create',
                                 'message' => 'Only Letters and Numbers can be used for Username.'

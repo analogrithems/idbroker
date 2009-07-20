@@ -8,9 +8,6 @@ class BrowsersController extends AppController {
 	var $schemaPlugin;
 	
 	function index() {
-		//$this->dbConfig = $this->Browser->findConfig();
-		//$this->set('mconfig', $this->dbConfig);
-	
 		$this->layout = 'browser';
 	}
 	
@@ -109,7 +106,6 @@ class BrowsersController extends AppController {
 			//Check if this object has children
 			$leafs = $this->Browser->find('all',array('targetDn'=>$newNode, 'scope'=>'one', 'conditions'=>'objectclass=*'));
 			$leafcnt = $leafs[0][0]['count'];
-				$this->log("Node: $newNode has $leafcnt children",'debug');
 			if($leafcnt > 0){
 				$nodes[$key]['Browser']['state'] = 'closed';
 				$nodes[$key]['Browser']['children'] = $leafcnt;
@@ -211,157 +207,5 @@ class BrowsersController extends AppController {
 		$this->Browser->save($this->data);
 	}
 
-	function getGroupMembers( $group, $type ){
-		$fields[] = $type;
-		$members = $this->Browser->find('all',array('targetDn'=>$group, 'scope'=>'base', 'fields'=> $fields ));
-		if(!isset($members[0]['Browser'][$type])){
-			return null;
-		}
-		$list = array();
-		if(is_array($members[0]['Browser'][$type])){
-			if($type =='uniquemember'){
-				foreach($members[0]['Browser'][$type] as $member){
-					$dn = $member;
-					$entry = $this->Browser->find('all',array('targetDn'=>$dn, 'scope'=>'base', 
-						'fields'=>array('displayname','cn','dn','uid')));
-					$list[] = $entry[0];
-				}
-			}else{
-				foreach($members[0]['Browser'][$type] as $member){
-					$entry = $this->Browser->find('all',array('targetDn'=>'', 'scope'=>'sub', 'conditions'=> 'uid='.$member,
-						'fields'=> array('displayname','cn','dn','uid')));
-					$list[] = $entry[0];
-				}	
-			}
-		}else{
-			if($type =='uniquemember'){
-				$dn = $members[0]['Browser'][$type];
-				$entry = $this->Browser->find('all',array('targetDn'=>$dn, 'scope'=>'base', 'fields'=>array('displayname','cn','dn','uid')));
-				$list[] = $entry[0];
-			}else{
-				$member = $members[0]['Browser'][$type];
-					$entry = $this->Browser->find('all',array('targetDn'=>'', 'scope'=>'sub', 'conditions'=> 'uid='.$member,
-						'fields'=> array('displayname','cn','dn','uid')));
-					$list[] = $entry[0];
-			}
-		
-		}
-		return $list;
-	}
-	
-	function getEntrys( $conditions = null, $fields = null, $base = null, $scope = 'sub' ){
-		if(isset($fields) && !empty($fields)){
-			if(preg_match('/,/', $fields)){
-				$fields = explode(',', $fields);
-			}
-		}
-		$this->data = $this->Browser->find('all',array('targetDn'=>$base, 'scope'=>$scope, 'fields'=> $fields, 'conditions'=>$conditions));
-		$this->layout = 'ajax';
-		return $this->data;
-	}
-	
-	function groupSelect( $group, $type ){
-		$allUsers = $this->getEntrys('uid=*','displayname,cn,dn,uid');
-		if(is_array($allUsers)){
-			foreach($allUsers as $user){
-				$user = $user['Browser'];
-				$nonmembers[$user['dn']] = $user;
-			}
-		}else{ 
-			$nonmembers[$allusers['Browser']['dn']] = $allusers['Browser']; 
-		}
-		if($type == 'posixgroup'){ $attr = 'memberuid'; }
-		elseif($type == 'groupofuniquenames'){$attr = 'uniquemember'; }		
-		$groupMembers = $this->getGroupMembers($group,$attr);
-		if(is_array($groupMembers)){
-			foreach($groupMembers as $member){
-			   $member = $member['Browser'];
-			   if(isset($member['dn']) && !empty($member['dn'])){
-				$members[$member['dn']] = $member;
-				if(isset($nonmembers[$member['dn']])) unset($nonmembers[$member['dn']]);
-			   }
-			}
-		}else{ 
-		   if(isset($groupMembers['Browser']['dn']) && !empty($groupMembers['Browser']['dn'])){
-			$members[$groupMembers['Browser']['dn']] = $groupMembers['Browser'];
-			if(isset($nonmembers[$groupMembers['Browser']['dn']])) unset($nonmembers[$groupMembers['Browser']['dn']]); 
-		   }
-		}
-		
-		if(isset($nonmembers)) $groups['nonmembers'] = $nonmembers;
-		if(isset($members)) $groups['members'] = $members;
-		$this->set(compact('groups'));
-		$this->set('type', $type);
-		$this->layout = 'ajax';
-	}
-
-	function sudoSelect( $dn ){
-		$options['scope'] = 'base';
-		$options['targetDn'] = $dn;
-		$options['conditions'] = 'objectclass=sudorole';
-
-		$sudoRole = $this->Browser->find('first', $options);
-		$sudoRole = $sudoRole['Browser'];
-
-                $users = $this->Ldap->getUsers();
-                $sudousers['ALL'] = 'ALL';
-                foreach($users as $user){
-                        if(isset($user['uid']) && !empty($user['uid'])){
-                                $sudousers[$user['uid']] = $user['uid'];
-                        }
-                }
-                $groups = $this->Ldap->getGroups();
-                $sudousers[] = 'The Following are only groups';
-                $sudogroups['All'] = 'ALL';
-                foreach($groups as $group){
-                        if(isset($group['cn']) && !empty($group['cn'])){
-                                $sudogroups[$group['cn']] = $group['cn'];
-                                $sudousers['%'.$group['cn']] = '%'.$group['cn'];
-                        }
-                }
-                $computers = $this->Ldap->getComputers();
-                $sudohosts['ALL'] = 'ALL';
-                foreach($computers as $computer){
-                        if(isset($computer['cn']) && !empty($computer['cn'])){
-                                $sudohosts[$computer['cn']] = $computer['cn'];
-                        }
-                }
-
-		//Remove sudoUsers already in this sudo role
-		if(isset($sudoRole['sudouser']) && is_array($sudoRole['sudouser']) ){
-			foreach($sudoRole['sudouser'] as $sudouser){
-				unset($sudousers[$sudouser]);
-			}
-		}elseif(isset($sudoRole['sudouser'])){
-			unset($sudousers[$sudoRole['sudouser']]);
-		}
-		
-		
-                //Remove host already in this role
-                if(isset($sudoRole['sudohost']) && is_array($sudoRole['sudohost']) ){
-                        foreach($sudoRole['sudohost'] as $sudohost){
-                                unset($sudohosts[$sudohost]);
-                        }
-                }elseif(isset($sudoRole['sudohost'])){
-                        unset($sudohosts[$sudoRole['sudohost']]);
-                }
-
-                //Remove groups already in this role
-                if(isset($sudoRole['sudorunasgroup']) && is_array($sudoRole['sudorunasgroup']) ){
-                        foreach($sudoRole['sudorunasgroup'] as $sudorunasgroup){
-                                unset($sudogroups[$sudorunasgroup]);
-                        }
-                }elseif(isset($sudoRole['sudorunasgroup'])){
-                        unset($sudogroups[$sudoRole['sudorunasgroup']]);
-                }
-
-
-		$this->set(compact('sudoRole'));
-		$this->set(compact('sudousers'));
-		$this->set(compact('sudohosts'));
-		$this->set(compact('sudogroups'));
-
-		$this->layout = 'ajax';
-	}
 }
 ?>

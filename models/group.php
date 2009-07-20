@@ -7,7 +7,7 @@ class Group extends AppModel {
 	var $useTable = 'ou=Groups'; // Adapt this parameter to your data
 	var $validate = array(
 		'cn' => array(
-			'rule' => array('custom', "/^[a-zA-Z0-9]*$"),
+			'rule' => array('custom', '/^[a-zA-Z0-9]*$/'),
 			'required' => true,
 			'on' => 'create',
 			'message' => 'Group names must be alpha numeric.'

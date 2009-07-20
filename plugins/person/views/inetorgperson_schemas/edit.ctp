@@ -28,7 +28,8 @@
 
         echo $form->input('mobile', array('label'=>'Cell Phone Number', 'title'=>'Identifies the entry\'s mobile or cellular phone number. Abbreviation: mobile. For example: mobileTelephoneNumber: 415-555-4321 mobile: 415-555-4321 '));
 
-        echo $form->input('jpegphoto', array('label'=>'User Photo', 'title'=>'Contains a JPEG photo of the entry in binary, MIME format', 'type'=>'file'));
+		//This is disabled until a lot of image handeling code is done, not worth it right now
+        //echo $form->input('jpegphoto', array('label'=>'User Photo', 'title'=>'Contains a JPEG photo of the entry in binary, MIME format', 'type'=>'file'));
 
         echo $form->end('Update');
 ?>

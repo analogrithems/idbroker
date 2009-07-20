@@ -10,7 +10,13 @@ class GroupsController extends AppController {
 			
 			$this->data['Group']['objectclass'] = array('top', 'groupofuniquenames', 'posixgroup');
 			
-			if(is_array($this->data['Group']['members'])){
+			if(isset($this->data['Group']['description']) && empty($this->data['Group']['description'])){
+				unset($this->data['Group']['description']);
+			}
+			
+			if(isset($this->data['Group']['members']) && empty($this->data['Group']['members'])){
+				unset($this->data['Group']['members']);
+			}elseif(is_array($this->data['Group']['members'])){
 					foreach($this->data['Group']['members'] as $member){
 						$this->data['Group']['uniquemember'] = $member;
 						$memberuid = $this->Ldap->getUser($member);
@@ -18,13 +24,15 @@ class GroupsController extends AppController {
 					}
 			}
 			unset($this->data['Group']['members']);
+			$this->log("Trying to add group:".print_r($this->data,true),'debug');
 			
+			$cn = $this->data['Group']['cn'];
 			if ($this->Group->save($this->data)) {
-				$this->Session->setFlash("Group Was Successfully Created.");
+				$this->Session->setFlash("Group $cn Was Successfully Created.");
 				$id = $this->Group->id;
 				$this->redirect(array('action' => 'view', 'id'=> $id));
 			}else{
-				$this->Session->setFlash("Group couldn't be created.");
+				$this->Session->setFlash("Group $cn couldn't be created.");
 			}
 		}
 		$gusers = $this->Ldap->getUsers();
