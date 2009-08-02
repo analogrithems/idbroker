@@ -1,0 +1,7 @@
+
+#No SVN Stuff
+.svn
+
+#Ignore database and settings
+config/database.php
+config/settings.php

@@ -34,7 +34,7 @@ class SettingsHandlerComponent extends Object {
  
         function setSettings($data){
                 $data = array_merge($this->_settings[$this->_settingsName], $data);
-                $configs = $this->expandArray($data);
+                $configs = $this->expandArray($data, "['".$this->_settingsName."']");
                 $this->log("Settings Data:".print_r($configs,true)."\nfrom:".print_r($data,true),'debug');
                 foreach ($configs as $config) {
                         $content .= $config;
@@ -53,13 +53,8 @@ class SettingsHandlerComponent extends Object {
 
         function expandArray($options, $prefix = null){
                 $results = array();
-                if(isset($prefix) && !empty($prefix)){
-                	$prefix = "$prefix.";
-                }else{
-                	$prefix = '';
-                }
                 foreach($options as $key => $value){
-                	$key = $prefix.$key;
+                	$key = $prefix."['$key']";
                         if(is_array($value)){
                                 $tres =  $this->expandArray($value, $key);
                                 foreach($tres as $res){
@@ -67,19 +62,51 @@ class SettingsHandlerComponent extends Object {
                                 }
                                 $this->log("Expanding Array again :".print_r($results,true),'debug');
                         }else{
-                                $results[] = "Configure::write ('$key', '$value');\n";
+                                $results[] = "\t\$config".$key." = '$value';\n";
                         }
                 }    
                          
                 return $results;
         }
 
-        function AutoSet($attribute, $options){
-                $this->_settings[$this->_settingsName]['auto'][$attribute] = $options;
+        function AutoSet($attribute, $function, $options = null){
+		if($options){
+			$this->_settings[$this->_settingsName]['auto'][$attribute][][$function] = $options;
+		}else{
+			$this->_settings[$this->_settingsName]['auto'][$attribute][] = $function;
+		}
         }
 
-        function SyncWith($attribute, $options){
-                $this->_settings[$this->_settingsName]['sync'][$attribute] = $options;
+	function isAutoSet($attribute, $function = null){
+                $found = in_array($function, $this->_settings['auto'][$attribute]);
+		if($found == false){
+			foreach($this->_settings['auto'][$attribute] as $key => $value){
+				if( $function == $key){
+					$found = true;
+				}
+			}
+		}
+                return($found);
+	}
+
+        function SyncWith($attribute, $function, $options = null){
+		if($options){
+			$this->_settings[$this->_settingsName]['sync'][$attribute][][$function] = $options;
+		}else{
+			$this->_settings[$this->_settingsName]['sync'][$attribute][] = $function;
+		}
         }
+	
+	function isSyncWith($attribute, $function){ 
+		$found = in_array($function, $this->_settings['sync'][$attribute]);
+		if($found == false){
+			foreach($this->_settings['sync'][$attribute] as $key => $value){
+				if( $function == $key){
+					$found = true;
+				}
+			}
+		}
+		return($found);
+	}
 }
 ?>
