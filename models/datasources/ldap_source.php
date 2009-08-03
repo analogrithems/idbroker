@@ -941,13 +941,20 @@ class LdapSource extends DataSource {
             }            
         }
     }
+
+    function checkBaseDn( $targetDN ){
+	$parts = preg_split('/,\s*/', $this->config['basedn']);
+	$pattern = '/'.implode(',\s*', $parts).'/i';
+	return(preg_match($pattern, $targetDN));
+    }
     
     function _executeQuery($queryData = array (), $cache = true){
     	$t = getMicrotime();
     	
-		$pattern = '/,[ \t]+(\w+)=/';
-		$queryData['targetDn'] = preg_replace($pattern, ',$1=',$queryData['targetDn']);	
-        if(strpos($queryData['targetDn'],$this->config['basedn']) === false){
+	$pattern = '/,[ \t]+(\w+)=/';
+	$queryData['targetDn'] = preg_replace($pattern, ',$1=',$queryData['targetDn']);	
+        if($this->checkBaseDn($queryData['targetDn']) == 0){
+		$this->log("Missing BaseDN in ". $queryData['targetDn'],'debug');
             
         	if($queryData['targetDn'] != null){
         		$seperator = (substr($queryData['targetDn'], -1) == ',') ? '' : ',';
