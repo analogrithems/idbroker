@@ -35,6 +35,9 @@ class GroupsController extends AppController {
 				$this->Session->setFlash("Group $cn couldn't be created.");
 			}
 		}
+		$attributes = array('gidnumber', 'description');
+		$preset = $this->autoSet($attributes);
+		$this->data['Group'] = $preset;
 		$gusers = $this->Ldap->getUsers();
 		foreach($gusers as $user){
 			if(isset($user['uid']) && !empty($user['uid'])){

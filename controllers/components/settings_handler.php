@@ -69,7 +69,7 @@ class SettingsHandlerComponent extends Object {
                 return $results;
         }
 
-        function AutoSet($attribute, $function, $options = null){
+        function setAutoSet($attribute, $function, $options = null){
 		if($options){
 			$this->_settings[$this->_settingsName]['auto'][$attribute][][$function] = $options;
 		}else{
@@ -77,13 +77,32 @@ class SettingsHandlerComponent extends Object {
 		}
         }
 
+	function autoSet($attribute){
+		$nauto = '';
+		if($this->isAutoSet($attribute)){
+			//Force this to zero, can only have one auto set..
+                        $path = $this->_settings['auto'][$attribute][0];
+                        $nauto = $this->requestAction($path, array('return'=>true));
+                        $this->log("Getting auto for $attribute ".print_r($path,true)."Result is:".print_r($nauto,true),'debug');
+                        return($nauto);
+                }
+		return false;
+	}
+
+
 	function isAutoSet($attribute, $function = null){
-                $found = in_array($function, $this->_settings['auto'][$attribute]);
-		if($found == false){
-			foreach($this->_settings['auto'][$attribute] as $key => $value){
-				if( $function == $key){
-					$found = true;
+		if($function == null){
+			$found = in_array($function, $this->_settings['auto'][$attribute]);
+			if($found == false){
+				foreach($this->_settings['auto'][$attribute] as $key => $value){
+					if( $function == $key){
+						$found = true;
+					}
 				}
+			}
+		}else{
+			if(isset($this->_settings['auto'][$attribute])){
+				$found = true;
 			}
 		}
                 return($found);

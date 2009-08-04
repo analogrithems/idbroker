@@ -2,7 +2,7 @@
 class PeoplesController extends AppController {
 
 	var $name = 'Peoples';    
-	var $components = array('RequestHandler', 'Ldap', 'SettingsHandler');
+	var $components = array('RequestHandler', 'Ldap');
 	var $helpers = array('Form','Html','Javascript', 'Ajax');
 
  
@@ -31,12 +31,9 @@ class PeoplesController extends AppController {
 				$this->Session->setFlash("Passwords don't match.");
 			}
 		}
-		$settings = $this->SettingsHandler->getSettings();
-		if(isset($settings['auto']['uidnumber']) && !empty($settings['auto']['uidnumber'])){
-			$path = $settings['auto']['uidnumber'];
-			$nuid = $this->requestAction($path, array('return'=>true));
-			$this->data['People']['uidnumber'] = $nuid;
-		}
+		$attributes = array('uidnumber', 'uid', 'homedirectory');
+		$preset = $this->autoSet($attributes);
+		$this->data['People'] = $preset;
 		
 		$groups = $this->Ldap->getGroups(array('cn','gidnumber'),null,'posixgroup');
 		foreach($groups as $group){

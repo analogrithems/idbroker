@@ -35,9 +35,14 @@
  * @subpackage    cake.app
  */
 class AppController extends Controller {
-         var $helpers = array('Html','Javascript','Ajax');
+	var $helpers = array('Html','Javascript','Ajax');
+	var $components = array('RequestHandler', 'LdapAuth', 'SettingsHandler'); // This should give ajax paginator support??
+        var $settings;
 
-         var $components = array('RequestHandler', 'LdapAuth'); // This should give ajax paginator support??
+
+        function initialize() {
+                $this->settings = $this->SettingsHandler->getSettings();
+        }
 
         function beforeFilter() {
 	
@@ -50,16 +55,23 @@ class AppController extends Controller {
                 $this->LdapAuth->loginRedirect = array('controller' => 'browsers', 'action' => 'index');
         }
 
-		function login() {
+	function login() {
     	}
 
-	    function logout() {
-	        $this->redirect($this->LdapAuth->logout());
-	    }
+	function logout() {
+		$this->redirect($this->LdapAuth->logout());
+	}
 	    
-		function isAuthorized() {
-			return true;
-		}
+	function isAuthorized() {
+		return true;
+	}
         
+        function autoSet( $list ){
+                $nlist = array();
+                foreach( $list as $attr){
+                        $nlist[$attr] = $this->SettingsHandler->autoSet($attr);
+                }
+                return($nlist);
+        }
 }
 ?>
