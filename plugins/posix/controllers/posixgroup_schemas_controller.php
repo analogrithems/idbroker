@@ -37,8 +37,6 @@ class PosixgroupSchemasController extends PosixAppController {
 			}
 		}
 		//Remove Users already in this group role
-
-
 		$this->log("Group for $id:".print_r($group,true)."\nThis group looks like:".print_r($this->data,true),'debug');
 		$this->set('groups', $group);
 		$this->layout = 'ajax';
