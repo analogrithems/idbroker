@@ -43,39 +43,39 @@ class PosixgroupSchemasController extends PosixAppController {
 		$this->set('groups', $group);
 		$this->layout = 'ajax';
 	}
-        function findUniqueGidNumber(){
-                $options['conditions'] = 'gidnumber=*';
-                $options['scope'] = 'sub';
-                $options['fields'] = array('gidnumber');
-                $entrys = $this->PosixgroupSchema->find('all',$options);
+	function findUniqueGidNumber(){
+		$options['conditions'] = 'gidnumber=*';
+		$options['scope'] = 'sub';
+		$options['fields'] = array('gidnumber');
+		$entrys = $this->PosixgroupSchema->find('all',$options);
 
-                $list = array();
-                foreach($entrys as $entry){
-                        array_push($list,$entry['PosixaccountSchema']['gidnumber']);
-                }
-                sort($list);
-                $found = false;
-                $settings = $this->SettingsHandler->getSettings();
-                if(isset($settings['PosixSetting']['gidnumbermin']) && !empty($settings['PosixSetting']['gidnumbermin'])){
-                        $i = $settings['PosixSetting']['gidnumbermin'];
-                }else{
-                        $i = $list[0];
-                }
-                while($found === false){
-                        if(in_array($i,$list)){
-                                $i++;
-                        }else{
-                                $found = true;
-                        }
-                }
-                if(isset($settings['PosixSetting']['gidnumbermax']) && !empty($settings['PosixSetting']['gidnumbermax'])){
-                        if($i>$settings['PosixSetting']['gidnumbermax']){
-                                $i = 'Out Of gidnumbers, consider increasing it in the Posix Settings.';
-                        }
-                }
-                $this->set('gidnumber',$i);
-                return $i;
-        }
+		$list = array();
+		foreach($entrys as $entry){
+			array_push($list,$entry['PosixaccountSchema']['gidnumber']);
+		}
+		sort($list);
+		$found = false;
+		$settings = $this->SettingsHandler->getSettings();
+		if(isset($settings['PosixSetting']['gidnumbermin']) && !empty($settings['PosixSetting']['gidnumbermin'])){
+			$i = $settings['PosixSetting']['gidnumbermin'];
+		}else{
+			$i = $list[0];
+		}
+		while($found === false){
+			if(in_array($i,$list)){
+				$i++;
+			}else{
+				$found = true;
+			}
+		}
+		if(isset($settings['PosixSetting']['gidnumbermax']) && !empty($settings['PosixSetting']['gidnumbermax'])){
+			if($i>$settings['PosixSetting']['gidnumbermax']){
+				$i = 'Out Of gidnumbers, consider increasing it in the Posix Settings.';
+			}
+		}
+		$this->set('gidnumber',$i);
+		return $i;
+	}
 
 }
 ?>
