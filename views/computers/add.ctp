@@ -10,7 +10,7 @@
         
         echo $form->input('members', array('label'=>'Allowed Users', 'type'=>'select', 'multiple'=>'true', 'options'=>$users, 'title'=> 'Users Allowed To Login To This Server.'))."\n";
 
-        echo $form->end('Update');
+        echo $form->end('Add Computer');
                 echo "</div>";
 
 

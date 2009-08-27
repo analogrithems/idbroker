@@ -22,6 +22,6 @@
 	echo $form->input('password', array('label'=>'Password',  'type'=>'password', 'div'=> 'required',  'title'=>'Super Secret People Password'))."\n";
 
 	echo $form->input('password_confirm', array('label'=>'Re-Type Password', 'type'=>'password', 'div'=> 'required',  'title'=>'Super Secret People Password'))."\n";
-	echo $form->end('Update')."\n";
+	echo $form->end('Create User')."\n";
 ?>
 </div>

@@ -33,7 +33,11 @@ class PeopleController extends AppController {
 		}
 		$attributes = array('uidnumber', 'uid', 'homedirectory');
 		$preset = $this->autoSet($attributes);
+		foreach($this->data['Person'] as $key => $value){
+			$preset[$key] = $value; 
+		}
 		$this->data['Person'] = $preset;
+		$this->log('Person:'.print_r($this->data['Person'],true),'debug');
 		
 		$groups = $this->Ldap->getGroups(array('cn','gidnumber'),null,'posixgroup');
 		foreach($groups as $group){

@@ -1,6 +1,6 @@
 <div id="Forms">
 <?php
-	echo $form->create('Sudoer', array( 'url' => '/sudoers/add' ));
+	echo $form->create('Sudoer');
 
         echo $form->input('cn', array('label'=> 'Role Name', 'div'=> 'required', 'title'=>'The name of this Sudo Role.'));
 
@@ -17,7 +17,7 @@
 
 	echo $form->input('sudooption', array('label'=>'Sudo Option', 'title'=> 'Extra Options (Like Environmnetal Variables to Keep) To Pass To Sudo.'));
 
-        echo $form->end('Create');
+        echo $form->end('Make Sudo Role');
                 echo "</div>";
 
 
