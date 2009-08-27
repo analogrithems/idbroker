@@ -184,7 +184,7 @@
 			imgLoader = new Image();// preload image
 			imgLoader.src = tb_pathToImage;
 			var t = 'Add User';
-			var a = '<?php echo $html->url('/peoples/add/'); ?>?TB_iframe=true&height=500&width=350';
+			var a = '<?php echo $html->url('/people/add/'); ?>?TB_iframe=true&height=500&width=350';
 			var g = false;
 			tb_show(t,a,g);
 			this.blur();
