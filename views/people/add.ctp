@@ -1,7 +1,7 @@
 <div id="Forms">
 <?php
 	$shells = array('/bin/bash'=>'Bash', '/bin/csh'=>'Csh', '/bin/tcsh'=>'Tcsh', '/bin/sh'=>'Sh', '/bin/ksh'=>'Ksh', '/usr/lib/sftp-server'=>'Sftp-only');
-	echo $form->create('People', array( 'url'=>'/peoples/add'))."\n";
+	echo $form->create('Person')."\n";
 
 	echo $form->input('cn', array('label'=> 'Display Name', 'div'=> 'required', 'title'=>'A single word name for the description.'))."\n";
 

@@ -1,6 +1,6 @@
 <div id="Forms">
 <?php
-	echo $form->create("Computer", array( 'url' => '/computers/add'))."\n";
+	echo $form->create('Computer')."\n";
 
         echo $form->input('cn', array('label'=> 'Fully Qualified Domain Name', 'div'=> 'required', 'title'=>"A fully qualified domain name (FQDN), sometimes referred to as an absolute domain name, is a domain name that specifies its exact location in the tree hierarchy of the Domain Name System (DNS). It specifies all domain levels, including the top-level domain, relative to the root domain. A fully qualified domain name is distinguished by its unambiguity; it can only be interpreted one way."))."\n";
 

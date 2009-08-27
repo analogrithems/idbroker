@@ -1,7 +1,7 @@
 <?php
-class People extends AppModel {
+class Person extends AppModel {
 
-        var $name = 'People';
+        var $name = 'Person';
 
         var $useDbConfig = 'ldap';
 
@@ -16,10 +16,10 @@ class People extends AppModel {
         var $validate = array(
                 'cn' => array(
                         'alphaNumeric' => array(
-                                'rule' => array('custom', '/^[a-zA-Z ]*$/'),
+                                'rule' => array('custom', '/^[a-zA-Z ]+$/'),
                                 'required' => true,
                                 'on' => 'create',
-                                'message' => 'Only Letters and Numbers can be used for Display Name.'
+                                'message' => 'Only Letters, Numbers and spaces	 can be used for Display Name.'
                         ),
                         'between' => array(
                                 'rule' => array('between', 5, 40),

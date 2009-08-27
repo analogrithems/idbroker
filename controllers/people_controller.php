@@ -1,28 +1,28 @@
 <?php
-class PeoplesController extends AppController {
+class PeopleController extends AppController {
 
-	var $name = 'Peoples';    
+	var $name = 'People';    
 	var $components = array('RequestHandler', 'Ldap');
 	var $helpers = array('Form','Html','Javascript', 'Ajax');
 
  
 	function add(){
 		if(!empty($this->data)){
-			$this->data['People']['objectclass'] = array('top', 'organizationalperson', 'inetorgperson','person','posixaccount','shadowaccount');
+			$this->data['Person']['objectclass'] = array('top', 'organizationalperson', 'inetorgperson','person','posixaccount','shadowaccount');
 
-			if($this->data['People']['password'] == $this->data['People']['password_confirm']){
-				$this->data['People']['userpassword'] = $this->data['People']['password'];
-				unset($this->data['People']['password']);
-				unset($this->data['People']['password_confirm']);
+			if($this->data['Person']['password'] == $this->data['Person']['password_confirm']){
+				$this->data['Person']['userpassword'] = $this->data['Person']['password'];
+				unset($this->data['Person']['password']);
+				unset($this->data['Person']['password_confirm']);
 			
-				if(!isset($this->data['People']['homedirectory'])&& isset($this->data['People']['uid'])){
-					$this->data['People']['homedirectory'] = '/home/'.$this->data['People']['uid'];
+				if(!isset($this->data['Person']['homedirectory'])&& isset($this->data['Person']['uid'])){
+					$this->data['Person']['homedirectory'] = '/home/'.$this->data['Person']['uid'];
 				}
 
-				$cn = $this->data['People']['cn'];
-				if ($this->People->save($this->data)) {
+				$cn = $this->data['Person']['cn'];
+				if ($this->Person->save($this->data)) {
 					$this->Session->setFlash($cn.' was added Successfully.');
-					$id = $this->People->id;
+					$id = $this->Person->id;
 					$this->redirect(array('action' => 'view', 'id'=> $id));
 				}else{
 					$this->Session->setFlash("$cn couldn't be created.");
@@ -33,7 +33,7 @@ class PeoplesController extends AppController {
 		}
 		$attributes = array('uidnumber', 'uid', 'homedirectory');
 		$preset = $this->autoSet($attributes);
-		$this->data['People'] = $preset;
+		$this->data['Person'] = $preset;
 		
 		$groups = $this->Ldap->getGroups(array('cn','gidnumber'),null,'posixgroup');
 		foreach($groups as $group){
@@ -47,8 +47,8 @@ class PeoplesController extends AppController {
 	
 	function view( $id ){
 		if(!empty($id)){
-			$filter = $this->People->primaryKey."=".$id;
-			$people = $this->People->find('first', array( 'conditions'=>$filter));
+			$filter = $this->Person->primaryKey."=".$id;
+			$people = $this->Person->find('first', array( 'conditions'=>$filter));
 			$this->log("Dump of view: ".print_r($people,true),'debug');
 			$this->set(compact('people'));
 		}
@@ -61,20 +61,20 @@ class PeoplesController extends AppController {
 			$udata = $this->LdapAuth->user();
 			$dn = $udata[$this->LdapAuth->userModel]['dn'];
 			$this->log("Current Session".print_r($udata,true),'debug');
-			$this->People->id = $udata[$this->LdapAuth->userModel][$this->People->primaryKey];
-			$this->log("People->id".print_r($user,true),'debug');
-			if(!empty($this->data['People']['password']) && $this->data['People']['password'] == $this->data['People']['password_confirm']){
-				$this->data['People']['userpassword'] = $this->data['People']['password'];
+			$this->Person->id = $udata[$this->LdapAuth->userModel][$this->Person->primaryKey];
+			$this->log("Person->id".print_r($user,true),'debug');
+			if(!empty($this->data['Person']['password']) && $this->data['Person']['password'] == $this->data['Person']['password_confirm']){
+				$this->data['Person']['userpassword'] = $this->data['Person']['password'];
 				
-				$udata[$this->LdapAuth->userModel]['bindPasswd'] = $this->data['People']['password'];
+				$udata[$this->LdapAuth->userModel]['bindPasswd'] = $this->data['Person']['password'];
 			}
-			unset($this->data['People']['password']);
-			unset($this->data['People']['password_confirm']);
+			unset($this->data['Person']['password']);
+			unset($this->data['Person']['password_confirm']);
 
 			$this->log("Trying To update my account with: ".print_r($this->data,true),'debug');
-			if ($this->People->save($this->data)) {
-				$this->data = $this->People->find('first',array('targetDn'=>$dn, 'scope'=>'base'));
-				$user = array_merge($udata[$this->LdapAuth->userModel], $this->data['People']);
+			if ($this->Person->save($this->data)) {
+				$this->data = $this->Person->find('first',array('targetDn'=>$dn, 'scope'=>'base'));
+				$user = array_merge($udata[$this->LdapAuth->userModel], $this->data['Person']);
 
 				$this->log("Reset Current Session".print_r($user,true),'debug');
 				$this->Session->write($this->LdapAuth->sessionKey, $user);
@@ -86,7 +86,7 @@ class PeoplesController extends AppController {
 		}else{
 			$udata = $this->LdapAuth->user();
 			$dn = $udata[$this->LdapAuth->userModel]['dn'];
-			$this->data['People'] = $udata[$this->LdapAuth->userModel];
+			$this->data['Person'] = $udata[$this->LdapAuth->userModel];
 		$this->log("Current Session".print_r($udata,true),'debug');
 		}
 
@@ -106,8 +106,8 @@ class PeoplesController extends AppController {
 	}
 
 	function delete($id = null) {
-		$this->People->id = $id;
-		return $this->People->del($id);
+		$this->Person->id = $id;
+		return $this->Person->del($id);
 	}
 
 	/**

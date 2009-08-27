@@ -91,13 +91,11 @@ class SettingsHandlerComponent extends Object {
 
 
 	function isAutoSet($attribute, $function = null){
-		if($function == null){
-			$found = in_array($function, $this->_settings['auto'][$attribute]);
-			if($found == false){
-				foreach($this->_settings['auto'][$attribute] as $key => $value){
-					if( $function == $key){
-						$found = true;
-					}
+		$found = false;
+		if($function == null&& isset($this->_settings['auto'][$attribute])){
+			foreach($this->_settings['auto'][$attribute] as $key => $value){
+				if( $function == $key){
+					$found = true;
 				}
 			}
 		}else{

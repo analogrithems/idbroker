@@ -184,7 +184,7 @@
 			imgLoader = new Image();// preload image
 			imgLoader.src = tb_pathToImage;
 			var t = 'Add User';
-			var a = '<?php echo $html->url('/peoples/add/'); ?>?TB_iframe=true&height=300&width=350';
+			var a = '<?php echo $html->url('/peoples/add/'); ?>?TB_iframe=true&height=500&width=350';
 			var g = false;
 			tb_show(t,a,g);
 			this.blur();
@@ -195,7 +195,7 @@
 			imgLoader = new Image();// preload image
 			imgLoader.src = tb_pathToImage;
 			var t = 'Add Computer';
-			var a = '<?php echo $html->url('/computers/add/'); ?>?TB_iframe=true&height=300&width=350';
+			var a = '<?php echo $html->url('/computers/add/'); ?>?TB_iframe=true&height=400&width=350';
 			var g = false;
 			tb_show(t,a,g);
 			this.blur();
@@ -205,7 +205,7 @@
 			imgLoader = new Image();// preload image
 			imgLoader.src = tb_pathToImage;
 			var t = 'Add Group';
-			var a = '<?php echo $html->url('/groups/add/'); ?>?TB_iframe=true&height=300&width=350';
+			var a = '<?php echo $html->url('/groups/add/'); ?>?TB_iframe=true&height=400&width=350';
 			var g = false;
 			tb_show(t,a,g);
 			this.blur();
@@ -215,7 +215,7 @@
 			imgLoader = new Image();// preload image
 			imgLoader.src = tb_pathToImage;
 			var t = 'Create Sudo Role';
-			var a = '<?php echo $html->url('/sudoers/add/'); ?>?TB_iframe=true&height=300&width=350';
+			var a = '<?php echo $html->url('/sudoers/add/'); ?>?TB_iframe=true&height=600&width=350';
 			var g = false;
 			tb_show(t,a,g);
 			this.blur();
@@ -227,7 +227,7 @@
 				imgLoader = new Image();// preload image
 				imgLoader.src = tb_pathToImage;
 				var t = 'Reset Password';
-				var a = '<?php echo $html->url('/browsers/resetPassword/'); ?>'+user+'?TB_iframe=true&height=200&width=350';
+				var a = '<?php echo $html->url('/browsers/resetPassword/'); ?>'+user+'?TB_iframe=true&height=150&width=350';
 				var g = false;
 				tb_show(t,a,g);
 				this.blur();
