@@ -193,12 +193,10 @@ class LdapComponent extends Object {
  */
 
 	function getUsers( $fields = 'uid', $group = null, $type = null){
-
 		$options['targetDn'] = $this->peopleBranch;
 		$options['conditions'] = 'uid=*';
 		$options['scope'] = 'sub';
 		
-
 		if(!is_array($fields)){
 			$fields = array($fields);
 		}
@@ -213,16 +211,25 @@ class LdapComponent extends Object {
 		}else{
 			$users = $this->ldap->find('all',$options);
 		}
-			
-
-                $list = array();
+		$list = array();
 
 		if(isset($group)){
 			$gops['fields'] = $fields;
 			$gops['conditions'] = 'uid=*';
 			$gops['scope'] = 'sub';
-			
-			foreach($users[$this->userModel][$type] as $user){
+			if(is_array($users[$this->userModel][$type])){
+				foreach($users[$this->userModel][$type] as $user){
+					if(isset($type) && $type == 'memberuid'){
+						$gops['conditions'] = 'uid='.$user;
+					}elseif(isset($type) && $type == 'uniquemember'){
+						$gops['targetDn'] = $user;
+					}
+						
+					$entrys = $this->ldap->find('first',$gops);
+					$list[] = $entrys[$this->userModel];
+				}
+			}else{
+				$user = $users[$this->userModel][$type];
 				if(isset($type) && $type == 'memberuid'){
 					$gops['conditions'] = 'uid='.$user;
 				}elseif(isset($type) && $type == 'uniquemember'){
@@ -238,7 +245,7 @@ class LdapComponent extends Object {
 				$list[] = $user[$this->userModel];
 			}
 		}
-                return $list;
+		return $list;
 	}
 
 /**

@@ -25,7 +25,6 @@ class GroupofuniquenamesSchemasController extends UniquegroupAppController {
 		$options['targetDn'] = $id;
 		$options['scope'] = 'base';
 		$this->data = $this->GroupofuniquenamesSchema->find('first', $options);
-
 		$members = $this->Ldap->getUsers(array('uid', 'cn'), $id, 'uniquemember');
 		foreach ($members as $member){
 			$group['members'][$member['dn']] = $member['cn'];
@@ -37,9 +36,6 @@ class GroupofuniquenamesSchemasController extends UniquegroupAppController {
 			}
 		}
 		//Remove Users already in this group role
-
-
-		$this->log("Group for $id:".print_r($group,true)."\nThis group looks like:".print_r($this->data,true),'debug');
 		$this->set('groups', $group);
 		$this->layout = 'ajax';
 	}
