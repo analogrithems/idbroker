@@ -10,8 +10,10 @@ class ComputersController extends AppController {
 			$this->data['Computer']['objectclass'] = array('top', 'groupofuniquenames', 'iphost');
 			if(is_array($this->data['Computer']['members'])){
 					foreach($this->data['Computer']['members'] as $member){
-						$this->data['Computer']['uniquemember'] = $member;
+						$this->data['Computer']['uniquemember'][] = $member;
 					}
+			}else{
+				$this->data['Computer']['uniquemember'] = $member;
 			}
 			unset($this->data['Computer']['members']);
 			
