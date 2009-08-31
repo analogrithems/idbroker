@@ -13,7 +13,6 @@ class GroupofuniquenamesSchemasController extends UniquegroupAppController {
 			}
 			$this->GroupofuniquenamesSchema->id = $id;
 			unset($this->data['GroupofuniquenamesSchema']['nonuniquemember']);
-			$this->log("What I'm Going to save".print_r($this->data['GroupofuniquenamesSchema'],true)."\nFor the following ID:".$this->GroupofuniquenamesSchema->id,'debug');
 			$result = $this->GroupofuniquenamesSchema->save($this->data);
 			if($result != false){
 				$this->Session->setFlash('Your Unique Group has been updated.');

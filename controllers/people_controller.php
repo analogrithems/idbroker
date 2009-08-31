@@ -4,7 +4,6 @@ class PeopleController extends AppController {
 	var $name = 'People';    
 	var $components = array('RequestHandler', 'Ldap');
 	var $helpers = array('Form','Html','Javascript', 'Ajax');
-
  
 	function add(){
 		if(!empty($this->data)){
@@ -37,14 +36,12 @@ class PeopleController extends AppController {
 			$preset[$key] = $value; 
 		}
 		$this->data['Person'] = $preset;
-		$this->log('Person:'.print_r($this->data['Person'],true),'debug');
 		
 		$groups = $this->Ldap->getGroups(array('cn','gidnumber'),null,'posixgroup');
 		foreach($groups as $group){
 			$groupList[$group['gidnumber']] = $group['cn'];
 		}
 		natcasesort($groupList);
-		$this->log("Group ID:".print_r($groupList,true),'debug');
 		$this->set('groups',$groupList);
 		$this->layout = 'people';
 	}
@@ -53,7 +50,6 @@ class PeopleController extends AppController {
 		if(!empty($id)){
 			$filter = $this->Person->primaryKey."=".$id;
 			$people = $this->Person->find('first', array( 'conditions'=>$filter));
-			$this->log("Dump of view: ".print_r($people,true),'debug');
 			$this->set(compact('people'));
 		}
 		$this->layout = 'people';
@@ -64,9 +60,7 @@ class PeopleController extends AppController {
 		if(!empty($this->data)){
 			$udata = $this->LdapAuth->user();
 			$dn = $udata[$this->LdapAuth->userModel]['dn'];
-			$this->log("Current Session".print_r($udata,true),'debug');
 			$this->Person->id = $udata[$this->LdapAuth->userModel][$this->Person->primaryKey];
-			$this->log("Person->id".print_r($user,true),'debug');
 			if(!empty($this->data['Person']['password']) && $this->data['Person']['password'] == $this->data['Person']['password_confirm']){
 				$this->data['Person']['userpassword'] = $this->data['Person']['password'];
 				
@@ -74,39 +68,28 @@ class PeopleController extends AppController {
 			}
 			unset($this->data['Person']['password']);
 			unset($this->data['Person']['password_confirm']);
-
-			$this->log("Trying To update my account with: ".print_r($this->data,true),'debug');
 			if ($this->Person->save($this->data)) {
 				$this->data = $this->Person->find('first',array('targetDn'=>$dn, 'scope'=>'base'));
 				$user = array_merge($udata[$this->LdapAuth->userModel], $this->data['Person']);
-
-				$this->log("Reset Current Session".print_r($user,true),'debug');
 				$this->Session->write($this->LdapAuth->sessionKey, $user);
 				$this->Session->setFlash('Your Account Has Been Updated.');
 			}else{
 				$this->Session->setFlash("Couldn't update your account, Sorry.  Please notify your support Team.");
 			}
-
 		}else{
 			$udata = $this->LdapAuth->user();
 			$dn = $udata[$this->LdapAuth->userModel]['dn'];
 			$this->data['Person'] = $udata[$this->LdapAuth->userModel];
-		$this->log("Current Session".print_r($udata,true),'debug');
 		}
-
-
-
 		$passwordReset = $this->Ldap->canChangePassword($dn);
 		$groups = $this->Ldap->getGroups(array('cn'), $dn);
 		$computers = $this->Ldap->getComputers(array('cn'), $dn);
 		$sudoers = $this->Ldap->getSudoers(array('cn'), $dn);
-
 		$this->set('passwordReset', $passwordReset);
 		$this->set('groups', $groups);
 		$this->set('computers', $computers);
 		$this->set('sudoers', $sudoers);
 		$this->layout = 'people';
-
 	}
 
 	function delete($id = null) {

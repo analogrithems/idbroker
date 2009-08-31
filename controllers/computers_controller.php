@@ -17,8 +17,6 @@ class ComputersController extends AppController {
 			}
 			unset($this->data['Computer']['members']);
 			
-			$this->log("Computer::add Data=".print_r($this->data,true),'debug');
-			
 			if ($this->Computer->save($this->data)) {
 				$this->Session->setFlash("Computer Entry Was Successfully Added.");
 				$id = $this->Computer->id;
