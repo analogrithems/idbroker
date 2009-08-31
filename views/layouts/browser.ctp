@@ -7,20 +7,18 @@
   <!-- COMPONENTS -->
 	<?php //<script language="javascript" type="text/javascript" src="/firebug-lite-compressed.js"></script> ?>
 
-
 	<?php echo $javascript->link('/js/jquery.js')."\n"; ?>
-	<?php //echo $javascript->link('/js/jquery-ui-1.7.1.custom.min.js')."\n"; ?>
-	<?php echo $javascript->link('/js/jquery-ui.min.js')."\n"; ?>
-	<?php echo $javascript->link('/js/jquery.form.js')."\n"; ?>
 	<?php echo $javascript->link('/js/_lib.js')."\n"; ?>
 	<?php echo $javascript->link('/js/tree_component.js')."\n"; ?>
+	<?php echo $javascript->link('/js/jquery-ui.min.js')."\n"; ?>
+	<?php echo $javascript->link('/js/jquery.form.js')."\n"; ?>
 	<?php echo $javascript->link('/js/lib/jquery.dimensions.js')."\n"; ?>
 	<?php echo $javascript->link('/js/jquery.tooltip.js')."\n"; ?>
 	<?php echo $javascript->link('/js/jquery.jgrowl_minimized.js')."\n"; ?>
 	<?php echo $javascript->link('/js/thickbox.js')."\n"; ?>
 	<?php echo $javascript->link('/js/jquery.selectboxes.js')."\n"; ?>
-	<?php echo $html->css('/css/jquery.tooltip.css')."\n"; ?>
 	<?php echo $html->css('/css/tree_component.css')."\n"; ?>
+	<?php echo $html->css('/css/jquery.tooltip.css')."\n"; ?>
 	<?php echo $html->css('/css/jquery/ui.all.css')."\n"; ?>
 	<?php echo $html->css('/css/browser.css')."\n"; ?>
 	<?php echo $html->css('/css/jquery.jgrowl.css')."\n"; ?>
@@ -56,7 +54,7 @@
 	$(function() {
 		$("#myldap").height($("sources").height() - 12);
 
-		tree1 = new tree_component();
+		var tree1 = $.tree_create();
 
 		tree1.init($("#myldap"), { 
 			data  : {
@@ -66,7 +64,6 @@
 				method: "post",
 				url   : "<?php echo $html->url('/browsers/getnodes/') ?>"
 			},
-			path	: "<?php echo $html->url('/img/') ?>",
 			ui		: { 
 				theme_name : "ldap",
 				context : [
@@ -165,7 +162,7 @@
 								if(confirm("Are you sure you want to delete "+dn+"?")){
 									geturl(msgURL);
 									getMsg()
-									TREE_OBJ.refresh(NODE);
+									TREE_OBJ.refresh(NODE.parent);
 								}
 						}
 					},
