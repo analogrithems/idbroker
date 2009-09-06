@@ -246,6 +246,7 @@
 </head>
 <body>
 <div id="container">
+		<div id="MyAccount"><?php echo $html->link("MyAccount", '/people/MyAccount', array('class'=>'button')); ?></div>
 		<div id="Logout"><?php echo $html->link("Logout", '/browsers/logout', array('class'=>'button')); ?></div>
         <?php echo $content_for_layout ?>
 
