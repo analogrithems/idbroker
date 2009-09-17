@@ -116,6 +116,10 @@ class BrowsersController extends AppController {
 
 			//Gives the name for this node
 			$nodes[$key]['Browser']['name'] = $this->getNodeRDN($nodes[$key]['Browser']['dn'],1);
+			if(isset($nodes[$key]['Browser']['cn']) && !empty($nodes[$key]['Browser']['cn']) 
+			   && $nodes[$key]['Browser']['cn'] != $nodes[$key]['Browser']['name']){
+				$nodes[$key]['Browser']['name'] = $nodes[$key]['Browser']['cn'] . ' ( '. $nodes[$key]['Browser']['name'] .' )';
+			}
 		}
 		
 		$this->set(compact('nodes'));
