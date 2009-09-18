@@ -1000,6 +1000,9 @@ class LdapSource extends DataSource {
             switch ($queryData['type']) {
                 case 'search':
                     // TODO pb ldap_search & $queryData['limit']
+		    if( empty($queryData['fields']) ){
+			$queryData['fields'] = $this->defaultNSAttributes();
+		    }
                     
                 	//Handle LDAP Scope
                     if(isset($queryData['scope']) && $queryData['scope'] == 'base'){
@@ -1259,6 +1262,17 @@ class LdapSource extends DataSource {
 		}   
 		return $found;
 	} 
+
+/**
+* If you want to pull everything from a netscape stype ldap server 
+* iPlanet, Redhat-DS, Project-389 etc you need to ask for specific 
+* attributes like so.  Other wise the attributes listed below wont
+* show up
+*/
+	function defaultNSAttributes(){
+		$fields = '* accountUnlockTime aci copiedFrom copyingFrom createTimestamp creatorsName dncomp entrydn entryid hasSubordinates ldapSchemas ldapSyntaxes modifiersName modifyTimestamp nsAccountLock nsAIMStatusGraphic nsAIMStatusText nsBackendSuffix nscpEntryDN nsds5ReplConflict nsICQStatusGraphic nsICQStatusText nsIdleTimeout nsLookThroughLimit nsRole nsRoleDN nsSchemaCSN nsSizeLimit nsTimeLimit nsUniqueId nsYIMStatusGraphic nsYIMStatusText numSubordinates parentid passwordAllowChangeTime passwordExpirationTime passwordExpWarned passwordGraceUserTime passwordHistory passwordRetryCount pwdExpirationWarned pwdGraceUserTime pwdHistory pwdpolicysubentry retryCountResetTime subschemaSubentry';
+		return(explode(' ', $fields));
+	}
 
 } // LdapSource
 ?>

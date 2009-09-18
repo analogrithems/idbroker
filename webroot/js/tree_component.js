@@ -690,7 +690,9 @@
 					for(var i in data.attributes) {
 						if(typeof data.attributes[i] == "function") continue;
 						if(i == "class") {
-							str += " class='" + data.attributes[i] + " ";
+							var foo = data.attributes[i] + " ";
+							var myclass = foo.replace(/,/g,' ');
+							str += " class='" + myclass;
 							if(data.state == "closed" || data.state == "open") str += " " + data.state + " ";
 							str += "' ";
 							cls = true;

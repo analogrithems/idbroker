@@ -39,6 +39,10 @@
 .tree-ldap li.ou li.uid a {
 	background-image:url("icon_user.gif");
 }
+.tree-ldap li.ou li.locked a {
+	background-image:url("icon_user.gif");
+	color: red;
+}
 .tree-ldap li.ou a {
 	background-image:url("list_world.gif");
 }

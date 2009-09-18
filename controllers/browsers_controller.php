@@ -112,8 +112,12 @@ class BrowsersController extends AppController {
 			}
 			
 			//Lets figure out what type of object this is so we can assign the propper img in css
-			$nodes[$key]['Browser']['class'] = substr($newNode, 0, strpos($newNode, '='));
-
+			$nodes[$key]['Browser']['class'][] = substr($newNode, 0, strpos($newNode, '='));
+			
+			if(isset($nodes[$key]['Browser']['nsaccountlock']) && $nodes[$key]['Browser']['nsaccountlock'] == 'true'){
+				$this->log("Marking ".$nodes[$key]['Browser']['cn']. " account locked",'debug');
+				$nodes[$key]['Browser']['class'][] = 'locked';
+			}
 			//Gives the name for this node
 			$nodes[$key]['Browser']['name'] = $this->getNodeRDN($nodes[$key]['Browser']['dn'],1);
 			if(isset($nodes[$key]['Browser']['cn']) && !empty($nodes[$key]['Browser']['cn']) 
@@ -172,6 +176,26 @@ class BrowsersController extends AppController {
 		$this->set(compact('result'));
 		$this->layout = 'ajax';	
 	}
+	function lock( $dn){
+		
+		$this->data['Browser']['nsaccountlock']	= 'true';
+		if($this->Browser->save($this->data)){
+			$this->Session->setFlash("Locked/Disabled ".$dn);
+		}else{
+			$this->Session->setFlash("Error while trying to Lock/Disable ".$dn);
+		}
+
+	}
+        function unLock( $dn){
+
+                $this->data['Browser']['nsaccountlock'] = '';
+                if($this->Browser->save($this->data)){
+                        $this->Session->setFlash("unLocked/enabled ".$dn);
+                }else{
+                        $this->Session->setFlash("Error while trying to unLock/Enable ".$dn);
+                }
+
+        }
 	function delete( $dn ){
 
 		$found = $this->Ldap->hasChildren($dn);

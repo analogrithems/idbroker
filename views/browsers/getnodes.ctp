@@ -8,10 +8,17 @@ foreach ($nodes as $node){
         if(isset($node['Browser']['state']) && !empty($node['Browser']['state'])){
         	$data[$i]['state'] = $node['Browser']['state'];
         }
-		if(isset($node['Browser']['userpassword']) && !empty($node['Browser']['userpassword'])){
-        	$data[$i]['attributes'] = array( 'id' => $node['Browser']['dn'], 'class' => $node['Browser']['class'], 'hasPassword'=> true );
+
+	$data[$i]['attributes']['id'] = $node['Browser']['dn'];
+	$data[$i]['attributes']['class'] = $node['Browser']['class'];
+	if(isset($node['Browser']['nsaccountlock']) && !empty($node['Browser']['nsaccountlock']) ){
+		$data[$i]['attributes']['lock'] = $node['Browser']['nsaccountlock'];
+	}
+	
+	if(isset($node['Browser']['userpassword']) && !empty($node['Browser']['userpassword'])){
+		$data[$i]['attributes']['hasPassword'] = 'true';
         }else{
-        	$data[$i]['attributes'] = array( 'id' => $node['Browser']['dn'], 'class' => $node['Browser']['class'], 'hasPassword'=> false );
+		$data[$i]['attributes']['hasPassword'] = 'false';
         }
 		
         $i++;

@@ -147,25 +147,73 @@
 						}
 					},
 				    "separator",
+                                        {
+                                                id      : "unlock",
+                                                label   : "UnLock Account",
+                                                icon    : "unlock.png",
+                                                visible : function (NODE, TREE_OBJ) {
+								if(NODE.length != 1) return false;
+								var lock = jQuery(NODE).attr("lock");
+								if( lock == 'true'){
+									return true;
+								}else{
+									return false;
+								}
+                                                        },
+                                                action  : function (NODE, TREE_OBJ) {
+                                                                TREE_OBJ.refresh(NODE);
+                                                                var dn = jQuery(NODE).attr("id");
+                                                                var msgURL = '<?php echo $html->url('/browsers/unLock'); ?>/'+dn;
+                                                                if(confirm("Are you sure you want to enable "+dn+"?")){
+                                                                        geturl(msgURL);
+                                                                        getMsg()
+                                                                        TREE_OBJ.refresh(NODE.parent);
+                                                                }
+                                                }
+                                        },
 					{ 
-						id      : "delete",
-						label   : "Delete", 
-						icon    : "delete.png",
+						id      : "lock",
+						label   : "Lock Account", 
+						icon    : "icon_padlock.gif",
 						visible : function (NODE, TREE_OBJ) { 
-								if(NODE.length != 1) return false; 
-								return true; 
+								if(NODE.length != 1) return false;
+								var lock = jQuery(NODE).attr("lock");
+								if( lock == 'true'){
+									return false;
+								}else{
+									return true;
+								}
 							}, 
 						action  : function (NODE, TREE_OBJ) { 
 								TREE_OBJ.refresh(NODE);
 								var dn = jQuery(NODE).attr("id");
-								var msgURL = '<?php echo $html->url('/browsers/delete'); ?>/'+dn;
-								if(confirm("Are you sure you want to delete "+dn+"?")){
+								var msgURL = '<?php echo $html->url('/browsers/lock'); ?>/'+dn;
+								if(confirm("Are you sure you want to disable "+dn+"?")){
 									geturl(msgURL);
 									getMsg()
 									TREE_OBJ.refresh(NODE.parent);
 								}
 						}
 					},
+                                        {
+                                                id      : "delete",
+                                                label   : "Delete",
+                                                icon    : "delete.png",
+                                                visible : function (NODE, TREE_OBJ) {
+                                                                if(NODE.length != 1) return false;
+                                                                return true;
+                                                        },
+                                                action  : function (NODE, TREE_OBJ) {
+                                                                TREE_OBJ.refresh(NODE);
+                                                                var dn = jQuery(NODE).attr("id");
+                                                                var msgURL = '<?php echo $html->url('/browsers/delete'); ?>/'+dn;
+                                                                if(confirm("Are you sure you want to delete "+dn+"?")){
+                                                                        geturl(msgURL);
+                                                                        getMsg()
+                                                                        TREE_OBJ.refresh(NODE.parent);
+                                                                }
+                                                }
+                                        },
 				]
 			},
 			cookies : { prefix : "tree1", opts : { path : '/' } },
