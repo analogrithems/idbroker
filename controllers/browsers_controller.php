@@ -177,27 +177,22 @@ class BrowsersController extends AppController {
 		$this->layout = 'ajax';	
 	}
 	function lock( $dn){
-		
 		$this->data['Browser']['nsaccountlock']	= 'true';
 		if($this->Browser->save($this->data)){
 			$this->Session->setFlash("Locked/Disabled ".$dn);
 		}else{
 			$this->Session->setFlash("Error while trying to Lock/Disable ".$dn);
 		}
-
 	}
         function unLock( $dn){
-
                 $this->data['Browser']['nsaccountlock'] = '';
                 if($this->Browser->save($this->data)){
                         $this->Session->setFlash("unLocked/enabled ".$dn);
                 }else{
                         $this->Session->setFlash("Error while trying to unLock/Enable ".$dn);
                 }
-
         }
 	function delete( $dn ){
-
 		$found = $this->Ldap->hasChildren($dn);
 		if($found > 0){
 			$this->Session->setFlash("This object Still Contains Children, Can't delete.");
@@ -207,7 +202,6 @@ class BrowsersController extends AppController {
 			}else{
 				$this->Session->setFlash("Error while trying to delete ".$dn);
 			}				
-			
 		}
 	}
 	
