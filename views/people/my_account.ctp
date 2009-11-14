@@ -38,7 +38,7 @@
                 $dn = $this->data['Person']['dn'];
                 $loginshell = $this->data['Person']['loginshell'];
 
-                echo $form->create('Person', array( 'url' => '/peoples/myAccount' ))."\n";
+                echo $form->create('Person', array( 'url' => '/people/myAccount' ))."\n";
                 echo $form->input('dn', array('type'=>'hidden'));
                 echo $form->input('loginshell', array('label'=>'Login Shell', 'div'=> 'required', 'options'=>$shells, 'default'=>$loginshell, 'title'=>'Unix Shell You Are Most Comfortable With.'))."\n";
 

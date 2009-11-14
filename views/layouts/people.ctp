@@ -21,7 +21,7 @@
 	 return r;
 	}
 	function changediv(dn) {
-	 var editUrl = '<?php echo $html->url('/peoples/edit/'); ?>'+dn;
+	 var editUrl = '<?php echo $html->url('/people/edit/'); ?>'+dn;
 	 $('#dndisplay').html(geturl(editUrl));
 	 getMsg();
 	}
