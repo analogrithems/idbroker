@@ -1,3 +1,4 @@
+<div id="qmailuser">
 <?php
 	echo $ajax->form(array('type' => 'post',
 	    'options' => array(
@@ -24,3 +25,4 @@
 	echo $form->input('mailreplytext', array('label'=> 'Auto Reply/Out Of Office Reply', 'title'=>'An Auto reply vacation message.', 'type'=>'textarea'));
 	echo $form->end('Update');
 ?>
+</div>

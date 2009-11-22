@@ -1,3 +1,4 @@
+<div id="sudo">
 <style type="text/css">
 
 #uniqueMemberSelectBox {
@@ -122,3 +123,4 @@
 <?php
 	echo $form->end('Update');
 ?>
+</div>

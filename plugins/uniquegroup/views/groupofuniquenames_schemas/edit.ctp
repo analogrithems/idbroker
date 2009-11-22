@@ -1,3 +1,4 @@
+<div id="groupofuniquenames">
 <style type="text/css">
 
 #memberUidSelectBox {
@@ -16,8 +17,8 @@
         echo $ajax->form(array('type' => 'post',
             'options' => array(
                 'model'=>'GroupofuniquenamesSchema',
-                'update'=>'posixgroup',
-		'before'=>'select'.$memberid.'();',
+                'update'=>'groupofuniquenames',
+				'before'=>'select'.$memberid.'();',
                 'url' => array(
                     'controller' => 'GroupofuniquenamesSchemas',
                     'action' => 'edit'
@@ -85,3 +86,4 @@
 <?php
         echo $form->end('Update');
 ?>
+</div>

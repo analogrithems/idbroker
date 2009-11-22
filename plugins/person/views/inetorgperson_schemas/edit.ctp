@@ -1,3 +1,4 @@
+<div id="inetorgperson">
 <?php
         echo $ajax->form(array('type' => 'post',
             'options' => array(
@@ -33,3 +34,4 @@
 
         echo $form->end('Update');
 ?>
+</div>

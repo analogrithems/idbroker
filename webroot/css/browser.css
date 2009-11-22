@@ -159,8 +159,7 @@ input, textarea {
         font-size: 140%;
         font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
         padding: 2px;
-        width: 60%;
-	display: inline;
+		display: inline;
 }
 select {
         clear: both;
@@ -293,4 +292,3 @@ div.nonmemberSelect{
         float: left;
 	width: 250px;
 }
-

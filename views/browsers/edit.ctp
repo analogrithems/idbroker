@@ -50,9 +50,7 @@ $dn = $this->data['Browser']['dn'];
 						$path,
 						array('return'=>false)
 					);
-					print "<div id='$objectclass'>\n";
 					print $schemaEdit;
-					print "</div>\n";
 				}else{
 					//Right Here is where to create check for and insert plugins per objectClass
 					print $this->element('objectclass', array('objectclass'=>$objectclass, 'schemas'=>$schemas), true);
@@ -71,9 +69,7 @@ $dn = $this->data['Browser']['dn'];
 					$path,
 					array('return'=>false)
 				);
-				print "<div id='$objectclass'>\n";
 				print $schemaEdit;
-				print "</div>\n";
 			}else{
 				//Right Here is where to create check for and insert plugins per objectClass
 				print $this->element('objectclass', array('objectclass'=>$objectclass, 'schemas'=>$schemas), true);

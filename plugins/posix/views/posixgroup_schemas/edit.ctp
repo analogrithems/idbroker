@@ -1,3 +1,4 @@
+<div id="posixgroup">
 <style type="text/css">
 
 #memberUidSelectBox {
@@ -87,3 +88,4 @@
 <?php
         echo $form->end('Update');
 ?>
+</div>

@@ -1,3 +1,4 @@
+<div id="person">
 <?php
         echo $ajax->form(array('type' => 'post',
             'options' => array(
@@ -15,3 +16,4 @@
         echo $form->input('description');
         echo $form->end('Update');
 ?>
+</div>

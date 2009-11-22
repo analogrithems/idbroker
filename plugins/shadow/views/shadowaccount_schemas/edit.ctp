@@ -1,3 +1,4 @@
+<div id="shadowaccount">
 <?php echo $javascript->link('/js/jquery.phpdate.js')."\n"; ?>
   <script type="text/javascript">
 
@@ -71,3 +72,4 @@
 
 	echo $form->end('Update');
 ?>
+</div>

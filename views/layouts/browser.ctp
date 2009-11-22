@@ -283,7 +283,7 @@
 		}
 
 		$('#Forms *').tooltip();
-		getMsg();
+		setInterval("getMsg()", 3000);
     });
     
 

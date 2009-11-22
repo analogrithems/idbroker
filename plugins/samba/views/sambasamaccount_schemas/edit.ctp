@@ -1,3 +1,4 @@
+<div id="sambasamaccount">
 <?php
 	echo $ajax->form(array('type' => 'post',
 	    'options' => array(
@@ -19,3 +20,4 @@
 	echo $form->input('smbHome', array('lable'=>'Windows Home Dir', 'title'=>'The Windows home Directory property specifies the path of the home directory for the user. The string can be null. If Home Drive Letter is set and specifies a drive letter, Windows Home Directory should be a UNC path. The path must be a network UNC path of the form \\server\share\directory. This value can be a null string. Refer to the 'logon home' parameter in the smb.conf(5) man page for more information.'));
 	echo $form->end('Update');
 ?>
+</div>
