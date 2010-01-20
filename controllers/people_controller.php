@@ -45,6 +45,10 @@ class PeopleController extends AppController {
 		$this->set('groups',$groupList);
 		$this->layout = 'people';
 	}
+
+        function daySinceEpoch( $offSet = 0 ){
+                return($offSet + floor(time()/60/60/24));
+        }
 	
 	function view( $id ){
 		if(!empty($id)){
@@ -63,6 +67,7 @@ class PeopleController extends AppController {
 			$this->Person->id = $udata[$this->LdapAuth->userModel][$this->Person->primaryKey];
 			if(!empty($this->data['Person']['password']) && $this->data['Person']['password'] == $this->data['Person']['password_confirm']){
 				$this->data['Person']['userpassword'] = $this->data['Person']['password'];
+                                $this->data['Person']['shadowlastchange'] = $this->daySinceEpoch();
 				
 				$udata[$this->LdapAuth->userModel]['bindPasswd'] = $this->data['Person']['password'];
 			}
