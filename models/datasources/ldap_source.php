@@ -13,6 +13,10 @@ class LdapSource extends DataSource {
     var $database = false;
     var $count = 0;
     var $model;
+    var $OperationalAttributes;
+    var $SchemaDN;
+    var $SchemaAtributes;
+    var $SchemaFilter;
 
     //for formal querys
     var $_result = false;
@@ -34,7 +38,27 @@ class LdapSource extends DataSource {
         $this->debug = Configure :: read() > 0;
         $this->fullDebug = Configure :: read() > 1;
         parent::__construct($config);
-        return $this->connect();
+        $link =  $this->connect();
+	//People Have been asking for this forever.
+	if(isset($config['type']) && !empty($config['type']) ){
+		switch($config['type']){
+			case 'Netscape':
+				$this->setNetscapeEnv();
+				break;
+			case 'OpenLDAP':
+				$this->setOpenLDAPEnv();
+				break;
+			case 'ActiveDirectory':
+				$this->setActiveDirectoryEnv();
+				break;
+			default:
+				$this->setNetscapeEnv();
+				break;
+		}
+	}
+	$this->setSchemaPath();
+				
+        return $link;
     }
     
     /**
@@ -588,135 +612,117 @@ class LdapSource extends DataSource {
     /* The following was kindly "borrowed" from the excellent phpldapadmin project */
     function __getLDAPschema() {
         $schemaTypes = array( 'objectclasses', 'attributetypes' );
-        $check = @ldap_read($this->database, 'cn=Schema', 'objectClass=*');
-        if(ldap_count_entries($this->database, $check) > 0){
-        	$schemaDN = 'cn=Schema';
-        }else{
-        	$schemaDN = 'cn=SubSchema';
-        }
-        foreach (array('(objectClass=*)','(objectClass=subschema)') as $schema_filter) {
-            $this->results = @ldap_read($this->database, $schemaDN, $schema_filter, $schemaTypes,0,0,0,LDAP_DEREF_ALWAYS);
-            
+	$this->results = @ldap_read($this->database, $this->SchemaDN, $this->SchemaFilter, $schemaTypes,0,0,0,LDAP_DEREF_ALWAYS);
+	if( is_null( $this->results ) ) {
+		$this->log( "LDAP schema filter $schema_filter is invalid!", 'ldap.error');
+		continue;
+	}
 
-            if( is_null( $this->results ) ) {
-                $this->log( "LDAP schema filter $schema_filter is invalid!", 'ldap.error');
-                continue;
-            }
-            
-            $schema_entries = @ldap_get_entries( $this->database, $this->results );
+	$schema_entries = @ldap_get_entries( $this->database, $this->results );
 
-            
-            if ( is_array( $schema_entries ) && isset( $schema_entries['count'] ) ) {
-                break;
-            }
-            
-            unset( $schema_entries );
-            $schema_search = null;
-        }
- 
-           if( $schema_entries ) {
-               $return = array();
-               foreach( $schemaTypes as $n ) {
-                $schemaTypeEntries = $schema_entries[0][$n];
-                for( $x = 0; $x < $schemaTypeEntries['count']; $x++ ) {
-                    $entry = array();
-                    $strings = preg_split('/[\s,]+/', $schemaTypeEntries[$x], -1, PREG_SPLIT_DELIM_CAPTURE);
-                    $str_count = count( $strings );
-                    for ( $i=0; $i < $str_count; $i++ ) {
-                        switch ($strings[$i]) {
-                            case '(':
-                                break;
-                            case 'NAME':
-                                if ( $strings[$i+1] != '(' ) {
-                                    do {
-                                        $i++;
-                                            if( !isset( $entry['name'] ) || strlen( $entry['name'] ) == 0 )
-                                                $entry['name'] = $strings[$i];
-                                            else
-                                                $entry['name'] .= ' '.$strings[$i];
-                                    } while ( !preg_match('/\'$/s', $strings[$i]));
-                                } else {
-                                    $i++;
-                                    do {
-                                        $i++;
-                                        if( !isset( $entry['name'] ) || strlen( $entry['name'] ) == 0)
-                                            $entry['name'] = $strings[$i];
-                                        else
-                                            $entry['name'] .= ' ' . $strings[$i];
-                                    } while ( !preg_match( '/\'$/s', $strings[$i] ) );
-                                    do {
-                                        $i++;
-                                    } while ( !preg_match( '/\)+\)?/', $strings[$i] ) );
-                                }
-    
-                                $entry['name'] = preg_replace('/^\'/', '', $entry['name'] );
-                                $entry['name'] = preg_replace('/\'$/', '', $entry['name'] );
-                                break;
-                            case 'DESC':
-                                do {
-                                    $i++;
-                                    if ( !isset( $entry['description'] ) || strlen( $entry['description'] ) == 0 )
-                                        $entry['description'] = $strings[$i];
-                                    else
-                                        $entry['description'] .= ' ' . $strings[$i];
-                                } while ( !preg_match( '/\'$/s', $strings[$i] ) );
-                                break;
-                            case 'OBSOLETE':
-                                $entry['is_obsolete'] = TRUE;
-                                break;
-                            case 'SUP':
-                                $entry['sup_classes'] = array();
-                                if ( $strings[$i+1] != '(' ) {
-                                    $i++;
-                                    array_push( $entry['sup_classes'], preg_replace( "/'/", '', $strings[$i] ) );
-                                } else {
-                                    $i++;
-                                    do {
-                                        $i++;
-                                        if ( $strings[$i] != '$' )
-                                            array_push( $entry['sup_classes'], preg_replace( "/'/", '', $strings[$i] ) );
-                                    } while (! preg_match('/\)+\)?/',$strings[$i+1]));
-                                }
-                                break;
-                            case 'ABSTRACT':
-                                $entry['type'] = 'abstract';
-                                break;
-                            case 'STRUCTURAL':
-                                $entry['type'] = 'structural';
-                                break;
-                            case 'SINGLE-VALUE':
-                                $entry['multiValue'] = 'false';
-                                break;
-                            case 'AUXILIARY':
-                                $entry['type'] = 'auxiliary';
-                                break;
-                            case 'MUST':
-                                $entry['must'] = array();
-                                $i = $this->_parse_list(++$i, $strings, $entry['must']);
+	if( $schema_entries ) {
+		$return = array();
+		foreach( $schemaTypes as $n ) {
+		$schemaTypeEntries = $schema_entries[0][$n];
+		for( $x = 0; $x < $schemaTypeEntries['count']; $x++ ) {
+		    $entry = array();
+		    $strings = preg_split('/[\s,]+/', $schemaTypeEntries[$x], -1, PREG_SPLIT_DELIM_CAPTURE);
+		    $str_count = count( $strings );
+		    for ( $i=0; $i < $str_count; $i++ ) {
+			switch ($strings[$i]) {
+			    case '(':
+				break;
+			    case 'NAME':
+				if ( $strings[$i+1] != '(' ) {
+				    do {
+					$i++;
+					    if( !isset( $entry['name'] ) || strlen( $entry['name'] ) == 0 )
+						$entry['name'] = $strings[$i];
+					    else
+						$entry['name'] .= ' '.$strings[$i];
+				    } while ( !preg_match('/\'$/s', $strings[$i]));
+				} else {
+				    $i++;
+				    do {
+					$i++;
+					if( !isset( $entry['name'] ) || strlen( $entry['name'] ) == 0)
+					    $entry['name'] = $strings[$i];
+					else
+					    $entry['name'] .= ' ' . $strings[$i];
+				    } while ( !preg_match( '/\'$/s', $strings[$i] ) );
+				    do {
+					$i++;
+				    } while ( !preg_match( '/\)+\)?/', $strings[$i] ) );
+				}
 
-                                break;
+				$entry['name'] = preg_replace('/^\'/', '', $entry['name'] );
+				$entry['name'] = preg_replace('/\'$/', '', $entry['name'] );
+				break;
+			    case 'DESC':
+				do {
+				    $i++;
+				    if ( !isset( $entry['description'] ) || strlen( $entry['description'] ) == 0 )
+					$entry['description'] = $strings[$i];
+				    else
+					$entry['description'] .= ' ' . $strings[$i];
+				} while ( !preg_match( '/\'$/s', $strings[$i] ) );
+				break;
+			    case 'OBSOLETE':
+				$entry['is_obsolete'] = TRUE;
+				break;
+			    case 'SUP':
+				$entry['sup_classes'] = array();
+				if ( $strings[$i+1] != '(' ) {
+				    $i++;
+				    array_push( $entry['sup_classes'], preg_replace( "/'/", '', $strings[$i] ) );
+				} else {
+				    $i++;
+				    do {
+					$i++;
+					if ( $strings[$i] != '$' )
+					    array_push( $entry['sup_classes'], preg_replace( "/'/", '', $strings[$i] ) );
+				    } while (! preg_match('/\)+\)?/',$strings[$i+1]));
+				}
+				break;
+			    case 'ABSTRACT':
+				$entry['type'] = 'abstract';
+				break;
+			    case 'STRUCTURAL':
+				$entry['type'] = 'structural';
+				break;
+			    case 'SINGLE-VALUE':
+				$entry['multiValue'] = 'false';
+				break;
+			    case 'AUXILIARY':
+				$entry['type'] = 'auxiliary';
+				break;
+			    case 'MUST':
+				$entry['must'] = array();
+				$i = $this->_parse_list(++$i, $strings, $entry['must']);
 
-                            case 'MAY':
-                                $entry['may'] = array();
-                                $i = $this->_parse_list(++$i, $strings, $entry['may']);
+				break;
 
-                                break;
-                            default:
-                                if( preg_match( '/[\d\.]+/i', $strings[$i]) && $i == 1 ) {
-                                    $entry['oid'] = $strings[$i];
-                                }
-                                break;
-                        }
-                    }
-                    if( !isset( $return[$n] ) || !is_array( $return[$n] ) ) {
-                        $return[$n] = array();
-                    }
-				//make lowercase for consistency
-		    		$return[strtolower($n)][strtolower($entry['name'])] = $entry;
-                    //array_push( $return[$n][$entry['name']], $entry );
-                }
-            }
-        }
+			    case 'MAY':
+				$entry['may'] = array();
+				$i = $this->_parse_list(++$i, $strings, $entry['may']);
+
+				break;
+			    default:
+				if( preg_match( '/[\d\.]+/i', $strings[$i]) && $i == 1 ) {
+				    $entry['oid'] = $strings[$i];
+				}
+				break;
+			}
+			}
+			if( !isset( $return[$n] ) || !is_array( $return[$n] ) ) {
+				$return[$n] = array();
+			}
+			//make lowercase for consistency
+			$return[strtolower($n)][strtolower($entry['name'])] = $entry;
+			//array_push( $return[$n][$entry['name']], $entry );
+			}
+		}
+	}
 
         return $return;
     }
@@ -1263,16 +1269,38 @@ class LdapSource extends DataSource {
 		return $found;
 	} 
 
-/**
-* If you want to pull everything from a netscape stype ldap server 
-* iPlanet, Redhat-DS, Project-389 etc you need to ask for specific 
-* attributes like so.  Other wise the attributes listed below wont
-* show up
-*/
 	function defaultNSAttributes(){
-		$fields = '* accountUnlockTime aci copiedFrom copyingFrom createTimestamp creatorsName dncomp entrydn entryid hasSubordinates ldapSchemas ldapSyntaxes modifiersName modifyTimestamp nsAccountLock nsAIMStatusGraphic nsAIMStatusText nsBackendSuffix nscpEntryDN nsds5ReplConflict nsICQStatusGraphic nsICQStatusText nsIdleTimeout nsLookThroughLimit nsRole nsRoleDN nsSchemaCSN nsSizeLimit nsTimeLimit nsUniqueId nsYIMStatusGraphic nsYIMStatusText numSubordinates parentid passwordAllowChangeTime passwordExpirationTime passwordExpWarned passwordGraceUserTime passwordHistory passwordRetryCount pwdExpirationWarned pwdGraceUserTime pwdHistory pwdpolicysubentry retryCountResetTime subschemaSubentry';
+		$fields = '* '.$this->OperationalAttributes;
 		return(explode(' ', $fields));
 	}
 
+	/**
+	* If you want to pull everything from a netscape stype ldap server 
+	* iPlanet, Redhat-DS, Project-389 etc you need to ask for specific 
+	* attributes like so.  Other wise the attributes listed below wont
+	* show up
+	*/
+	function setNetscapeEnv(){
+		$this->OperationalAttributes = 'accountUnlockTime aci copiedFrom copyingFrom createTimestamp creatorsName dncomp entrydn entryid hasSubordinates ldapSchemas ldapSyntaxes modifiersName modifyTimestamp nsAccountLock nsAIMStatusGraphic nsAIMStatusText nsBackendSuffix nscpEntryDN nsds5ReplConflict nsICQStatusGraphic nsICQStatusText nsIdleTimeout nsLookThroughLimit nsRole nsRoleDN nsSchemaCSN nsSizeLimit nsTimeLimit nsUniqueId nsYIMStatusGraphic nsYIMStatusText numSubordinates parentid passwordAllowChangeTime passwordExpirationTime passwordExpWarned passwordGraceUserTime passwordHistory passwordRetryCount pwdExpirationWarned pwdGraceUserTime pwdHistory pwdpolicysubentry retryCountResetTime subschemaSubentry';
+		$this->SchemaFilter = '(objectClass=subschema)';
+		$this->SchemaAttributes = 'objectClasses attributeTypes ldapSyntaxes matchingRules matchingRuleUse createTimestamp modifyTimestamp';
+	}
+
+	function setActiveDirectoryEnv(){
+                $this->OperationalAttributes = ' + ';
+		$this->SchemaFilter = '(objectClass=subschema)';
+		$this->SchemaAttributes = 'objectClasses attributeTypes ldapSyntaxes matchingRules matchingRuleUse createTimestamp modifyTimestamp';
+	}
+
+	function setOpenLDAPEnv(){
+                $this->OperationalAttributes = ' + ';
+	}
+
+	function setSchemaPath(){
+		$checkDN = ldap_read($this->database, '', 'objectClass=*', array('subschemaSubentry'));
+		$schemaEntry = ldap_get_entries($this->database, $checkDN);
+		$this->SchemaDN = $schemaEntry[0]['subschemasubentry'][0];
+		$this->log("Debug SchemaDN: ".print_r($this->SchemaDN,true),'debug');
+	}
 } // LdapSource
 ?>
