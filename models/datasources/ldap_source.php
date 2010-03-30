@@ -1300,7 +1300,6 @@ class LdapSource extends DataSource {
 		$checkDN = ldap_read($this->database, '', 'objectClass=*', array('subschemaSubentry'));
 		$schemaEntry = ldap_get_entries($this->database, $checkDN);
 		$this->SchemaDN = $schemaEntry[0]['subschemasubentry'][0];
-		$this->log("Debug SchemaDN: ".print_r($this->SchemaDN,true),'debug');
 	}
 } // LdapSource
 ?>
