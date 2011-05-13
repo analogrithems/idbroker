@@ -1,10 +1,7 @@
 <?php
 /**
- * LdapSource
- * @author euphrate_ylb (base class + "R" in CRUD)
- * @author gservat (aka znoG) ("C", "U", "D" in CRUD)
- * @date 07/2007 (updated 04/2008)
- * @license GPL
+ * LdapSource by Analogrithems@analogrithems.com
+ * @license MIT
  */
 class LdapSource extends DataSource {
     var $description = "Ldap Data Source";
@@ -30,7 +27,6 @@ class LdapSource extends DataSource {
     var $_multiMasterUse = 0;
     var $__descriptions = array();
     
-    // Lifecycle --------------------------------------------------------------
     /**
      * Constructor
      */
@@ -70,16 +66,17 @@ class LdapSource extends DataSource {
         parent :: __destruct();
     }
     
-    // I know this looks funny, and for other data sources this is necessary but for LDAP, we just return the name of the field we're passed as an argument
+    // nessecary
     function name( $field ) {
         return $field;
     }
     
-    // Connection --------------------------------------------------------------
+    // Create Connection Handler
     function connect($bindDN = null, $passwd = null) {
         $config = $this->config;
         $this->connected = false;
         $hasFailover = false;
+        //this code is for multiple LDAP servers
 	if(isset($config['host']) && is_array($config['host']) ){
 		$config['host'] = $config['host'][$this->_multiMasterUse];
 		if(count($this->config['host']) > (1 + $this->_multiMasterUse) ) {
@@ -103,8 +100,7 @@ class LdapSource extends DataSource {
 
 	//Set our protocol version usually version 3
 	ldap_set_option($this->database, LDAP_OPT_PROTOCOL_VERSION, $config['version']);		
-	// From Filipee, to allow the user to specify in the db config to use TLS
-	// 'tls'=> true in config/database.php
+	// TLS options
 	if ($config['tls']) {
 		if (!ldap_start_tls($this->database)) {
 			$this->log("Ldap_start_tls failed", 'ldap.error');
@@ -188,7 +184,6 @@ class LdapSource extends DataSource {
         return $this->connect();
     }
 
-    // CRUD --------------------------------------------------------------
     /**
      * The "C" in CRUD
      *
