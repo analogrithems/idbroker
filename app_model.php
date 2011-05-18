@@ -42,26 +42,23 @@ class AppModel extends Model {
 	var $specific = true;
 
         function __construct($id = false, $table = null, $ds = null) {
-		// Get saved company/database name
+		$config = ConnectionManager::getDataSource('ldap')->config;
 		@session_start();
+		//if already auth, use that login creds
 		if(isset($_SESSION['Auth']['User']['bindDN']) && isset($_SESSION['Auth']['User']['bindPasswd'])){
 			$this->bindDN = $_SESSION['Auth']['User']['bindDN'];
 			$this->bindPasswd = $_SESSION['Auth']['User']['bindPasswd'];
-		}else{
-			$this->bindDN = null;
-                        $this->bindPasswd = null;
+			// Set correct database name
+			$config['login'] = $this->bindDN;
+			$config['password'] = $this->bindPasswd;
+			$dbName = 'LoggedInUser';
+			// Add new config to registry
+			ConnectionManager::create($dbName, $config);
+			// Point model to new config
+			$this->useDbConfig = $dbName;
 		}
 
-		$config = ConnectionManager::getDataSource('ldap')->config;
 
-		// Set correct database name
-		$config['login'] = $this->bindDN;
-		$config['password'] = $this->bindPasswd;
-		$dbName = 'LoggedInUser';
-		// Add new config to registry
-		ConnectionManager::create($dbName, $config);
-		// Point model to new config
-		$this->useDbConfig = $dbName;
                 parent::__construct($id, $table, $ds);
         } 
 	
