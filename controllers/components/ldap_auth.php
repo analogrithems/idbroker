@@ -153,7 +153,7 @@ class LdapAuthComponent extends AuthComponent {
 	function login($uid, $password){
 		$this->__setDefaults();
 		$this->_loggedIn = false;
-		$dn = $this->getDn('uid', $uid);
+		$dn = $this->getDn($this->ldap->primaryKey, $uid);
 		$loginResult = $this->ldapauth($dn, $password); 
 		if( $loginResult == 1){
 			$this->_loggedIn = true;

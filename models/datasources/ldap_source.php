@@ -1270,6 +1270,20 @@ class LdapSource extends DataSource {
 	}
 
 	/**
+	* debugLDAPConnection debugs the current connection to check the settings
+	*
+	*/
+	function debugLDAPConnection(){
+                       $opts = array('LDAP_OPT_DEREF', 'LDAP_OPT_SIZELIMIT', 'LDAP_OPT_TIMELIMIT','LDAP_OPT_NETWORK_TIMEOUT','LDAP_OPT_PROTOCOL_VERSION','LDAP_OPT_ERROR_NUMBER','LDAP_OPT_REFERRALS','LDAP_OPT_RESTART','LDAP_OPT_HOST_NAME','LDAP_OPT_ERROR_STRING','LDAP_OPT_MATCHED_DN','LDAP_OPT_SERVER_CONTROLS','LDAP_OPT_CLIENT_CONTROLS');
+                       foreach($opts as $opt){
+                               $ve = '';
+                               ldap_get_option($this->database,constant($opt), $ve);
+                               $this->log("Option={$opt}, Value=".print_r($ve,1),'debug');
+                       }
+
+	}
+
+	/**
 	* If you want to pull everything from a netscape stype ldap server 
 	* iPlanet, Redhat-DS, Project-389 etc you need to ask for specific 
 	* attributes like so.  Other wise the attributes listed below wont
@@ -1282,9 +1296,11 @@ class LdapSource extends DataSource {
 	}
 
 	function setActiveDirectoryEnv(){
+                //Need to disable referals for AD
+                ldap_set_option($this->database, LDAP_OPT_REFERRALS, 0);
                 $this->OperationalAttributes = ' + ';
 		$this->SchemaFilter = '(objectClass=subschema)';
-		$this->SchemaAttributes = 'objectClasses attributeTypes ldapSyntaxes matchingRules matchingRuleUse createTimestamp modifyTimestamp';
+                $this->SchemaAttributes = 'objectClasses attributeTypes ldapSyntaxes matchingRules matchingRuleUse createTimestamp modifyTimestamp subschemaSubentry';
 	}
 
 	function setOpenLDAPEnv(){
