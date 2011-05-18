@@ -5,18 +5,18 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>idBroker - LDAP Browser</title>
   <!-- COMPONENTS -->
-        <?php //<script language="javascript" type="text/javascript" src="/firebug-lite-compressed.js"></script> ?>
+        <?php //<script language="javascript" type="text/javascript" src="/firebug-lite-compressed"></script> ?>
 
-        <?php echo $javascript->link('/js/jquery.js')."\n"; ?>
-        <?php echo $javascript->link('/js/_lib.js')."\n"; ?>
-        <?php echo $javascript->link('/js/tree_component.js')."\n"; ?>
-        <?php echo $javascript->link('/js/jquery-ui.min.js')."\n"; ?>
-        <?php echo $javascript->link('/js/jquery.form.js')."\n"; ?>
-        <?php echo $javascript->link('/js/lib/jquery.dimensions.js')."\n"; ?>
-        <?php echo $javascript->link('/js/jquery.tooltip.js')."\n"; ?>
-        <?php echo $javascript->link('/js/jquery.jgrowl_minimized.js')."\n"; ?>
-        <?php echo $javascript->link('/js/thickbox.js')."\n"; ?>
-        <?php echo $javascript->link('/js/jquery.selectboxes.js')."\n"; ?>
+        <?php echo $this->Html->script('/js/jquery')."\n"; ?>
+        <?php echo $this->Html->script('/js/_lib')."\n"; ?>
+        <?php echo $this->Html->script('/js/tree_component')."\n"; ?>
+        <?php echo $this->Html->script('/js/jquery-ui.min')."\n"; ?>
+        <?php echo $this->Html->script('/js/jquery.form')."\n"; ?>
+        <?php echo $this->Html->script('/js/lib/jquery.dimensions')."\n"; ?>
+        <?php echo $this->Html->script('/js/jquery.tooltip')."\n"; ?>
+        <?php echo $this->Html->script('/js/jquery.jgrowl_minimized')."\n"; ?>
+        <?php echo $this->Html->script('/js/thickbox')."\n"; ?>
+        <?php echo $this->Html->script('/js/jquery.selectboxes')."\n"; ?>
         <?php echo $html->css('/css/tree_component.css')."\n"; ?>
         <?php echo $html->css('/css/jquery.tooltip.css')."\n"; ?>
         <?php echo $html->css('/css/jquery/ui.all.css')."\n"; ?>
@@ -45,7 +45,7 @@
                 var addr = '<?php echo $html->url('/browsers/getMsg'); ?>';
                 $.ajax({type: 'POST', url: addr, success:
                       function(msg) {
-                        if(msg){
+                        if(msg != '0'){
                                 $.jGrowl(msg);
                                 return true;
                         }
@@ -284,7 +284,9 @@
                 }
 
                 $('#Forms *').tooltip();
-                setInterval("getMsg()", 3000);
+		$('body').live('click', function(){
+			getMsg();
+		});
     });
 
 
@@ -301,13 +303,11 @@
 
         <?php echo $cakeDebug; ?>
 </div>
-<div id="footer">
-        <?php echo $html->link(
-                        $html->image('cake.power.gif', array('alt'=> __("CakePHP: the rapid development php framework", true), 'border'=>"0")),
-                        'http://www.cakephp.org/',
-                        array('target'=>'_blank'), null, false
-                );
-        ?>
-</div>
+                <div id="footer">
+                        <?php
+                                echo $html->link('IDBroker', 'http://analogrithems.com/rant/idbroker', array('target'=>'_blank'), null, false );
+                        ?>
+                </div>
+	<?php echo $this->Js->writeBuffer(); ?>
 </body>
 </html>
