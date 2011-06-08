@@ -17,13 +17,6 @@ class LdapSource extends DataSource {
 
     //for formal querys
     var $_result = false;
-    
-    var $_baseConfig = array (
-        'host' => 'localhost',
-        'port' => 389,
-        'version' => 3
-    );
-    
     var $_multiMasterUse = 0;
     var $__descriptions = array();
     
@@ -156,9 +149,11 @@ class LdapSource extends DataSource {
     }
     
     function disconnect() {
+        //Throw away any remaining results, and close the connection
         @ldap_free_result($this->results);
-        $this->connected = !@ldap_unbind($this->database);
-        return !$this->connected;
+        @ldap_unbind($this->database);
+        $this->connected = false;
+        return $this->connected;
     }
     
     /**
@@ -168,20 +163,6 @@ class LdapSource extends DataSource {
      */
     function isConnected() {
         return $this->connected;
-    }
-    
-    /**
-     * Reconnects to database server with optional new settings
-     *
-     * @param array $config An array defining the new configuration settings
-     * @return boolean True on success, false on failure
-     */
-    function reconnect($config = null) {
-        $this->disconnect();
-        if ($config != null) {
-            $this->config = am($this->_baseConfig, $this->config, $config);
-        }
-        return $this->connect();
     }
 
     /**
@@ -278,10 +259,11 @@ class LdapSource extends DataSource {
      * @param integer $recursive Number of levels of association
      * @return unknown
      */
-    function read( &$model, $queryData = array(), $recursive = null ) {
+    function read( &$model, $queryData = array(), $recursive = false ) {
 	$this->model = $model;
         $this->__scrubQueryData($queryData);
-        if (!is_null($recursive)) {
+        if ($recursive) {
+            //save the current state and switch it
             $_recursive = $model->recursive;
             $model->recursive = $recursive;
         }
@@ -291,7 +273,7 @@ class LdapSource extends DataSource {
             $queryData['fields'] = array();
         }
 
-        // Prepare query data ------------------------ 
+        //Setup Conditions
         $queryData['conditions'] = $this->_conditions( $queryData['conditions'], $model);
         if(empty($queryData['targetDn'])){
         	$queryData['targetDn'] = $model->useTable;
@@ -311,18 +293,18 @@ class LdapSource extends DataSource {
             }
         }
     
-        // Execute search query ------------------------
+        // Execute search query
         $res = $this->_executeQuery($queryData );
         
         if ($this->lastNumRows()==0) 
             return false;
         
-        // Format results  -----------------------------
+        // Format results
         ldap_sort($this->database, $res, $queryData['order'][0]);
         $resultSet = ldap_get_entries($this->database, $res);
         $resultSet = $this->_ldapFormat($model, $resultSet);    
     	
-        // Query on linked models  ----------------------
+        // Query on linked models
         if ($model->recursive > 0) {
             foreach ($model->__associations as $type) {
     
