@@ -1,5 +1,5 @@
 <?php 
-class Browser extends AppModel {
+class Browser extends IdbrokerAppModel {
     var $name = 'Browser';
     var $useDbConfig = 'ldap';
     var $primaryKey = 'dn';

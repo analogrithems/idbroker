@@ -1,5 +1,5 @@
 <?php
-class GroupsController extends AppController {
+class GroupsController extends IdbrokerAppController {
 
 	var $name = 'Groups';    
 	var $components = array('RequestHandler', 'Ldap');

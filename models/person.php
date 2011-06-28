@@ -1,5 +1,5 @@
 <?php
-class Person extends AppModel {
+class Person extends IdbrokerAppModel {
 
         var $name = 'Person';
 
@@ -11,7 +11,7 @@ class Person extends AppModel {
 
         // The table would be the branch of your basedn that you defined in
         // the database config
-        var $useTable = 'ou=people';
+        var $useTable = '';
 
         var $validate = array(
                 'cn' => array(

@@ -1,5 +1,5 @@
 <?php 
-class Sudoer extends AppModel {
+class Sudoer extends IdbrokerAppModel {
 
 	var $name = 'Sudoer';
 	var $useDbConfig = 'ldap';

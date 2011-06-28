@@ -1,5 +1,5 @@
 <?php
-class LdapSchema extends AppModel {
+class LdapSchema extends IdbrokerAppModel {
 
     var $name = 'LdapSchema';
 

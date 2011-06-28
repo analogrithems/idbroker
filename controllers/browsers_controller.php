@@ -1,9 +1,9 @@
 <?php
-class BrowsersController extends AppController {
+class BrowsersController extends IdbrokerAppController {
 
 	var $name = 'Browsers';
-	var $components = array('RequestHandler', 'Ldap', 'PluginHandler');
-	var $helpers = array('Form','Html','Javascript', 'Ajax');
+	var $components = array('RequestHandler', 'Ldap', 'PluginHandler', 'Session', 'LdapAcl'=>array('model'=>'IdbrokerUsers', 'groupType'=>'group'));
+	var $helpers = array('Form','Html', 'Js' => array('Jquery'));
 	var $dbConfig;
 	var $schemaPlugin;
 	
@@ -82,12 +82,12 @@ class BrowsersController extends AppController {
 		// retrieve the node id that Ext JS posts via ajax
 		if(!empty($this->params['form']['node'])){
 			$base = $this->params['form']['node'];
-			if($base == 'root'){
+			if($base == '0'){
 				$base = '';
 			}
 		}elseif(!empty($this->params['url']['node'])){
 			$base = $this->params['url']['node'];
-			if($base == 'root'){
+			if($base == '0'){
 				$base = '';
 			}
 		}else{
@@ -211,6 +211,9 @@ class BrowsersController extends AppController {
 			$msg =  $this->Session->read('Message.flash.message');
 			$this->Session->del('Message.flash.message');
                 }
+		if(!isset($msg) || empty($msg) || $msg == false){
+			$msg = '0';
+		}
 		$this->set(compact('msg'));
 	}
 

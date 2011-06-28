@@ -1,7 +1,7 @@
 <?php
-class UsersController extends IdbrokerAppController {
+class IdbrokerUsersController extends IdbrokerAppController {
 
-	var $name = 'Users';    
+	var $name = 'IdbrokerUsers';    
         var $components = array('RequestHandler');
         var $helpers = array('Form','Html','Javascript', 'Ajax');
  

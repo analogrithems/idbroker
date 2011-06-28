@@ -1,8 +1,8 @@
 <?php 
-class User extends AppModel {
+class User extends IdbrokerAppModel {
 	var $name = 'User';
 	var $useDbConfig = 'ldap';
-	var $primaryKey = 'uid';
-	var $useTable = 'ou=people';
+	var $primaryKey = 'sAMAccountName';
+	var $useTable = '';
 }
 ?>

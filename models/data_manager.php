@@ -1,5 +1,5 @@
 <?php 
-class DataManager extends AppModel {
+class DataManager extends IdbrokerAppModel {
 
 	var $name = 'DataManager';
         var $useTable = array();

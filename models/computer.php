@@ -1,5 +1,5 @@
 <?php 
-class Computer extends AppModel {
+class Computer extends IdbrokerAppModel {
 
 	var $name = 'Computer';
 	var $useDbConfig = 'ldap';

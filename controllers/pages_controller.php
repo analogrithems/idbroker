@@ -1,5 +1,5 @@
 <?php
-class PagesController extends AppController {
+class PagesController extends IdbrokerAppController {
 	var $name = 'Pages';
 	var $helpers = array('Html');
 	var $uses = array();

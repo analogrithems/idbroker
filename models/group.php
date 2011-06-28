@@ -1,5 +1,5 @@
 <?php 
-class Group extends AppModel {
+class Group extends IdbrokerAppModel {
 
 	var $name = 'Group';
 	var $useDbConfig = 'ldap';

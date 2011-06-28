@@ -4,26 +4,24 @@
 <title><?php echo h($title_for_layout) ?></title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>idBroker - LDAP Browser</title>
-  <!-- COMPONENTS -->
-        <?php //<script language="javascript" type="text/javascript" src="/firebug-lite-compressed"></script> ?>
 
-        <?php echo $this->Html->script('/js/jquery')."\n"; ?>
-        <?php echo $this->Html->script('/js/_lib')."\n"; ?>
-        <?php echo $this->Html->script('/js/tree_component')."\n"; ?>
-        <?php echo $this->Html->script('/js/jquery-ui.min')."\n"; ?>
-        <?php echo $this->Html->script('/js/jquery.form')."\n"; ?>
-        <?php echo $this->Html->script('/js/lib/jquery.dimensions')."\n"; ?>
-        <?php echo $this->Html->script('/js/jquery.tooltip')."\n"; ?>
-        <?php echo $this->Html->script('/js/jquery.jgrowl_minimized')."\n"; ?>
-        <?php echo $this->Html->script('/js/thickbox')."\n"; ?>
-        <?php echo $this->Html->script('/js/jquery.selectboxes')."\n"; ?>
-        <?php echo $html->css('/css/tree_component.css')."\n"; ?>
-        <?php echo $html->css('/css/jquery.tooltip.css')."\n"; ?>
-        <?php echo $html->css('/css/jquery/ui.all.css')."\n"; ?>
-        <?php echo $html->css('/css/browser.css')."\n"; ?>
-        <?php echo $html->css('/css/jquery.jgrowl.css')."\n"; ?>
-        <?php echo $html->css('/css/thickbox.css')."\n"; ?>
-        <?php echo $html->css('/img/themes/ldap/style.css')."\n"; ?>
+        <?php echo $this->Html->script('/idbroker/js/jquery')."\n"; ?>
+        <?php echo $this->Html->script('/idbroker/js/_lib')."\n"; ?>
+        <?php echo $this->Html->script('/idbroker/js/tree_component')."\n"; ?>
+        <?php echo $this->Html->script('/idbroker/js/jquery-ui.min')."\n"; ?>
+        <?php echo $this->Html->script('/idbroker/js/jquery.form')."\n"; ?>
+        <?php echo $this->Html->script('/idbroker/js/lib/jquery.dimensions')."\n"; ?>
+        <?php echo $this->Html->script('/idbroker/js/jquery.tooltip')."\n"; ?>
+        <?php echo $this->Html->script('/idbroker/js/jquery.jgrowl_minimized')."\n"; ?>
+        <?php echo $this->Html->script('/idbroker/js/thickbox')."\n"; ?>
+        <?php echo $this->Html->script('/idbroker/js/jquery.selectboxes')."\n"; ?>
+        <?php echo $html->css('/idbroker/css/tree_component.css')."\n"; ?>
+        <?php echo $html->css('/idbroker/css/jquery.tooltip.css')."\n"; ?>
+        <?php echo $html->css('/idbroker/css/jquery/ui.all.css')."\n"; ?>
+        <?php echo $html->css('/idbroker/css/browser.css')."\n"; ?>
+        <?php echo $html->css('/idbroker/css/jquery.jgrowl.css')."\n"; ?>
+        <?php echo $html->css('/idbroker/css/thickbox.css')."\n"; ?>
+        <?php echo $html->css('/idbroker/img/themes/ldap/style.css')."\n"; ?>
 
 
   <!-- INITIALIZE -->
@@ -37,12 +35,12 @@
          return r;
         }
         function changediv(dn) {
-         var editUrl = '<?php echo $html->url('/browsers/edit/'); ?>'+dn;
+         var editUrl = '<?php echo $html->url('/idbroker/browsers/edit/'); ?>'+dn;
          $('#dndisplay').html(geturl(editUrl));
          getMsg();
         }
         function getMsg(){
-                var addr = '<?php echo $html->url('/browsers/getMsg'); ?>';
+                var addr = '<?php echo $html->url('/idbroker/browsers/getMsg'); ?>';
                 $.ajax({type: 'POST', url: addr, success:
                       function(msg) {
                         if(msg != '0'){
@@ -63,7 +61,7 @@
                                 async : true,
                                 async_data: function(NODE){ return { 'node' : jQuery(NODE).attr("id") || 0 } },
                                 method: "post",
-                                url   : "<?php echo $html->url('/browsers/getnodes/') ?>"
+                                url   : "<?php echo $html->url('/idbroker/browsers/getnodes/') ?>"
                         },
                         ui              : {
                                 theme_name : "ldap",
@@ -164,7 +162,7 @@
                                                 action  : function (NODE, TREE_OBJ) {
                                                                 TREE_OBJ.refresh(NODE);
                                                                 var dn = jQuery(NODE).attr("id");
-                                                                var msgURL = '<?php echo $html->url('/browsers/unLock'); ?>/'+dn;
+                                                                var msgURL = '<?php echo $html->url('/idbroker/browsers/unLock'); ?>/'+dn;
                                                                 if(confirm("Are you sure you want to enable "+dn+"?")){
                                                                         geturl(msgURL);
                                                                         getMsg()
@@ -188,7 +186,7 @@
                                                 action  : function (NODE, TREE_OBJ) {
                                                                 TREE_OBJ.refresh(NODE);
                                                                 var dn = jQuery(NODE).attr("id");
-                                                                var msgURL = '<?php echo $html->url('/browsers/lock'); ?>/'+dn;
+                                                                var msgURL = '<?php echo $html->url('/idbroker/browsers/lock'); ?>/'+dn;
                                                                 if(confirm("Are you sure you want to disable "+dn+"?")){
                                                                         geturl(msgURL);
                                                                         getMsg()
@@ -207,7 +205,7 @@
                                                 action  : function (NODE, TREE_OBJ) {
                                                                 TREE_OBJ.refresh(NODE);
                                                                 var dn = jQuery(NODE).attr("id");
-                                                                var msgURL = '<?php echo $html->url('/browsers/delete'); ?>/'+dn;
+                                                                var msgURL = '<?php echo $html->url('/idbroker/browsers/delete'); ?>/'+dn;
                                                                 if(confirm("Are you sure you want to delete "+dn+"?")){
                                                                         geturl(msgURL);
                                                                         getMsg()
@@ -230,7 +228,7 @@
                         imgLoader = new Image();// preload image
                         imgLoader.src = tb_pathToImage;
                         var t = 'Add User';
-                        var a = '<?php echo $html->url('/people/add/'); ?>?TB_iframe=true&height=500&width=350';
+                        var a = '<?php echo $html->url('/idbroker/people/add/'); ?>?TB_iframe=true&height=500&width=350';
                         var g = false;
                         tb_show(t,a,g);
                         this.blur();
@@ -241,7 +239,7 @@
                         imgLoader = new Image();// preload image
                         imgLoader.src = tb_pathToImage;
                         var t = 'Add Computer';
-                        var a = '<?php echo $html->url('/computers/add/'); ?>?TB_iframe=true&height=400&width=350';
+                        var a = '<?php echo $html->url('/idbroker/computers/add/'); ?>?TB_iframe=true&height=400&width=350';
                         var g = false;
                         tb_show(t,a,g);
                         this.blur();
@@ -251,7 +249,7 @@
                         imgLoader = new Image();// preload image
                         imgLoader.src = tb_pathToImage;
                         var t = 'Add Group';
-                        var a = '<?php echo $html->url('/groups/add/'); ?>?TB_iframe=true&height=400&width=350';
+                        var a = '<?php echo $html->url('/idbroker/groups/add/'); ?>?TB_iframe=true&height=400&width=350';
                         var g = false;
                         tb_show(t,a,g);
                         this.blur();
@@ -261,7 +259,7 @@
                         imgLoader = new Image();// preload image
                         imgLoader.src = tb_pathToImage;
                         var t = 'Create Sudo Role';
-                        var a = '<?php echo $html->url('/sudoers/add/'); ?>?TB_iframe=true&height=600&width=350';
+                        var a = '<?php echo $html->url('/idbroker/sudoers/add/'); ?>?TB_iframe=true&height=600&width=350';
                         var g = false;
                         tb_show(t,a,g);
                         this.blur();
@@ -273,7 +271,7 @@
                                 imgLoader = new Image();// preload image
                                 imgLoader.src = tb_pathToImage;
                                 var t = 'Reset Password';
-                                var a = '<?php echo $html->url('/browsers/resetPassword/'); ?>'+user+'?TB_iframe=true&height=150&width=350';
+                                var a = '<?php echo $html->url('/idbroker/browsers/resetPassword/'); ?>'+user+'?TB_iframe=true&height=150&width=350';
                                 var g = false;
                                 tb_show(t,a,g);
                                 this.blur();
@@ -297,11 +295,10 @@
 </head>
 <body>
 <div id="container">
-                <div id="MyAccount"><?php echo $html->link("MyAccount", '/people/MyAccount', array('class'=>'button')); ?></div>
-                <div id="Logout"><?php echo $html->link("Logout", '/browsers/logout', array('class'=>'button'));?></div>
+                <div id="MyAccount"><?php echo $html->link("MyAccount", '/idbroker/people/MyAccount', array('class'=>'button')); ?></div>
+                <div id="Logout"><?php echo $html->link("Logout", '/idbroker/browsers/logout', array('class'=>'button'));?></div>
         <?php echo $content_for_layout ?>
 
-        <?php echo $cakeDebug; ?>
 </div>
                 <div id="footer">
                         <?php

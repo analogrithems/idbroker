@@ -36,7 +36,7 @@
  * @package       cake
  * @subpackage    cake.app
  */
-class AppModel extends Model {
+class IdbrokerAppModel extends Model {
 	var $bindDN;
 	var $bindPasswd;
 	var $specific = true;

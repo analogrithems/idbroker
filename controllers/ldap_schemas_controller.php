@@ -1,6 +1,6 @@
 <?php
 
-class LdapSchemasController extends AppController{
+class LdapSchemasController extends IdbrokerAppController{
 	var $name       = 'LdapSchemas';
 	var $useTable   = false;
 	var $useDbConfig = 'ldap';

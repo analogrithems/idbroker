@@ -34,9 +34,9 @@
  * @package       cake
  * @subpackage    cake.app
  */
-class AppController extends Controller {
+class IdbrokerAppController extends Controller {
 	var $helpers = array('Html','Javascript','Ajax');
-	var $components = array('RequestHandler', 'LdapAuth', 'SettingsHandler'); // This should give ajax paginator support??
+	var $components = array('RequestHandler', 'LDAPAuth', 'LDAPAcl', 'SettingsHandler'); // This should give ajax paginator support??
         var $settings;
 
 
@@ -46,22 +46,18 @@ class AppController extends Controller {
 
         function beforeFilter() {
 	
-                $this->LdapAuth->allowedActions = array('display');
-                //Configure LdapAuthComponent
-                $this->LdapAuth->actionPath = 'controllers/';
-                $this->LdapAuth->authorize = 'controller';
-                $this->LdapAuth->loginAction = array('controller' => 'users', 'action' => 'login');
-                $this->LdapAuth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
-                $this->LdapAuth->loginRedirect = array('controller' => 'browsers', 'action' => 'index');
+                $this->LDAPAuth->allow('*');
+                $this->LDAPAuth->allowedActions = array('display');
+                //Configure LDAPAuthComponent
+                $this->LDAPAuth->actionPath = 'controllers/';
+                $this->LDAPAuth->authorize = 'actions';
+                $this->LDAPAuth->loginAction = array('controller' => 'LDAPAuths', 'action' => 'login');
+                $this->LDAPAuth->logoutRedirect = array('controller' => 'LDAPAuths', 'action' => 'login');
+                //$this->LDAPAuth->loginRedirect = array('controller' => 'LDAPAuths', 'action' => 'redirect');
+		$this->LDAPAuth->loginError = "Invalid Username or Password";
+		$this->LDAPAuth->authError = "None shall pass!  OK, actually you just don't have permission to go there";
         }
 
-	function login() {
-    	}
-
-	function logout() {
-		$this->redirect($this->LdapAuth->logout());
-	}
-	    
 	function isAuthorized() {
 		return true;
 	}

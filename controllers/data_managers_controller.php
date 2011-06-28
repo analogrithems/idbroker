@@ -1,5 +1,5 @@
 <?php
-class DataManagersController extends AppController {
+class DataManagersController extends IdbrokerAppController {
 
 	var $name = 'DataManagers';    
 	var $components = array('RequestHandler', 'Ldap', 'SettingsHandler');
