@@ -8,6 +8,7 @@ class LdapAuthsController extends IdbrokerAppController {
 	function beforeFilter(){
 		//$this->LdapAuth->allow('*');
 	}
+
 	function login(){
 	}
 

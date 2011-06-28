@@ -11,6 +11,7 @@ class LDAPAuthComponent extends AuthComponent {
 	function __construct(){
 		$model = Configure::read('LDAP.LdapAuth.Model');
 		$this->userModel = empty($model) ? 'Idbroker.LdapAuth' : $model;
+		$this->model =& $this->getModel();
 		parent::__construct();
 	}
 
@@ -76,25 +77,23 @@ class LDAPAuthComponent extends AuthComponent {
 		}
 
 		if ($loginAction == $url) {
-			$model =& $this->getModel();
-			$this->model =& $model;
-			if (empty($controller->data) || !isset($controller->data[$model->alias])) {
+			if (empty($controller->data) || !isset($controller->data[$this->model->alias])) {
 				if (!$this->Session->check('Auth.redirect') && !$this->loginRedirect && env('HTTP_REFERER')) {
 					$this->Session->write('Auth.redirect', $controller->referer(null, true));
 				}
 				return false;
 			}
 
-			$isValid = !empty($controller->data[$model->alias][$this->fields['username']]) &&
-				!empty($controller->data[$model->alias][$this->fields['password']]);
+			$isValid = !empty($controller->data[$this->model->alias][$this->fields['username']]) &&
+				!empty($controller->data[$this->model->alias][$this->fields['password']]);
 
 			if ($isValid) {
-				$username = $controller->data[$model->alias][$this->fields['username']];
-				$password = $controller->data[$model->alias][$this->fields['password']];
+				$username = $controller->data[$this->model->alias][$this->fields['username']];
+				$password = $controller->data[$this->model->alias][$this->fields['password']];
 
 				$data = array(
-					$model->alias . '.' . $this->fields['username'] => $username,
-					$model->alias . '.' . $this->fields['password'] => $password
+					$this->model->alias . '.' . $this->fields['username'] => $username,
+					$this->model->alias . '.' . $this->fields['password'] => $password
 				);
 
 				if ($this->login($data)) {
@@ -107,7 +106,7 @@ class LDAPAuthComponent extends AuthComponent {
 			}
 
 			$this->Session->setFlash($this->loginError, $this->flashElement, array(), 'auth');
-			$controller->data[$model->alias][$this->fields['password']] = null;
+			$controller->data[$this->model->alias][$this->fields['password']] = null;
 			return false;
 		} else {
 			if (!$this->user()) {
@@ -289,7 +288,6 @@ class LDAPAuthComponent extends AuthComponent {
 		} else {
 			$conditions = $this->userScope;
 		}
-		$model =& $this->getModel();
 		if (empty($user)) {
 			$user = $this->user();
 			if (empty($user)) {
@@ -300,12 +298,12 @@ class LDAPAuthComponent extends AuthComponent {
 				return null;
 			}
 			$user = $user->read();
-			$user = $user[$model->alias];
-		} elseif (is_array($user) && isset($user[$model->alias])) {
-			$user = $user[$model->alias];
+			$user = $user[$this->model->alias];
+		} elseif (is_array($user) && isset($user[$this->model->alias])) {
+			$user = $user[$this->model->alias];
 		}
 
-		if (is_array($user) && (isset($user[$this->fields['username']]) || isset($user[$model->alias . '.' . $this->fields['username']]))) {
+		if (is_array($user) && (isset($user[$this->fields['username']]) || isset($user[$this->model->alias . '.' . $this->fields['username']]))) {
 			if (isset($user[$this->fields['username']]) && !empty($user[$this->fields['username']])  && !empty($user[$this->fields['password']])) {
 				if (trim($user[$this->fields['username']]) == '=' || trim($user[$this->fields['password']]) == '=') {
 					return false;
@@ -313,44 +311,44 @@ class LDAPAuthComponent extends AuthComponent {
 				$username = $user[$this->fields['username']];
 				$password = $user[$this->fields['password']];
 
-			} elseif (isset($user[$model->alias . '.' . $this->fields['username']]) && !empty($user[$model->alias . '.' . $this->fields['username']])) {
-				if (trim($user[$model->alias . '.' . $this->fields['username']]) == '=' || trim($user[$model->alias . '.' . $this->fields['password']]) == '=') {
+			} elseif (isset($user[$this->model->alias . '.' . $this->fields['username']]) && !empty($user[$this->model->alias . '.' . $this->fields['username']])) {
+				if (trim($user[$this->model->alias . '.' . $this->fields['username']]) == '=' || trim($user[$this->model->alias . '.' . $this->fields['password']]) == '=') {
 					return false;
 				}
-				$username = $user[$model->alias . '.' . $this->fields['username']];
-				$password = $user[$model->alias . '.' . $this->fields['password']];
+				$username = $user[$this->model->alias . '.' . $this->fields['username']];
+				$password = $user[$this->model->alias . '.' . $this->fields['password']];
 			} else {
 				return false;
 			}
-			$dn = $this->getDn($model->primaryKey, $username);
+			$dn = $this->getDn($this->model->primaryKey, $username);
 			$loginResult = $this->ldapauth($dn, $password);
 			if( $loginResult == 1){
-				$user = $model->find('all', array('scope'=>'base', 'targetDn'=>$dn));
+				$user = $this->model->find('all', array('scope'=>'base', 'targetDn'=>$dn));
 				$data = $user[0];
-				$data[$model->alias]['bindDN'] = $dn;
-				$data[$model->alias]['bindPasswd'] = $password;
+				$data[$this->model->alias]['bindDN'] = $dn;
+				$data[$this->model->alias]['bindPasswd'] = $password;
 			}else{
 				$this->loginError =  $loginResult;
 				return false;
 			}
 
-			if (empty($data) || empty($data[$model->alias])) {
+			if (empty($data) || empty($data[$this->model->alias])) {
 				return null;
 			}
 		} elseif (!empty($user) && is_string($user)) {
-			$data = $model->find('first', array(
-				'conditions' => array_merge(array($model->escapeField() => $user), $conditions),
+			$data = $this->model->find('first', array(
+				'conditions' => array_merge(array($this->model->escapeField() => $user), $conditions),
 			));
-			if (empty($data) || empty($data[$model->alias])) {
+			if (empty($data) || empty($data[$this->model->alias])) {
 				return null;
 			}
 		}
 
 		if (!empty($data)) {
-			if (!empty($data[$model->alias][$this->fields['password']])) {
-				unset($data[$model->alias][$this->fields['password']]);
+			if (!empty($data[$this->model->alias][$this->fields['password']])) {
+				unset($data[$this->model->alias][$this->fields['password']]);
 			}
-			return $data[$model->alias];
+			return $data[$this->model->alias];
 		}
 		return null;
 	}

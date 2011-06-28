@@ -42,7 +42,8 @@ class IdbrokerAppModel extends Model {
 	var $specific = true;
 
         function __construct($id = false, $table = null, $ds = null) {
-		$config = ConnectionManager::getDataSource('ldap')->config;
+		$ds = Configure::read('LDAP.Db.Config');
+		$config = ConnectionManager::getDataSource($ds)->config;
 		@session_start();
 		//if already auth, use that login creds
 		if(isset($_SESSION['Auth']['User']['bindDN']) && isset($_SESSION['Auth']['User']['bindPasswd'])){

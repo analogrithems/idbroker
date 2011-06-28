@@ -39,7 +39,6 @@ class IdbrokerAppController extends Controller {
 	var $components = array('RequestHandler', 'LDAPAuth', 'LDAPAcl', 'SettingsHandler'); // This should give ajax paginator support??
         var $settings;
 
-
         function initialize() {
                 $this->settings = $this->SettingsHandler->getSettings();
         }

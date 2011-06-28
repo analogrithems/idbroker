@@ -7,7 +7,7 @@
 
         <?php echo $this->Html->script('/idbroker/js/jquery')."\n"; ?>
         <?php echo $this->Html->script('/idbroker/js/_lib')."\n"; ?>
-        <?php echo $this->Html->script('/idbroker/js/tree_component')."\n"; ?>
+        <?php echo $this->Html->script('/idbroker/js/jquery.jstree')."\n"; ?>
         <?php echo $this->Html->script('/idbroker/js/jquery-ui.min')."\n"; ?>
         <?php echo $this->Html->script('/idbroker/js/jquery.form')."\n"; ?>
         <?php echo $this->Html->script('/idbroker/js/lib/jquery.dimensions')."\n"; ?>
