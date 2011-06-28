@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <!-- COMPONENTS -->
-	<?php echo $javascript->link('/js/jquery.js')."\n"; ?>
-	<?php echo $javascript->link('/js/jquery.form.js')."\n"; ?>
-	<?php echo $javascript->link('/js/jquery.tooltip.js')."\n"; ?>
-	<?php echo $javascript->link('/js/jquery.jgrowl_minimized.js')."\n"; ?>
-	<?php echo $javascript->link('/js/thickbox.js')."\n"; ?>
-	<?php echo $html->css('/css/jquery.jgrowl.css')."\n"; ?>
-	<?php echo $html->css('/css/thickbox.css')."\n"; ?>
-	<?php echo $html->css('/css/jquery.tooltip.css')."\n"; ?>
+	<?php echo $javascript->link('jquery.js')."\n"; ?>
+	<?php echo $javascript->link('jquery.form.js')."\n"; ?>
+	<?php echo $javascript->link('jquery.tooltip.js')."\n"; ?>
+	<?php echo $javascript->link('jquery.jgrowl_minimized.js')."\n"; ?>
+	<?php echo $javascript->link('thickbox.js')."\n"; ?>
+	<?php echo $html->css('jquery.jgrowl.css')."\n"; ?>
+	<?php echo $html->css('thickbox.css')."\n"; ?>
+	<?php echo $html->css('jquery.tooltip.css')."\n"; ?>
 	<script type="text/javascript">
 	function geturl(addr) {
 	 var r = $.ajax({

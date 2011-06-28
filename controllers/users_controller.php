@@ -22,7 +22,7 @@ class UsersController extends IdbrokerAppController {
 	}
 
 	function logout() {
-		$this->redirect($this->LdapAuth->logout());
+		$this->redirect($this->LDAPAuth->logout());
 	}
 
 	//Very Ugly, fix this.,

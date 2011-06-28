@@ -2,7 +2,7 @@
 class BrowsersController extends IdbrokerAppController {
 
 	var $name = 'Browsers';
-	var $components = array('RequestHandler', 'Ldap', 'PluginHandler', 'Session', 'LdapAcl'=>array('model'=>'IdbrokerUsers', 'groupType'=>'group'));
+	var $components = array('RequestHandler', 'Ldap', 'PluginHandler', 'Session');
 	var $helpers = array('Form','Html', 'Js' => array('Jquery'));
 	var $dbConfig;
 	var $schemaPlugin;

@@ -98,14 +98,12 @@ class LDAPAuthComponent extends AuthComponent {
 				);
 
 				if ($this->login($data)) {
-					$this->log("Login Good, redirecting to ".print_r($this->redirect(),1),'debug');
 					if ($this->autoRedirect) {
 						$controller->redirect($this->redirect(), null, true);
 					}
 					return true;
-				}else{
-					$this->log("Login Failed",'error');
 				}
+				
 			}
 
 			$this->Session->setFlash($this->loginError, $this->flashElement, array(), 'auth');
@@ -328,7 +326,7 @@ class LDAPAuthComponent extends AuthComponent {
 			$loginResult = $this->ldapauth($dn, $password);
 			if( $loginResult == 1){
 				$user = $model->find('all', array('scope'=>'base', 'targetDn'=>$dn));
-				$data = $user[0][$model->alias];
+				$data = $user[0];
 				$data[$model->alias]['bindDN'] = $dn;
 				$data[$model->alias]['bindPasswd'] = $password;
 			}else{
@@ -383,7 +381,6 @@ class LDAPAuthComponent extends AuthComponent {
 
 
         function ldapauth($dn, $password){
-		$this->log("Trying to auth {$dn}:{$password}",'debug');
                 $authResult =  $this->model->auth( array('dn'=>$dn, 'password'=>$password));
                 return $authResult;
         }

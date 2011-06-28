@@ -296,7 +296,7 @@
 <body>
 <div id="container">
                 <div id="MyAccount"><?php echo $html->link("MyAccount", '/idbroker/people/MyAccount', array('class'=>'button')); ?></div>
-                <div id="Logout"><?php echo $html->link("Logout", '/idbroker/browsers/logout', array('class'=>'button'));?></div>
+                <div id="Logout"><?php echo $html->link("Logout", '/idbroker/ldap_auths/logout', array('class'=>'button'));?></div>
         <?php echo $content_for_layout ?>
 
 </div>

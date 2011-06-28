@@ -62,29 +62,29 @@ class PeopleController extends IdbrokerAppController {
 	function myAccount(){
 		
 		if(!empty($this->data)){
-			$udata = $this->LdapAuth->user();
-			$dn = $udata[$this->LdapAuth->userModel]['dn'];
-			$this->Person->id = $udata[$this->LdapAuth->userModel][$this->Person->primaryKey];
+			$udata = $this->LDAPAuth->user();
+			$dn = $udata[$this->LDAPAuth->userModel]['dn'];
+			$this->Person->id = $udata[$this->LDAPAuth->userModel][$this->Person->primaryKey];
 			if(!empty($this->data['Person']['password']) && $this->data['Person']['password'] == $this->data['Person']['password_confirm']){
 				$this->data['Person']['userpassword'] = $this->data['Person']['password'];
                                 $this->data['Person']['shadowlastchange'] = $this->daySinceEpoch();
 				
-				$udata[$this->LdapAuth->userModel]['bindPasswd'] = $this->data['Person']['password'];
+				$udata[$this->LDAPAuth->userModel]['bindPasswd'] = $this->data['Person']['password'];
 			}
 			unset($this->data['Person']['password']);
 			unset($this->data['Person']['password_confirm']);
 			if ($this->Person->save($this->data)) {
 				$this->data = $this->Person->find('first',array('targetDn'=>$dn, 'scope'=>'base'));
-				$user = array_merge($udata[$this->LdapAuth->userModel], $this->data['Person']);
-				$this->Session->write($this->LdapAuth->sessionKey, $user);
+				$user = array_merge($udata[$this->LDAPAuth->userModel], $this->data['Person']);
+				$this->Session->write($this->LDAPAuth->sessionKey, $user);
 				$this->Session->setFlash('Your Account Has Been Updated.');
 			}else{
 				$this->Session->setFlash("Couldn't update your account, Sorry.  Please notify your support Team.");
 			}
 		}else{
-			$udata = $this->LdapAuth->user();
-			$dn = $udata[$this->LdapAuth->userModel]['dn'];
-			$this->data['Person'] = $udata[$this->LdapAuth->userModel];
+			$udata = $this->LDAPAuth->user();
+			$dn = $udata[$this->LDAPAuth->userModel]['dn'];
+			$this->data['Person'] = $udata[$this->LDAPAuth->userModel];
 		}
 		$passwordReset = $this->Ldap->canChangePassword($dn);
 		$groups = $this->Ldap->getGroups(array('cn'), $dn);
@@ -110,7 +110,7 @@ class PeopleController extends IdbrokerAppController {
 	}
 
 	function logout() {
-		$this->redirect($this->LdapAuth->logout());
+		$this->redirect($this->LDAPAuth->logout());
 	}
 
 	//Very Ugly, fix this.,

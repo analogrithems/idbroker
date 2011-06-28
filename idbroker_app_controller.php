@@ -51,9 +51,8 @@ class IdbrokerAppController extends Controller {
                 //Configure LDAPAuthComponent
                 $this->LDAPAuth->actionPath = 'controllers/';
                 $this->LDAPAuth->authorize = 'actions';
-                $this->LDAPAuth->loginAction = array('controller' => 'LDAPAuths', 'action' => 'login');
-                $this->LDAPAuth->logoutRedirect = array('controller' => 'LDAPAuths', 'action' => 'login');
-                //$this->LDAPAuth->loginRedirect = array('controller' => 'LDAPAuths', 'action' => 'redirect');
+                $this->LDAPAuth->loginAction = array('controller' => 'LdapAuths', 'action' => 'login');
+                $this->LDAPAuth->logoutRedirect = array('controller' => 'LdapAuths', 'action' => 'login');
 		$this->LDAPAuth->loginError = "Invalid Username or Password";
 		$this->LDAPAuth->authError = "None shall pass!  OK, actually you just don't have permission to go there";
         }

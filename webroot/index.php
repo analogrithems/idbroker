@@ -58,6 +58,9 @@
 		define('CAKE_CORE_INCLUDE_PATH', '/usr/local/cakephp');
 	}
 
+	if (!defined('IDBROKER_PLUGIN_URL'){
+		define('IDBROKER_PLUGIN_URL', '/idbroker/');
+	}
 /**
  * Editing below this line should not be necessary.
  * Change at your own risk.
