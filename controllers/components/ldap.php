@@ -1,24 +1,37 @@
 <?php
 
 class LdapComponent extends Object {
-	var $ldap;
 
 /**
- * The name of the model that represents users which will be authenticated.  Defaults to 'User'.
+ * The name of the Model that represents users which will be authenticated.  Defaults to 'User'.
  *
  * @var string
  * @access public
  */
-	var $userModel = 'User';
-	var $peopleBranch   = 'ou=People,';
-	var $groupBranch    = 'ou=Groups,';
-	var $computerBranch = 'ou=Computers,';
-	var $sudoerBranch  = 'ou=Sudoers,';
+	var $Model = '';
+	var $userModel = 'LDAPAuth';
+	var $peopleBranch   = '';
+	var $groupBranch    = '';
+	var $computerBranch = '';
+	var $sudoerBranch  = '';
+
+/**
+ * setup the model stuff
+ *
+ *
+ */
+        function __construct(){
+                $model = Configure::read('LDAP.Model');
+                $this->userModel = empty($model) ? 'Idbroker.LdapAuth' : $model;
+                $this->model =& $this->getModel();
+                parent::__construct();
+        }
+
 
 	function startup(&$controller) {
-		//get model registered
+		//get Model registered
 		$this->basedn = '';
-		$this->ldap = $this->getModel($this->userModel);
+		$this->Model = $this->getModel($this->userModel);
 		$ldapSettings = Configure::read('ldap');
 		if(isset($ldapSettings['people'])){
 			$this->peopleBranch = $ldapSettings['people'];
@@ -39,8 +52,8 @@ class LdapComponent extends Object {
 		if(!empty($fields)){
 			$options['fields'] = $fields;
 		}
-		$user = $this->ldap->find('first', $options );
-		return $user[$this->userModel];
+		$user = $this->Model->find('first', $options );
+		return $user[$this->Model->alias];
 	}
 
 /*
@@ -71,12 +84,12 @@ class LdapComponent extends Object {
                 $options['conditions'] = $conditions;
                 $options['scope'] = $scope;
 
-                $computers = $this->ldap->find('all',$options);
+                $computers = $this->Model->find('all',$options);
                 $list = array();
 
                 if(isset($computers)){
                         foreach($computers as $computer){
-                                $list[] = $computer[$this->userModel];
+                                $list[] = $computer[$this->Model->alias];
                         }
                         return $list;
                 }else{
@@ -101,8 +114,8 @@ class LdapComponent extends Object {
 			$options['fields'] = $fields;
 		}
 		if(!empty($dn)){
-			$utmp = $this->ldap->find('first', array( 'targetDn'=>$dn, 'scop'=>'base', 'fields'=>array('uid')));
-			$uid = $utmp[$this->userModel]['uid'];
+			$utmp = $this->Model->find('first', array( 'targetDn'=>$dn, 'scop'=>'base', 'fields'=>array('uid')));
+			$uid = $utmp[$this->Model->alias]['uid'];
 			$conds = array('sudouser'=>$uid);
 			$groups = $this->getGroups(array('cn'),$dn);
 			if(count($groups)>1){
@@ -120,11 +133,11 @@ class LdapComponent extends Object {
 
 		$options['conditions'] = $conditions;
 		$options['scope'] = $scope;
-		$computers = $this->ldap->find('all',$options);
+		$computers = $this->Model->find('all',$options);
 		$list = array();
 		if(isset($computers)){
 			foreach($computers as $computer){
-				$list[] = $computer[$this->userModel];
+				$list[] = $computer[$this->Model->alias];
 			}
 			return $list;
 		}else{
@@ -139,11 +152,11 @@ class LdapComponent extends Object {
  *
  */
 
-	function getGroups( $fields = array('cn', 'memberuid', 'uniquemember'), $dn = null, $filter = null){
+	function getGroups( $fields = array('cn', 'memberuid', 'uniquemember', 'member'), $dn = null, $filter = null){
 
 		$options['targetDn'] = $this->groupBranch;
 		$scope = 'sub';
-		$conditions = '(|(uniquemember=*)(memberuid=*))';
+		$conditions = '(|(|(uniquemember=*)(memberuid=*))(member=*))';
 		
 
 		if(!is_array($fields)){
@@ -154,9 +167,10 @@ class LdapComponent extends Object {
 
 			
 		if(!empty($dn)){
-			$utmp = $this->ldap->find('first', array( 'targetDn'=>$dn, 'scop'=>'base', 'fields'=>array('uid')));
-			$uid = $utmp[$this->userModel]['uid'];
-			$conditions = '(|(uniquemember='.$dn.')(memberuid='.$uid.'))';
+			$utmp = $this->Model->find('first', array( 'targetDn'=>$dn, 'scop'=>'base', 'fields'=>array('uid','cn','samaccountname')));
+			$uid = (isset($utmp[$this->Model->alias]['uid']) ? $utmp[$this->Model->alias]['uid'] : 
+				(isset($utmp[$this->Model->alias]['samacountname']) ? $utmp[$this->Model->alias]['samacountname'] : $utmp[$this->Model->alias]['cn'];
+			$conditions = '(|(|(uniquemember='.$dn.')(memberuid='.$uid.'))(member='.$dn.'))';
 		}
 
 		if(!empty($filter)){
@@ -164,6 +178,8 @@ class LdapComponent extends Object {
 				$conditions = 'objectclass=posixgroup';
 			}elseif(preg_match('/groupofuniquenames/i',$filter)){
 				$conditions = 'objectclass=groupofuniquenames';
+			}elseif(preg_match('/group/i',$filter)){
+				$conditions = 'objectclass=group';
 			}else{
 				$conditions = $filter;
 			}
@@ -171,13 +187,13 @@ class LdapComponent extends Object {
 		$options['conditions'] = $conditions;		
 		$options['scope'] = $scope;
 
-		$groups = $this->ldap->find('all',$options);
+		$groups = $this->Model->find('all',$options);
 		
 		$list = array();
 
 		if(isset($groups)){
 			foreach($groups as $group){
-				$list[] = $group[$this->userModel];
+				$list[] = $group[$this->Model->alias];
 			}
 			return $list;
 		}else{
@@ -207,9 +223,9 @@ class LdapComponent extends Object {
 			$options['scope'] = 'base';
 			$options['conditions'] = $type."=*";
 			$options['fields'] = array($type);
-			$users = $this->ldap->find('first',$options);
+			$users = $this->Model->find('first',$options);
 		}else{
-			$users = $this->ldap->find('all',$options);
+			$users = $this->Model->find('all',$options);
 		}
 		$list = array();
 
@@ -217,32 +233,32 @@ class LdapComponent extends Object {
 			$gops['fields'] = $fields;
 			$gops['conditions'] = 'uid=*';
 			$gops['scope'] = 'sub';
-			if(is_array($users[$this->userModel][$type])){
-				foreach($users[$this->userModel][$type] as $user){
+			if(is_array($users[$this->Model->alias][$type])){
+				foreach($users[$this->Model->alias][$type] as $user){
 					if(isset($type) && $type == 'memberuid'){
 						$gops['conditions'] = 'uid='.$user;
 					}elseif(isset($type) && $type == 'uniquemember'){
 						$gops['targetDn'] = $user;
 					}
 						
-					$entrys = $this->ldap->find('first',$gops);
-					$list[] = $entrys[$this->userModel];
+					$entrys = $this->Model->find('first',$gops);
+					$list[] = $entrys[$this->Model->alias];
 				}
 			}else{
-				$user = $users[$this->userModel][$type];
+				$user = $users[$this->Model->alias][$type];
 				if(isset($type) && $type == 'memberuid'){
 					$gops['conditions'] = 'uid='.$user;
 				}elseif(isset($type) && $type == 'uniquemember'){
 					$gops['targetDn'] = $user;
 				}
 					
-				$entrys = $this->ldap->find('first',$gops);
-				$list[] = $entrys[$this->userModel];
+				$entrys = $this->Model->find('first',$gops);
+				$list[] = $entrys[$this->Model->alias];
 			}
 		}else{
 			foreach($users as $user){
 				//Lets Ditch Model info so it doesn't matter
-				$list[] = $user[$this->userModel];
+				$list[] = $user[$this->Model->alias];
 			}
 		}
 		return $list;
@@ -259,46 +275,46 @@ class LdapComponent extends Object {
 	function hasChildren( $dn ){
 		$options['targetDn'] = $dn;
 		$options['scope'] = 'one';
-		$results = $this->ldap->find('count',$options);
+		$results = $this->Model->find('count',$options);
 		return $results;
 	}
 
 
 /**
- * Returns a reference to the model object specified, and attempts
+ * Returns a reference to the Model object specified, and attempts
  * to load it if it is not found.
  *
- * @param string $name Model name (defaults to AuthComponent::$userModel)
- * @return object A reference to a model object
+ * @param string $name Model name (defaults to AuthComponent::$Model->alias)
+ * @return object A reference to a Model object
  * @access public
  */
         function &getModel($name = null) {
-                $model = null;
+                $Model = null;
                 if (!$name) {
-                        $name = $this->userModel;
+                        $name = $this->Model->alias;
                 }
 
                 if (PHP5) {
-                        $model = ClassRegistry::init($name);
+                        $Model = ClassRegistry::init($name);
                 } else {
-                        $model =& ClassRegistry::init($name);
+                        $Model =& ClassRegistry::init($name);
                 }
 
-                if (empty($model)) {
+                if (empty($Model)) {
                         trigger_error(__('LDAP::getModel() - Model is not set or could not be found', true), E_USER_WARNING);
                         return null;
                 }
 
-                return $model;
+                return $Model;
         }
 
 
 	function forcePasswordReset( $dn, $password ){
 
-		$this->Ldap->id = $dn;
-		$update[$this->userModel]['dn'] = $dn;
-		$update[$this->userModel]['passwordallowchangetime'] = array();
-		$fup = $this->Ldap->save($update);
+		$this->Model->id = $dn;
+		$update[$this->Model->alias]['dn'] = $dn;
+		$update[$this->Model->alias]['passwordallowchangetime'] = array();
+		$fup = $this->Model->save($update);
 		if($fup){
 			return true;
 		}
@@ -312,8 +328,8 @@ class LdapComponent extends Object {
 		$shadowtimeattr = 'shadowmin';
 		$options['fields'] = array($passwdtimeattr, $shadowtimeattr, 'cn', 'uid');
 
-		$user = $this->ldap->find('first',$options);	
-		$user = $user[$this->userModel];
+		$user = $this->Model->find('first',$options);	
+		$user = $user[$this->Model->alias];
 		if(isset($user[$passwdtimeattr]) && !empty($user[$passwdtimeattr]) && ( time() <  strtotime($user[$passwdtimeattr]) ) ){
 			//Password Restriction is from passwordallowchangetime
 			$result['allowed'] = false;
