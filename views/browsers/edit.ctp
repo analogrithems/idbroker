@@ -83,6 +83,5 @@ $dn = $this->data['Browser']['dn'];
         $(function() {
                 <!-- This is for form editing -->
                 $("#Forms").tabs();
-		getMsg();
 	});
 </script>

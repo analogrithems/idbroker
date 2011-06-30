@@ -2,14 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <!-- COMPONENTS -->
-	<?php echo $javascript->link('jquery.js')."\n"; ?>
-	<?php echo $javascript->link('jquery.form.js')."\n"; ?>
-	<?php echo $javascript->link('jquery.tooltip.js')."\n"; ?>
-	<?php echo $javascript->link('jquery.jgrowl_minimized.js')."\n"; ?>
-	<?php echo $javascript->link('thickbox.js')."\n"; ?>
-	<?php echo $html->css('jquery.jgrowl.css')."\n"; ?>
-	<?php echo $html->css('thickbox.css')."\n"; ?>
-	<?php echo $html->css('jquery.tooltip.css')."\n"; ?>
+        <script type="text/javascript">
+                var APP = "/<?php echo APP_DIR; ?>";
+        </script> 
+        <?php echo $this->Html->script('/idbroker/js/jquery-1.6.1.min')."\n"; ?>
+        <?php echo $this->Html->script('/idbroker/js/jgrowl/jquery.jgrowl_compressed')."\n"; ?>
+        <?php echo $this->Html->script('/idbroker/js/jstree/jquery.jstree')."\n"; ?>
+        <?php echo $this->Html->script('/idbroker/js/jqueryUI/js/jquery-ui-1.8.14.custom.min')."\n"; ?>
+        <?php echo $this->Html->script('/idbroker/js/idbroker')."\n"; ?>
+        <?php echo $this->Html->script('/idbroker/js/jquery.tools.min')."\n"; ?>
+        <?php echo $html->css('/idbroker/css/browser.css')."\n"; ?>
+        <?php echo $html->css('/idbroker/js/jgrowl/jquery.jgrowl')."\n"; ?>
+        <?php echo $html->css('/idbroker/js/jqueryUI/css/ui-lightness/jquery-ui-1.8.14.custom')."\n"; ?>
+ 
+
 	<script type="text/javascript">
 	function geturl(addr) {
 	 var r = $.ajax({
@@ -20,12 +26,12 @@
 	 return r;
 	}
 	function changediv(dn) {
-	 var editUrl = '<?php echo $html->url('/browsers/edit/'); ?>'+dn;
+	 var editUrl = APP+'/browsers/edit/'+dn;
 	 $('#dndisplay').html(geturl(editUrl));
 	 getMsg();
 	}
 	function getMsg(){
-		var msgURL = '<?php echo $html->url('/browsers/getMsg'); ?>';
+		var msgURL = APP+'/browsers/getMsg';
 		var result = geturl(msgURL);
 		if(result == false){
 			return false;

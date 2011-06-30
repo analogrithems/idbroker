@@ -13,6 +13,7 @@ class LdapAuthsController extends IdbrokerAppController {
 	}
 
 	function logout(){
+		$this->redirect($this->LDAPAuth->logout());
 	}
 
 

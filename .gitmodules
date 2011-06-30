@@ -1,0 +1,9 @@
+[submodule "plugins/eventful-cakephp"]
+	path = plugins/eventful-cakephp
+	url = git://github.com/m3nt0r/eventful-cakephp.git
+[submodule "plugins/cakephp-rest-plugin"]
+	path = plugins/cakephp-rest-plugin
+	url = git://github.com/kvz/cakephp-rest-plugin.git
+[submodule "plugins/debug_kit"]
+	path = plugins/debug_kit
+	url = git://github.com/cakephp/debug_kit.git

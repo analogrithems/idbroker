@@ -159,9 +159,9 @@ class LDAPAclComponent extends IniAcl{
 	}
 
 	function check($user = false, $object = false, $action = false){
-		$this->log("User Arg:".print_r($user,1),'debug');
-		$this->log("Object Arg:".print_r($object,1),'debug');
-		$this->log("Action Arg:".print_r($action,1),'debug');
+		//$this->log("User Arg:".print_r($user,1),'debug');
+		//$this->log("Object Arg:".print_r($object,1),'debug');
+		//$this->log("Action Arg:".print_r($action,1),'debug');
 		return true;
 	}
 }

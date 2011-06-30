@@ -2,7 +2,7 @@
 class BrowsersController extends IdbrokerAppController {
 
 	var $name = 'Browsers';
-	var $components = array('RequestHandler', 'Ldap', 'PluginHandler', 'Session');
+	var $components = array('RequestHandler', 'Ldap', 'PluginHandler', 'Session', 'ActiveDirectory');
 	var $helpers = array('Form','Html', 'Js' => array('Jquery'));
 	var $dbConfig;
 	var $schemaPlugin;
@@ -79,6 +79,7 @@ class BrowsersController extends IdbrokerAppController {
 
 	
 	function getnodes() {
+	header('Content-type: application/json');
 		// retrieve the node id that Ext JS posts via ajax
 		if(!empty($this->params['form']['node'])){
 			$base = $this->params['form']['node'];
@@ -100,6 +101,14 @@ class BrowsersController extends IdbrokerAppController {
 		
 
 		foreach($nodes as $key => $val){
+			if(isset($nodes[$key]['Browser']['useraccountcontrol'])){
+				$flgs = $this->ActiveDirectory->parseUACF($nodes[$key]['Browser']['useraccountcontrol']);
+				if(isset($flgs['ACCOUNTDISABLE']) && $flgs['ACCOUNTDISABLE'] === true){
+					$nodes[$key]['Browser']['adaccountlock'] = true;
+					$nodes[$key]['Browser']['class'][] = 'locked';
+				}
+			}
+
 			// Cut off the part we don't need
 			$newNode = $nodes[$key]['Browser']['dn'];
 
@@ -115,7 +124,6 @@ class BrowsersController extends IdbrokerAppController {
 			$nodes[$key]['Browser']['class'][] = substr($newNode, 0, strpos($newNode, '='));
 			
 			if(isset($nodes[$key]['Browser']['nsaccountlock']) && $nodes[$key]['Browser']['nsaccountlock'] == 'true'){
-				$this->log("Marking ".$nodes[$key]['Browser']['cn']. " account locked",'debug');
 				$nodes[$key]['Browser']['class'][] = 'locked';
 			}
 			//Gives the name for this node
