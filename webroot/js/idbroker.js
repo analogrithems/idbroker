@@ -25,7 +25,7 @@ $(function (){
 		"json_data"	: {
 			"ajax"	: {
 				"type"	: "post",
-				"url"	: "/APS/idbroker/browsers/getnodes/",
+				"url"	: APP+"/idbroker/browsers/getnodes/",
 				dataType: "json",
 				"async"	: true,
 				"data" : function (n) { 
