@@ -45,8 +45,7 @@
 		</div>
 		<div id="content">
 
-			<?php if(isset($session)) $session->flash(); ?>
-
+			<?php echo $this->Session->flash(); ?>
 			<?php echo $content_for_layout; ?>
 
 		</div>

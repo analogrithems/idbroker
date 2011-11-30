@@ -10,6 +10,10 @@ class LDAPAuthComponent extends AuthComponent {
  */
 	function __construct(){
 		$model = Configure::read('LDAP.LdapAuth.Model');
+		$this->sqlUserModel = Configure::read('LDAP.LdapAuth.MirrorSQL');
+		if(isset($this->sqlUserModel) && !empty($this->sqlUserModel) ){
+				$this->sqlModel =& $this->getModel($this->sqlUserModel);
+		}
 		$this->userModel = empty($model) ? 'Idbroker.LdapAuth' : $model;
 		$this->model =& $this->getModel();
 		parent::__construct();
@@ -23,7 +27,8 @@ class LDAPAuthComponent extends AuthComponent {
  * @access public
  * @link http://book.cakephp.org/view/1266/userModel
  */
-        var $userModel = 'LdapAuth';
+        var $userModel;
+        var $sqlUserModel;
 
 /**
  * Main execution method.  Handles redirecting of invalid users, and processing
@@ -327,7 +332,17 @@ class LDAPAuthComponent extends AuthComponent {
 				$data = $user[0];
 				$data[$this->model->alias]['bindDN'] = $dn;
 				$data[$this->model->alias]['bindPasswd'] = $password;
+				if(isset($this->sqlModel) && !empty($this->sqlModel)){
+					$userRecord = $this->existsOrCreate($data);
+					if($userRecord){
+						//Stuff The Sql User Record in the session just like the AuthLdap
+						$this->Session->write($this->sqlModel->alias, $userRecord);
+					}else{
+						$this->log("Error creating or finding the SQL version of the user: ".print_r($data,1),'ldap.error');
+					}
+				}
 			}else{
+				$this->Session->setFlash(__('Invalid Username or Password, Please try again.', true), 'default',array('class'=>'error-message'));
 				$this->loginError =  $loginResult;
 				return false;
 			}
@@ -387,6 +402,33 @@ class LDAPAuthComponent extends AuthComponent {
                 $userObj = $this->model->find('all', array('conditions'=>"$attr=$query", 'scope'=>'sub'));
                 return($userObj[0][$this->model->alias]['dn']);
         }
+
+	function existsOrCreate($user){
+		//Find out what the LDAP primary key is for the user model, this will be used to know which attribute to lookup the username in
+		$userPK = $this->model->primaryKey;
+		if(isset($user[$this->model->alias][$userPK]) ) $username = $user[$this->model->alias][$userPK];
+		if(is_array($username) && isset($username[0]) && !is_array($username[0]) ) $username = $username[0];
+
+		//Lets See if that username is already in our system
+		$result = $this->sqlModel->find('first',array('recursive'=>-1,'conditions'=>array('username'=>$username)));
+		//If so, lets just return that record and continue working
+		if(isset($result)) return $result[$this->sqlModel->alias];
+		else{
+			$this->sqlModel->create(); //User doesn't exists, grab it from the auth session and add it to the user table
+			if(isset($user['displayname']) && !empty($user['displayname'])) $u['displayname'] = $user['displayname'];
+			if(isset($user['dn']) && !empty($user['dn']) ) $u['dn'] = $user['dn'];
+			if(isset($username) && !empty($username) ) $u['username'] = $username;
+			if(isset($user['mail']) && !empty($user['mail']) ) $u['email'] = $user['mail'];
+			//so that it will get a id number for the foreign keys
+			if($this->sqlModel->save($u)){
+				$result = $this->sqlModel->find('first', array('recursive'=>-1,'conditions'=>array('username'=>$username)));
+				if($result) return $result[$this->sqlModel->alias];
+				else return false;
+			}else{
+				return false;
+			}
+		}
+	}
 
 }
 ?>
