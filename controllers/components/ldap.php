@@ -168,8 +168,14 @@ class LdapComponent extends Object {
 			
 		if(!empty($dn)){
 			$utmp = $this->Model->find('first', array( 'targetDn'=>$dn, 'scop'=>'base', 'fields'=>array('uid','cn','samaccountname')));
-			$uid = (isset($utmp[$this->Model->alias]['uid']) ? $utmp[$this->Model->alias]['uid'] : 
-				(isset($utmp[$this->Model->alias]['samacountname']) ? $utmp[$this->Model->alias]['samacountname'] : $utmp[$this->Model->alias]['cn'];
+			if(isset($utmp[$this->Model->alias]['uid'])){
+				$uid = $utmp[$this->Model->alias]['uid'];
+			}elseif(isset($utmp[$this->Model->alias]['samacountname'])){
+				$uid = $utmp[$this->Model->alias]['samacountname'];
+			}else{
+				$uid = $utmp[$this->Model->alias]['cn'];
+			}
+
 			$conditions = '(|(|(uniquemember='.$dn.')(memberuid='.$uid.'))(member='.$dn.'))';
 		}
 
@@ -291,7 +297,7 @@ class LdapComponent extends Object {
         function &getModel($name = null) {
                 $Model = null;
                 if (!$name) {
-                        $name = $this->Model->alias;
+                        $name = $this->userModel;
                 }
 
                 if (PHP5) {
