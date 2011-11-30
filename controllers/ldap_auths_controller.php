@@ -9,6 +9,14 @@ class LdapAuthsController extends IdbrokerAppController {
 		//$this->LdapAuth->allow('*');
 	}
 
+	function admin_logout(){
+		$this->logout();
+	}
+
+	function admin_login(){
+		$this->login();
+	}
+
 	function login(){
 	}
 
