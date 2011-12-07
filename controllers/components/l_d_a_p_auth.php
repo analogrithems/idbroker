@@ -10,9 +10,13 @@ class LDAPAuthComponent extends AuthComponent {
  */
 	function __construct(){
 		$model = Configure::read('LDAP.LdapAuth.Model');
-		$this->sqlUserModel = Configure::read('LDAP.LdapAuth.MirrorSQL');
+		$this->sqlUserModel = Configure::read('LDAP.LdapAuth.MirrorSQL.Users');
+		$this->sqlGroupModel = Configure::read('LDAP.LdapAuth.MirrorSQL.Groups');
 		if(isset($this->sqlUserModel) && !empty($this->sqlUserModel) ){
-				$this->sqlModel =& $this->getModel($this->sqlUserModel);
+				$this->sqlUserModel =& $this->getModel($this->sqlUserModel);
+		}
+		if(isset($this->sqlGroupModel) && !empty($this->sqlGroupModel) ){
+				$this->sqlGroupModel =& $this->getModel($this->sqlGroupModel);
 		}
 		$this->userModel = empty($model) ? 'Idbroker.LdapAuth' : $model;
 		$this->model =& $this->getModel();
@@ -29,6 +33,7 @@ class LDAPAuthComponent extends AuthComponent {
  */
         var $userModel;
         var $sqlUserModel;
+        var $sqlGroupModel;
 
 /**
  * Main execution method.  Handles redirecting of invalid users, and processing
@@ -332,11 +337,11 @@ class LDAPAuthComponent extends AuthComponent {
 				$data = $user[0];
 				$data[$this->model->alias]['bindDN'] = $dn;
 				$data[$this->model->alias]['bindPasswd'] = $password;
-				if(isset($this->sqlModel) && !empty($this->sqlModel)){
+				if(isset($this->sqlUserModel) && !empty($this->sqlUserModel)){
 					$userRecord = $this->existsOrCreate($data);
 					if($userRecord){
 						//Stuff The Sql User Record in the session just like the AuthLdap
-						$this->Session->write($this->sqlModel->alias, $userRecord);
+						$this->Session->write($this->sqlUserModel->alias, $userRecord);
 					}else{
 						$this->log("Error creating or finding the SQL version of the user: ".print_r($data,1),'ldap.error');
 					}
@@ -410,19 +415,27 @@ class LDAPAuthComponent extends AuthComponent {
 		if(is_array($username) && isset($username[0]) && !is_array($username[0]) ) $username = $username[0];
 
 		//Lets See if that username is already in our system
-		$result = $this->sqlModel->find('first',array('recursive'=>-1,'conditions'=>array('username'=>$username)));
+		$result = $this->sqlUserModel->find('first',array('recursive'=>-1,'conditions'=>array('username'=>$username)));
 		//If so, lets just return that record and continue working
-		if(isset($result)) return $result[$this->sqlModel->alias];
+		if(isset($result)){
+			//Check if we are mirroring groups as well, then refresh them
+			return $result[$this->sqlUserModel->alias];
+		}
 		else{
-			$this->sqlModel->create(); //User doesn't exists, grab it from the auth session and add it to the user table
+			$this->sqlUserModel->create(); //User doesn't exists, grab it from the auth session and add it to the user table
 			if(isset($user['displayname']) && !empty($user['displayname'])) $u['displayname'] = $user['displayname'];
 			if(isset($user['dn']) && !empty($user['dn']) ) $u['dn'] = $user['dn'];
 			if(isset($username) && !empty($username) ) $u['username'] = $username;
 			if(isset($user['mail']) && !empty($user['mail']) ) $u['email'] = $user['mail'];
 			//so that it will get a id number for the foreign keys
-			if($this->sqlModel->save($u)){
-				$result = $this->sqlModel->find('first', array('recursive'=>-1,'conditions'=>array('username'=>$username)));
-				if($result) return $result[$this->sqlModel->alias];
+			if($this->sqlUserModel->save($u)){
+				$result = $this->sqlUserModel->find('first', array('recursive'=>-1,'conditions'=>array('username'=>$username)));
+				if($result){
+					//Just like above, see if we are mirroring sql groups as well and update our sql model for them
+					if(isset($this->sqlGroupModel) && !empty($this->sqlGroupModel)){
+					
+					}
+					return $result[$this->sqlModel->alias];
 				else return false;
 			}else{
 				return false;
