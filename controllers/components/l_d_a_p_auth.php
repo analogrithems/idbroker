@@ -18,6 +18,11 @@ class LDAPAuthComponent extends AuthComponent {
 		if(isset($this->sqlGroupModel) && !empty($this->sqlGroupModel) ){
 				$this->sqlGroupModel =& $this->getModel($this->sqlGroupModel);
 		}
+		$this->groupType = Configure::read('LDAP.groupType');
+		//lets find all of our users groups
+		if(!isset($this->groupType) || empty($this->groupType) ){
+				$this->groupType = 'group';
+		}
 		$this->userModel = empty($model) ? 'Idbroker.LdapAuth' : $model;
 		$this->model =& $this->getModel();
 		parent::__construct();
@@ -335,13 +340,24 @@ class LDAPAuthComponent extends AuthComponent {
 			if( $loginResult == 1){
 				$user = $this->model->find('all', array('scope'=>'base', 'targetDn'=>$dn));
 				$data = $user[0];
+
 				$data[$this->model->alias]['bindDN'] = $dn;
 				$data[$this->model->alias]['bindPasswd'] = $password;
+				$groups = $this->getGroups($data[$this->model->alias]);
 				if(isset($this->sqlUserModel) && !empty($this->sqlUserModel)){
-					$userRecord = $this->existsOrCreate($data);
+					$userRecord = $this->existsOrCreateSQLUser($data);
 					if($userRecord){
+						$this->Session->write('Auth.'.$this->model->alias.'Groups',$groups);
+						//Check if we are mirroring sql for groups
+						if(isset($this->sqlGroupModel) && !empty($this->sqlGroupModel)){
+							if($sqlGroup = $this->existsOrCreateSQLGroup($userRecord,$groups)){
+								$this->Session->write('Auth.Groups',$sqlGroup);
+							}else{
+								$this->log("Failed to update sql mirrored groups:".print_r($sqlGroup,1),'ldap.error');
+							}
+						}
 						//Stuff The Sql User Record in the session just like the AuthLdap
-						$this->Session->write($this->sqlUserModel->alias, $userRecord);
+						$this->Session->write('Auth.'.$this->sqlUserModel->alias, $userRecord);
 					}else{
 						$this->log("Error creating or finding the SQL version of the user: ".print_r($data,1),'ldap.error');
 					}
@@ -408,7 +424,63 @@ class LDAPAuthComponent extends AuthComponent {
                 return($userObj[0][$this->model->alias]['dn']);
         }
 
-	function existsOrCreate($user){
+	function existsOrCreateSQLGroup($user = null, $groups = null){
+		if(!$user || !$groups) return false;
+		
+		$parent_id = Configure::read('LDAP.Group.behavior.permissionable.parent_id');
+
+		$sqlGroups = array();
+		foreach($groups as $groupName=>$dn){
+			//If group already exists, add it to our groups list and next
+			if($sqlGroup = $this->sqlGroupModel->find('first',array('conditions'=>array('Group.name'=>$groupName)))){
+				//group exists, see if user already listed in group, if not add them to sql group
+				if(isset($user['username']) && is_string($user['username']) ){
+					$userInGroup = false; //Lets see if we find out user
+					foreach($sqlGroup[$this->sqlUserModel->alias] as $u){
+						if(strtolower($u['username']) == strtolower($user['username'])){
+							$sqlGroups[] = $sqlGroup[$this->sqlGroupModel->alias];
+						}		
+					}
+					if(!$userInGroup){//User wasn't found, add him real quick
+						$udata[$this->sqlUserModel->alias] = $user;
+						if(!isset($udata[$this->sqlGroupModel->alias]) || 
+						!in_array($sqlGroup[$this->sqlGroupModel->alias]['id'],$udata[$this->sqlGroupModel->alias]))
+							$udata[$this->sqlGroupModel->alias][] = $sqlGroup[$this->sqlGroupModel->alias]['id'];
+					}
+				}
+			}else{ //sqlGroup doesn't exists yet, so create them and add this user to it
+				//todo add group
+				$data[$this->sqlGroupModel->alias]['name'] = $groupName;
+				$data[$this->sqlGroupModel->alias]['dn']  = $dn;
+				if(isset($parent_id) && !empty($parent_id) ){
+					$data[$this->sqlGroupModel->alias]['parent_id']  = $parent_id;
+				}
+				$udata[$this->sqlUserModel->alias] = $user;
+				if(!isset($udata[$this->sqlGroupModel->alias]) ||  !in_array($this->sqlGroupModel->id,$udata[$this->sqlGroupModel->alias]))
+					$udata[$this->sqlGroupModel->alias][] = $this->sqlGroupModel->id;
+					
+				if($ngroup = $this->sqlGroupModel->saveAll($data)){
+					$this->log("Added new group {$groupName} with user {$user['username']}",'debug');
+				}else{
+					$this->log("Failed to add new group {$groupName}/{$dn} with user:". print_r($user,1).	
+						':Input:'.print_r($data,1).':Result:'.print_r($ngroup,1),'ldap.error');
+				}
+	
+			}
+		}
+		if($gupdate = $this->sqlUserModel->save($udata)){
+			$this->log("Updating group {$sqlGroup[$this->sqlGroupModel->alias]['name']} to add:".print_r($user,1).
+				':With Data:'.print_r($udata,1).':Result:'.print_r($gupdate,1),'ldap.debug');
+		}else{
+			$this->log("Failed to Mirror group {$sqlGroup[$this->sqlGroupModel->alias]['name']} for user:".
+				print_r($user,1),'ldap.error');
+		}
+		$this->log("SQL group result:".print_r($sqlGroups,1).':'.print_r($user,1).':'.print_r($groups,1),'debug');
+		return (!empty($sqlGroups)) ? $sqlGroups : false;
+	}
+
+
+	function existsOrCreateSQLUser($user){
 		//Find out what the LDAP primary key is for the user model, this will be used to know which attribute to lookup the username in
 		$userPK = $this->model->primaryKey;
 		if(isset($user[$this->model->alias][$userPK]) ) $username = $user[$this->model->alias][$userPK];
@@ -431,16 +503,39 @@ class LDAPAuthComponent extends AuthComponent {
 			if($this->sqlUserModel->save($u)){
 				$result = $this->sqlUserModel->find('first', array('recursive'=>-1,'conditions'=>array('username'=>$username)));
 				if($result){
-					//Just like above, see if we are mirroring sql groups as well and update our sql model for them
-					if(isset($this->sqlGroupModel) && !empty($this->sqlGroupModel)){
-					
-					}
 					return $result[$this->sqlModel->alias];
-				else return false;
+				}else return false;
 			}else{
 				return false;
 			}
 		}
+	}
+
+	function getGroups($user = null){
+
+		if(strtolower($this->groupType) == 'group'){
+			$this->log("Looking for {$user['dn']} & 'objectclass'=>'group'",'ldap.debug');
+                        $groups = $this->model->find('all',array('conditions'=>array('AND'=>array('objectclass'=>'group', 'member'=>$user['dn'])),'scope'=>'sub'));
+		}elseif(strtolower($this->groupType) == 'groupofuniquenames'){
+                        $groups = $this->model->find('all',array('conditions'=>array('AND'=>
+				array('objectclass'=>'groupofuniquenames', 'uniquemember'=>$user['dn'])),'scope'=>'sub'));
+		}elseif(strtolower($this->groupType) == 'posixgroup'){
+			$pk = Configure::read('LDAP.User.Identifier');//either uid, cn, or samaccountname
+                        $groups = $this->model->find('all',array('conditions'=>array('AND'=>array('objectclass'=>'posixgroup', 'memberuid'=>$user[$pk])),'scope'=>'sub'));
+		}
+
+
+		$groupIdentifer = Configure::read('LDAP.Group.Identifier');
+		$groupIdentifer = (empty($groupIdentifer)) ? 'cn' : $groupIdentifer;
+		foreach($groups as $group){
+			$gid = $group[$this->model->alias][$groupIdentifer];
+			if(isset($gid)){
+				$mygroup[$gid] = $group[$this->model->alias]['dn'];
+			}
+		}
+		//todo loop through groupos to see if any are nested groups that need to be expanded!
+		$this->log("User was found in the following groups:".print_r($groups,1),'ldap.debug');
+		return $mygroup;
 	}
 
 }
