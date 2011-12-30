@@ -1,4 +1,5 @@
 <?php
+App::uses('CakeLog', 'Log');
 App::uses('BaseAuthenticate', 'Controller/Component/Auth');
 
 class LdapAuthenticate extends BaseAuthenticate {
@@ -48,7 +49,7 @@ class LdapAuthenticate extends BaseAuthenticate {
 	}
 
 	public function authenticate(CakeRequest $request, CakeResponse $response) {
-		Cakelog::write('debug',"Trying to login with:".print_r($request,true));
+		CakeLog::write('debug',"Trying to login with:".print_r($request,true));
 
                 $userModel = $this->settings['userModel'];
                 list($plugin, $model) = pluginSplit($userModel);
@@ -106,19 +107,19 @@ class LdapAuthenticate extends BaseAuthenticate {
 			if(isset($this->sqlUserModel) && !empty($this->sqlUserModel)){
 				$userRecord = $this->existsOrCreateSQLUser($user);
 				if($userRecord){
-					Configure::write('Auth.'.$this->model->alias.'Groups',$groups);
+					//Configure::write('Auth.'.$this->model->alias.'Groups',$groups);
 					//Check if we are mirroring sql for groups
 					if(isset($this->sqlGroupModel) && !empty($this->sqlGroupModel)){
 						if($sqlGroup = $this->existsOrCreateSQLGroup($userRecord,$groups)){
 							Configure::write('Auth.'.$this->sqlGroupModel->alias,$sqlGroup);
 						}else{
-							Cakelog::write('ldap.error',"Failed to update sql mirrored groups:".print_r($sqlGroup,1));
+							CakeLog::write('ldap.error',"Failed to update sql mirrored groups:".print_r($sqlGroup,1));
 						}
 					}
 					//Stuff The Sql User Record in the session just like the AuthLdap
-					Configure::write('Auth.'.$this->sqlUserModel->alias, $userRecord);
+					//Configure::write('Auth.'.$this->sqlUserModel->alias, $userRecord);
 				}else{
-					Cakelog::write('ldap.error',"Error creating or finding the SQL version of the user: ".print_r($user,1));
+					CakeLog::write('ldap.error',"Error creating or finding the SQL version of the user: ".print_r($user,1));
 				}
 			}
 
@@ -169,22 +170,22 @@ class LdapAuthenticate extends BaseAuthenticate {
 					$udata[$this->sqlGroupModel->alias][] = $this->sqlGroupModel->id;
 					
 				if($ngroup = $this->sqlGroupModel->saveAll($data)){
-					Cakelog::write('debug',"Added new group {$groupName} with user {$user['username']}");
+					CakeLog::write('debug',"Added new group {$groupName} with user {$user['username']}");
 				}else{
-					Cakelog::write('ldap.error', "Failed to add new group {$groupName}/{$dn} with user:". print_r($user,1).	
+					CakeLog::write('ldap.error', "Failed to add new group {$groupName}/{$dn} with user:". print_r($user,1).	
 						':Input:'.print_r($data,1).':Result:'.print_r($ngroup,1));
 				}
 	
 			}
 		}
 		if($gupdate = $this->sqlUserModel->save($udata)){
-			Cakelog::write('ldap.debug',"Updating group {$sqlGroup[$this->sqlGroupModel->alias]['name']} to add:".print_r($user,1).
+			CakeLog::write('ldap.debug',"Updating group {$sqlGroup[$this->sqlGroupModel->alias]['name']} to add:".print_r($user,1).
 				':With Data:'.print_r($udata,1).':Result:'.print_r($gupdate,1));
 		}else{
-			Cakelog::write('ldap.error',"Failed to Mirror group {$sqlGroup[$this->sqlGroupModel->alias]['name']} for user:".
+			CakeLog::write('ldap.error',"Failed to Mirror group {$sqlGroup[$this->sqlGroupModel->alias]['name']} for user:".
 				print_r($user,1));
 		}
-		Cakelog::write('debug',"SQL group result:".print_r($sqlGroups,1).':'.print_r($user,1).':'.print_r($groups,1));
+		CakeLog::write('debug',"SQL group result:".print_r($sqlGroups,1).':'.print_r($user,1).':'.print_r($groups,1));
 		return (!empty($sqlGroups)) ? $sqlGroups : false;
 	}
 
@@ -223,7 +224,7 @@ class LdapAuthenticate extends BaseAuthenticate {
 	function getGroups($user = null){
 
 		if(strtolower($this->groupType) == 'group'){
-			Cakelog::write('ldap.debug',"Looking for {$user['dn']} & 'objectclass'=>'group'");
+			CakeLog::write('ldap.debug',"Looking for {$user['dn']} & 'objectclass'=>'group'");
                         $groups = $this->model->find('all',array('conditions'=>array('AND'=>array('objectclass'=>'group', 'member'=>$user['dn'])),'scope'=>'sub'));
 		}elseif(strtolower($this->groupType) == 'groupofuniquenames'){
                         $groups = $this->model->find('all',array('conditions'=>array('AND'=>

@@ -65,12 +65,19 @@ class LdapSource extends DataSource {
 	var $database = false;
 
 /**
- * Count
+ * Number of Rows Returned
  *
  * @var integer
  * @access public
  */
-	var $count = 0;
+	var $numRows = 0;
+
+/**
+ * String to hold how many rows were affected by the last LDAP operation.
+ *
+ * @var string
+ */
+	public $affected = null;
 
 /**
  * Model
@@ -165,6 +172,14 @@ class LdapSource extends DataSource {
 	public $_queriesLog = array();
 
 /**
+ * Query Log Max
+ *
+ * @var array
+ * @access public
+ */
+	public $_queriesLogMax = 200;
+
+/**
  * Descriptions
  *
  * @var array
@@ -232,7 +247,7 @@ class LdapSource extends DataSource {
 		return $field;
 	}
 
-	/**
+    /**
     * connect([$bindDN], [$passwd])  create the actual connection to the ldap server
     * This function supports failover, so if your config['host'] is an array it will try the first one, if it fails,
     * jumps to the next and attempts to connect and so on.  If will also check try to setup any special connection options
@@ -303,22 +318,22 @@ class LdapSource extends DataSource {
 	}
 
 	/**
-     * auth($dn, $passwd)
-	 * Test if the dn/passwd combo is valid
-     * This may actually belong in the component code, will look into that
-     *
-     * @param string bindDN to connect as
-     * @param string password for the bindDN
-     * @param boolean or string on error
-	 */
+	* auth($dn, $passwd)
+	* Test if the dn/passwd combo is valid
+	* This may actually belong in the component code, will look into that
+	*
+	* @param string bindDN to connect as
+	* @param string password for the bindDN
+	* @param boolean or string on error
+	*/
 	function auth( $dn, $passwd ){
-        $this->connect($dn, $passwd);
-        if ($this->connected){
-            return true;
-        }else{
-            $this->log("Auth Error: for '$dn': ".$this->lastError(),'ldap.error');
-            return $this->lastError();
-        }
+		$this->connect($dn, $passwd);
+		if ($this->connected){
+		    return true;
+		}else{
+		    $this->log("Auth Error: for '$dn': ".$this->lastError(),'ldap.error');
+		    return $this->lastError();
+		}
 	}
 	
 	/**
@@ -327,16 +342,16 @@ class LdapSource extends DataSource {
 	 *
 	 */
 	function close() {
-		if ($this->fullDebug && Configure::read('debug') > 1) {
+		if ($this->fullDebug ) {
 			$this->showLog();
 		}
 		$this->disconnect();
 	}
 	
-    /**
-    * disconnect  close connection and release any remaining results in the buffer
-    *
-    */
+	/**
+	* disconnect  close connection and release any remaining results in the buffer
+	*
+	*/
 	function disconnect() {
 		@ldap_free_result($this->results);
         @ldap_unbind($this->database);
@@ -367,7 +382,15 @@ class LdapSource extends DataSource {
 		return $this->connect();
 	}
 
-	//Crud Functions follow
+	/**
+	* Check whether the LDAP extension is installed/loaded
+	*
+	* @return boolean
+	*/
+	public function enabled() {
+		return function_exists('ldap_connect');
+	}
+
 	/**
 	 * The "C" in CRUD
 	 *
@@ -486,15 +509,17 @@ class LdapSource extends DataSource {
 				$queryData['order'] = array($model->primaryKey);
 					
 		// Associations links --------------------------
-		foreach ($model->__associations as $type) {
-			foreach ($model->{$type} as $assoc => $assocData) {
-				if ($model->recursive > -1) {
-					$linkModel = & $model->{$assoc};
-					$linkedModels[] = $type . '/' . $assoc;
+		if(isset($model->__associations)){
+			foreach ($model->__associations as $type) {
+				foreach ($model->{$type} as $assoc => $assocData) {
+					if ($model->recursive > -1) {
+						$linkModel = & $model->{$assoc};
+						$linkedModels[] = $type . '/' . $assoc;
+					}
 				}
 			}
 		}
-	
+		
 		// Execute search query ------------------------
 		$res = $this->_executeQuery($queryData );
 		
@@ -507,9 +532,8 @@ class LdapSource extends DataSource {
 		$resultSet = $this->_ldapFormat($model, $resultSet);	
 		
 		// Query on linked models  ----------------------
-		if ($model->recursive > 0) {
+		if(($model->recursive > 0) && isset($model->__associations) ) {
 			foreach ($model->__associations as $type) {
-	
 				foreach ($model->{$type} as $assoc => $assocData) {
 					$db = null;
 					$linkModel = & $model->{$assoc};
@@ -959,10 +983,21 @@ class LdapSource extends DataSource {
 	}
 
 	/**
-	 * Function not supported
+	 * Function to actually query LDAP
 	 */
-	function execute($query) {
-		return null;
+	public function execute($query, $options = array(), $params = array()) {
+		$options += array('log' => $this->fullDebug);
+
+		$t = microtime(true);
+		$this->_result = $this->_executeQuery($query, $params);
+
+		if ($options['log']) {
+			$this->took = round((microtime(true) - $t) * 1000, 0);
+			$this->numRows = $this->affected = $this->lastAffected();
+			$this->logQuery($query);
+		}
+
+		return $this->_result;
 	}
 	
 	/**
@@ -972,7 +1007,6 @@ class LdapSource extends DataSource {
 		return array();
 	}
 	
-	// Logs --------------------------------------------------------------
 	/**
 	 * Log given LDAP query.
 	 *
@@ -982,50 +1016,57 @@ class LdapSource extends DataSource {
 	function logQuery($query) {
 		$this->_queriesCnt++;
 		$this->_queriesTime += $this->took;
-		$this->_queriesLog[] = array (
-			'query' => $query,
-			'error' => $this->error,
-			'affected' => $this->affected,
-			'numRows' => $this->numRows,
-			'took' => $this->took
+		$this->_queriesLog[] = array(
+			'query'		=> $query,
+			'affected'	=> $this->affected,
+			'numRows'	=> $this->numRows,
+			'took'		=> $this->took
 		);
 		if (count($this->_queriesLog) > $this->_queriesLogMax) {
 			array_pop($this->_queriesLog);
 		}
-		if ($this->error) {
-			return false;
-		}
 	}
 	
 	/**
-	 * Outputs the contents of the queries log.
-	 *
-	 * @param boolean $sorted
-	 */
-	function showLog($sorted = false) {
+	* Get the query log as an array.
+	*
+	* @param boolean $sorted Get the queries sorted by time taken, defaults to false.
+	* @param boolean $clear If True the existing log will cleared.
+	* @return array Array of queries run as an array
+	*/
+	public function getLog($sorted = false, $clear = true) {
 		if ($sorted) {
 			$log = sortByKey($this->_queriesLog, 'took', 'desc', SORT_NUMERIC);
 		} else {
 			$log = $this->_queriesLog;
 		}
+		if ($clear) {
+			$this->_queriesLog = array();
+		}
+		return array('log' => $log, 'count' => $this->_queriesCnt, 'time' => $this->_queriesTime);
+	}
 
-		if ($this->_queriesCnt > 1) {
-			$text = 'queries';
-		} else {
-			$text = 'query';
+	/**
+	* Outputs the contents of the queries log. If in a non-CLI environment the sql_log element
+	* will be rendered and output.  If in a CLI environment, a plain text log is generated.
+	*
+	* @param boolean $sorted Get the queries sorted by time taken, defaults to false.
+	* @return void
+	*/
+	public function showLog($sorted = false) {
+		$log = $this->getLog($sorted, false);
+		if (empty($log['log'])) {
+			return;
 		}
 
-		if (php_sapi_name() != 'cli') {
-			print ("<table id=\"cakeSqlLog\" cellspacing=\"0\" border = \"0\">\n<caption>{$this->_queriesCnt} {$text} took {$this->_queriesTime} ms</caption>\n");
-			print ("<thead>\n<tr><th>Nr</th><th>Query</th><th>Error</th><th>Affected</th><th>Num. rows</th><th>Took (ms)</th></tr>\n</thead>\n<tbody>\n");
-
-			foreach ($log as $k => $i) {
-				print ("<tr><td>" . ($k +1) . "</td><td>{$i['query']}</td><td>{$i['error']}</td><td style = \"text-align: right\">{$i['affected']}</td><td style = \"text-align: right\">{$i['numRows']}</td><td style = \"text-align: right\">{$i['took']}</td></tr>\n");
-			}
-			print ("</table>\n");
-		} else {
-			foreach ($log as $k => $i) {
-				print (($k +1) . ". {$i['query']} {$i['error']}\n");
+		if (PHP_SAPI != 'cli') {
+			$controller = null;
+			$View = new View($controller, false);
+			$View->set('logs', array($this->configKeyName => $log));
+			echo $View->element('ldap_dump', array('_forced_from_ldap_' => true));
+		}else {
+			foreach ($log['log'] as $k => $i) {
+				print (($k + 1) . ". {$i['query']}\n");
 			}
 		}
 	}
@@ -1043,7 +1084,7 @@ class LdapSource extends DataSource {
 		}
 
 		if ($this->debug || $error) {
-			print ("<p style = \"text-align:left\"><b>Query:</b> {$query} <small>[Aff:{$this->affected} Num:{$this->numRows} Took:{$this->took}ms]</small>");
+			print ("<p style = \"text-align:left\"><b>Query:</b> {$query} <small>[ Num:{$this->numRows} Took:{$this->took}ms]</small>");
 			if ($error) {
 				print ("<br /><span style = \"color:Red;text-align:left\"><b>ERROR:</b> {$this->error}</span>");
 			}
@@ -1122,13 +1163,13 @@ class LdapSource extends DataSource {
 		return(preg_match($pattern, $targetDN));
 	}
 	
-	function _executeQuery($queryData = array (), $cache = true){
+	function _executeQuery($queryData = array(), $cache = true){
+		$options = array('log' => $this->fullDebug);
 		$t = microtime(true);
 		
 		$pattern = '/,[ \t]+(\w+)=/';
 		$queryData['targetDn'] = preg_replace($pattern, ',$1=',$queryData['targetDn']);	
 		if($this->checkBaseDn($queryData['targetDn']) == 0){
-		$this->log("Missing BaseDN in ". $queryData['targetDn'],'debug');
 			
 			if($queryData['targetDn'] != null){
 				$seperator = (substr($queryData['targetDn'], -1) == ',') ? '' : ',';
@@ -1155,9 +1196,9 @@ class LdapSource extends DataSource {
 			switch ($queryData['type']) {
 				case 'search':
 					// TODO pb ldap_search & $queryData['limit']
-			if( empty($queryData['fields']) ){
-			$queryData['fields'] = $this->defaultNSAttributes();
-			}
+					if( empty($queryData['fields']) ){
+						$queryData['fields'] = $this->defaultNSAttributes();
+					}
 					
 					//Handle LDAP Scope
 					if(isset($queryData['scope']) && $queryData['scope'] == 'base'){
@@ -1173,9 +1214,6 @@ class LdapSource extends DataSource {
 						$res = false;
 						$errMsg = ldap_error($this->database);
 						$this->log("Query Params Failed:".print_r($queryData,true).' Error: '.$errMsg,'ldap.error');
-						$this->count = 0;
-					}else{
-						$this->count = ldap_count_entries($this->database, $res);
 					}
 					
 					if ($cache) {
@@ -1194,11 +1232,11 @@ class LdapSource extends DataSource {
 		}
 				
 		$this->_result = $res;
-		$this->took = round((microtime(true) - $t) * 1000, 0);
-		$this->error = $this->lastError();
-		$this->numRows = $this->lastNumRows();
 
-		if ($this->fullDebug) {
+		if($options['log']){
+			$this->took = round((microtime(true) - $t) * 1000, 0);
+			$this->error = $this->lastError();
+			$this->numRows = $this->lastNumRows();
 			$this->logQuery($query);
 		}
 
@@ -1386,7 +1424,7 @@ class LdapSource extends DataSource {
 								$queryData['scope'] = 'base';
 								$query = $this->read($model, $queryData);
 							}
-							return $this->count;
+							return $this->numRows;
 							break; 
 						case 'max':
 						case 'min':
@@ -1463,5 +1501,17 @@ class LdapSource extends DataSource {
 		$schemaEntry = ldap_get_entries($this->database, $checkDN);
 		$this->SchemaDN = $schemaEntry[0]['subschemasubentry'][0];
 	}
-} // LdapSource
-?>
+
+	/**
+	* Returns an array of sources (tables) in the database.
+	*
+	* @param mixed $data
+	* @return array Array of tablenames in the database
+	*/
+        public function listSources($data = null) {
+                $cache = parent::listSources();
+                if ($cache !== null) {
+                        return $cache;
+                }
+        }
+}
