@@ -17,6 +17,9 @@ class LdapAuthenticate extends BaseAuthenticate {
 	
 
 	function __construct(ComponentCollection $collection, $settings = array()) {
+		$controller = $collection->getController();
+		$this->form = $controller->name;
+
 		$model = Configure::read('LDAP.LdapAuth.Model');
 		$model = (isset($settings['Model'])) ? $settings['Model'] : $model;
 
@@ -55,19 +58,19 @@ class LdapAuthenticate extends BaseAuthenticate {
                 list($plugin, $model) = pluginSplit($userModel);
 
                 $fields = $this->settings['fields'];
-                if (empty($request->data[$model])) {
+                if (empty($request->data[$this->form])) {
                         return false;
                 }
                 if (
-                        empty($request->data[$model][$fields['username']]) ||
-                        empty($request->data[$model][$fields['password']])
+                        empty($request->data[$this->form][$fields['username']]) ||
+                        empty($request->data[$this->form][$fields['password']])
                 ) {
                         return false;
                 }
-		$dn = $this->_getDn($this->model->primaryKey, $request->data[$model][$fields['username']]);
+		$dn = $this->_getDn($this->model->primaryKey, $request->data[$this->form][$fields['username']]);
                 return $this->_findLdapUser(
 			$dn,
-                        $request->data[$model][$fields['password']]
+                        $request->data[$this->form][$fields['password']]
                 );
 
 
@@ -107,23 +110,22 @@ class LdapAuthenticate extends BaseAuthenticate {
 			if(isset($this->sqlUserModel) && !empty($this->sqlUserModel)){
 				$userRecord = $this->existsOrCreateSQLUser($user);
 				if($userRecord){
-					//Configure::write('Auth.'.$this->model->alias.'Groups',$groups);
+					CakeSession::write('Auth.LdapGroups',$groups);
 					//Check if we are mirroring sql for groups
 					if(isset($this->sqlGroupModel) && !empty($this->sqlGroupModel)){
 						if($sqlGroup = $this->existsOrCreateSQLGroup($userRecord,$groups)){
-							Configure::write('Auth.'.$this->sqlGroupModel->alias,$sqlGroup);
+							CakeSession::write('Auth.'.$this->sqlGroupModel->alias,$groups);
 						}else{
 							CakeLog::write('ldap.error',"Failed to update sql mirrored groups:".print_r($sqlGroup,1));
 						}
 					}
-					//Stuff The Sql User Record in the session just like the AuthLdap
-					//Configure::write('Auth.'.$this->sqlUserModel->alias, $userRecord);
+					//Stuff the SQL user in there also
+					$user[$this->model->alias] =  array_merge($user[$this->model->alias], $userRecord);
 				}else{
 					CakeLog::write('ldap.error',"Error creating or finding the SQL version of the user: ".print_r($user,1));
 				}
 			}
-
-			return $user;
+			return $user[$this->model->alias];
 		}else{
 			return false;
 		}
