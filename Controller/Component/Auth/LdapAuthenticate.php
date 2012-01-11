@@ -21,7 +21,7 @@ class LdapAuthenticate extends BaseAuthenticate {
 		$this->form = $controller->name;
 
 		$model = Configure::read('LDAP.LdapAuth.Model');
-		$model = (isset($settings['Model'])) ? $settings['Model'] : $model;
+		$model = (isset($settings['userModel'])) ? $settings['userModel'] : $model;
 
 		$this->sqlUserModel = Configure::read('LDAP.LdapAuth.MirrorSQL.Users');
 		$this->sqlUserModel = (isset($settings['MirrorSQLUser'])) ? $settings['MirrorSQLUser'] : $this->sqlUserModel;
