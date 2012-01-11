@@ -146,7 +146,8 @@ class LdapAuthenticate extends BaseAuthenticate {
 			//If group already exists, add it to our groups list and next
 			if($sqlGroup = $this->sqlGroupModel->find('first',array('conditions'=>array('Group.name'=>$groupName)))){
 				//group exists, see if user already listed in group, if not add them to sql group
-				if(isset($user['username']) && is_string($user['username']) ){
+				if(isset($user['username']) && is_string($user['username']) 
+					&& isset($sqlGroup[$this->sqlUserModel->alias])  && is_array($sqlGroup[$this->sqlUserModel->alias]) ){
 					$userInGroup = false; //Lets see if we find out user
 					foreach($sqlGroup[$this->sqlUserModel->alias] as $u){
 						if(strtolower($u['username']) == strtolower($user['username'])){
@@ -180,7 +181,7 @@ class LdapAuthenticate extends BaseAuthenticate {
 	
 			}
 		}
-		if($gupdate = $this->sqlUserModel->save($udata)){
+		if(isset($udata) && $gupdate = $this->sqlUserModel->save($udata)){
 			CakeLog::write('ldap.debug',"Updating group {$sqlGroup[$this->sqlGroupModel->alias]['name']} to add:".print_r($user,1).
 				':With Data:'.print_r($udata,1).':Result:'.print_r($gupdate,1));
 		}else{
