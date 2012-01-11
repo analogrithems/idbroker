@@ -236,6 +236,7 @@ class LdapAuthenticate extends BaseAuthenticate {
                         $groups = $this->model->find('all',array('conditions'=>array('AND'=>array('objectclass'=>'posixgroup', 'memberuid'=>$user[$pk])),'scope'=>'sub'));
 		}
 
+		if(!isset($groups)  || empty($groups)) return false;
 
 		$groupIdentifer = Configure::read('LDAP.Group.Identifier');
 		$groupIdentifer = (empty($groupIdentifer)) ? 'cn' : $groupIdentifer;
