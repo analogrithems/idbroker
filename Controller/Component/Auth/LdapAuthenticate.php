@@ -202,7 +202,7 @@ class LdapAuthenticate extends BaseAuthenticate {
 		//Lets See if that username is already in our system
 		$result = $this->sqlUserModel->find('first',array('recursive'=>-1,'conditions'=>array('username'=>$username)));
 		//If so, lets just return that record and continue working
-		if(isset($result)){
+		if(isset($result) && !empty($result)){
 			//Check if we are mirroring groups as well, then refresh them
 			return $result[$this->sqlUserModel->alias];
 		}
