@@ -271,7 +271,7 @@ class LdapSource extends DataSource {
 		$bindPasswd =  (empty($passwd)) ? $config['password'] : $passwd;
 		if(!function_exists('ldap_connect')){
 			$this->log("LDAP not configured on this server.",'ldap.error');
-			die("LDAP not configured on this server.");
+			die("LDAP not configured on this server. The PHP-LDAP extension is probably missing!");
 		}
 		$this->database = @ldap_connect($config['host']);
 		if(!$this->database){
