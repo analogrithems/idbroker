@@ -273,7 +273,7 @@ class LdapSource extends DataSource {
 			$this->log("LDAP not configured on this server.",'ldap.error');
 			die("LDAP not configured on this server. The PHP-LDAP extension is probably missing!");
 		}
-		$this->database = @ldap_connect($config['host']);
+		$this->database = @ldap_connect($config['host'], $config['port']);
 		if(!$this->database){
 		    //Try Next Server Listed
 		    if($hasFailover){
